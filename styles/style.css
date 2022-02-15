@@ -1,0 +1,14 @@
+﻿/* General Styles */
+
+* {
+  box-sizing: border-box;
+
+  /* Color Variables */
+  --buzz-red: #EC362D;
+  --buzz-grey: #B9B9B9;
+  --bg-color: #FAFAFA;
+  --buzz-blue: #434CA0;
+  --buzz-purple: #A0438D;
+  --text-red: #FF0B0B;
+  --text-green: #009C22;
+}
