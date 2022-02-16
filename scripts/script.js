@@ -42,13 +42,27 @@ const funcoesDeControle = {
 }
 
 const funcoesQuizzes = {
+  quizzes: [],
+
   responderQuizz(quizz) {
     funcoesDeControle.toogleTela1()
     funcoesDeControle.toogleTela2()
+  },
+
+  listarTodosOsQuizzes() {
+    console.log('listando todos os Quizzes', this.quizzes)
+
+    this.montaEstruturaQuizzPrimeiraTela()
+  },
+
+  montaEstruturaQuizzPrimeiraTela() {
+
+  }
+
+  montaEstruturaQuizzSegundaTela() {
+    
   }
 }
 
-// exemplo de como receber os quizzes da API
-// const quizzes = funcoesApi.obterQuizzes()
+funcoesApi.obterQuizzes()
 
-funcoesQuizzes.listarTodosOsQuizzes()
