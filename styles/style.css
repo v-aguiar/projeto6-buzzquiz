@@ -47,6 +47,10 @@ header {
   right: 0;
   left: 0;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   height: 69px;
 
   padding: 13px 0;
@@ -56,10 +60,6 @@ header {
 
 header img {
   max-width: 176px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 /* Estilos principais */
@@ -89,9 +89,9 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  
+
   border-radius: 5px;
-  border: 1px dashed var(--buzz-grey) ;
+  border: 1px dashed var(--buzz-grey);
 
   width: 100%;
   height: 181px;
@@ -100,7 +100,7 @@ main {
 .sem-quizzes button {
   outline: none;
   border: 1px dashed var(--buzz-red);
-  border-radius: 50%;
+  border-radius: 50px;
 
   padding: 10px 12px;
 
@@ -129,55 +129,62 @@ main {
 }
 
 .quizz img {
-background-size: contain;
-position: relative;
+  width: inherit;
+  position: relative;
+  border-radius: 5px;
 }
 
 .quizz p {
-position: absolute;
-bottom: 8px;
+  position: absolute;
+  bottom: 8px;
 
-text-align: center;
+  text-align: center;
 }
 
 /* Estilos da página de um quizz */
 
-.cabecalho-do-quizz{
+.cabecalho-do-quizz {
   width: 375px;
   height: 142px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: green;
+  background-color: var(--buzz-grey);
   margin-bottom: 42px;
 }
-article{
+
+article {
   width: 340px;
-  margin:28px auto;
+  margin: 28px auto;
 }
-.cabecalho-da-pergunta{
+
+.cabecalho-da-pergunta {
   height: 90px;
   background-color: purple;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.conteudo-das-opcoes{
+
+.conteudo-das-opcoes {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
-.opcao{
+
+.opcao {
   width: 163px;
   height: 113px;
   background-color: blue;
   margin: 13px 0;
 }
-.opcao img{
+
+.opcao img {
   width: 163px;
   height: 113px;
 }
-.opcao p{
+
+.opcao p {
   font-weight: 700;
   font-size: 13px;
   line-height: 15px;
@@ -185,14 +192,15 @@ article{
 }
 
 /**Parte de forms*/
-.cria-quizz{
+.cria-quizz {
   display: block;
   width: 375px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.cria-quizz h1{
+
+.cria-quizz h1 {
   width: 375px;
   height: 100px;
   padding-top: 37px;
@@ -203,7 +211,8 @@ article{
   font-weight: 700;
   font-family: 'Roboto';
 }
-input{
+
+input {
   width: 341px;
   height: 46px;
   margin: 9px 0;
@@ -216,31 +225,37 @@ input{
   border-radius: 5px;
   border: 1px solid #D1D1D1;
 }
-.forms{
+
+.forms {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 29px 0;
 }
-.botao-criacao{
+
+.botao-criacao {
   width: 324px;
   height: 54px;
   border-radius: 24px;
-  background-color: #EC362D;
+  background-color: var(--buzz-red);
 }
-.botao-criacao p{
-  font-size:16px;
+
+.botao-criacao p {
+  font-size: 16px;
   color: white;
 }
-.url-incorreto-um, .url-incorreto-dois, .url-incorreto-tres{
-  margin-bottom:32px;
+
+.url-incorreto-um, .url-incorreto-dois, .url-incorreto-tres {
+  margin-bottom: 32px;
 }
-label{
+
+label {
   margin-top: 27px;
   font-family: 'Roboto';
   font-weight: 700;
 }
-.fechado{
+
+.fechado {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -249,11 +264,13 @@ label{
   background-color: white;
   margin: 20px 0;
   border-radius: 5px;
-  border: 1px solid #dad5d5;
+  border: 1px solid var(--buzz-grey);
 }
-.fechado h1{
+
+.fechado h1 {
   text-align: left;
 }
-ion-icon{
+
+ion-icon {
   font-size: 30px;
 }
