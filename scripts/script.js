@@ -5,8 +5,13 @@ const funcoesApi = {
     const promise = axios.get(`${API_URL}/quizzes`);
 
     promise.then((resposta) => {
-      return resposta.data;
+      resposta.data.forEach((quizz) => {
+        funcoesQuizzes.quizzes.push(quizz);
+      })
+
+      funcoesQuizzes.listarTodosOsQuizzes();
     })
+
     promise.catch((err) => {
       console.error(err.status, err.message);
     })
@@ -57,10 +62,13 @@ const funcoesQuizzes = {
 
   montaEstruturaQuizzPrimeiraTela() {
 
+<<<<<<< HEAD
   }
 
   montaEstruturaQuizzSegundaTela() {
     
+=======
+>>>>>>> 6a036b63e143127592353e547dfea93cf4a97174
   }
 }
 
