@@ -82,32 +82,64 @@
     <!--Criar Quizz-->
 
     <!--gleison-->
-    <section class="cria-quizz-passo-um">
+    <section class="cria-quizz passo-um">
       <h1>Comece pelo começo</h1>
       <div class="forms">
-        <label>
           <input type="text" placeholder="Título do seu quizz" class="titulo-quizz">
-        </label>
 
-        <label>
           <input type="text" placeholder="URL da imagem do seu quizz" class="url-quizz">
-        </label>
-
-        <label>
+    
           <input type="text" placeholder="Quantidade de perguntas do seu quizz" class="qtd-perguntas">
-        </label>
-
-        <label>
+    
           <input type="text" placeholder="Quantidade de níveis do quizz" class="qtd-niveis">
-        </label>
+      </div>
+      <button class="botao-criacao"><p>Prosseguir para criar perguntas</p></button>
+    </section>
+
+    <section class="cria-quizz passo-dois">
+      <h1>Crie suas perguntas</h1>
+      <div class="forms">
+        <div class="pergunta-um">
+          <label for="pergunta-um">Pergunta 1</label>
+            <input type="text" placeholder="Texto da pergunta" class="texto-pergunta-um" id="pergunta-um">
+            <input type="text" placeholder="Cor de fundo da pergunta" class="cor-pergunta-um" id="pergunta-um">
+
+          <label for="resposta-correta">Resposta correta</label>
+            <input type="text" placeholder="Resposta correta" class="texto-resposta-correta" id="resposta-correta">
+            <input type="text" placeholder="URL da imagem" class="url-imagem" id="resposta-correta">
+
+          <label for="incorretas">Respostas incorretas</label>
+            <input type="text" placeholder="Resposta incorreta 1" class="texto-incorreto-tres" id="incorreta">
+            <input type="text" placeholder="URL da imagem 1" class="url-incorreto-um" id="incorreta">
+
+            <input type="text" placeholder="Resposta incorreta 2" class="texto-incorreto-dois" id="incorreta">
+            <input type="text" placeholder="URL da imagem 2" class="url-incorreto-dois" id="incorreta">
+
+            <input type="text" placeholder="Resposta incorreta 3" class="texto-incorreto-tres" id="incorreta">
+            <input type="text" placeholder="URL da imagem 3" class="url-incorreto-tres" id="incorreta">
+        </div>
+        <button class="botao-criacao"><p>Prosseguir para criar níveis</p></button>
+      </div>
+
+      <div class="pergunta-dois fechado">
+        <h1>Pergunta 2</h1>
+        <ion-icon name="create-outline"></ion-icon>
+      </div>
+
+      <div class="pergunta-treis fechado">
+        <h1>Pergunta 3</h1>
+        <ion-icon name="create-outline"></ion-icon>
       </div>
     </section>
-    <section class="cria-quizz-passo-um"></section>
+
+
+
 
     <!--Victor-->
     <section class="cria-quizz-passo-um"></section>
     <section class="cria-quizz-passo-um"></section>
   </main>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 </body>
 
 </html>
