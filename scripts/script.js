@@ -5,8 +5,13 @@ const funcoesApi = {
     const promise = axios.get(`${API_URL}/quizzes`);
 
     promise.then((resposta) => {
-      return resposta.data;
+      resposta.data.forEach((quizz) => {
+        funcoesQuizzes.quizzes.push(quizz);
+      })
+
+      funcoesQuizzes.listarTodosOsQuizzes();
     })
+
     promise.catch((err) => {
       console.error(err.status, err.message);
     })
@@ -42,13 +47,23 @@ const funcoesDeControle = {
 }
 
 const funcoesQuizzes = {
+  quizzes: [],
+
   responderQuizz(quizz) {
     funcoesDeControle.toogleTela1()
     funcoesDeControle.toogleTela2()
+  },
+
+  listarTodosOsQuizzes() {
+    console.log('listando todos os Quizzes', this.quizzes)
+
+    this.montaEstruturaQuizzPrimeiraTela()
+  },
+
+  montaEstruturaQuizzPrimeiraTela() {
+
   }
 }
 
-// exemplo de como receber os quizzes da API
-// const quizzes = funcoesApi.obterQuizzes()
+funcoesApi.obterQuizzes()
 
-funcoesQuizzes.listarTodosOsQuizzes()
