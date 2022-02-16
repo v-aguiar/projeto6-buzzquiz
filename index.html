@@ -34,13 +34,15 @@
       <div class="quizzes">
         <ul class="quizzes-todos">
           <li class="quizzes-titulo">Todos os Quizzes</li>
-          <li class="quizz">
+          <li class="quizz" onclick="funcoesQuizzes.responderQuizz(this)">
+            <div class="quizz-gradiente"></div>
             <img
               src="https://s3-alpha-sig.figma.com/img/0944/77cf/673132f4da1ae224b665fd9dfeffb556?Expires=1646006400&Signature=eyk~~jBQuj~hk825O2RUp6UFLS95D3bVy5En7~-fnPc~QMMXDmo9z0j5-9aGgyHb6FWZRLoVYE5lUgybqs-oNm6URcRnGybM-cqLqexAEMkPCfsY~2OIsNE1B3VTg9W6877FQNyC44rCseHzS1i3JtN3AIAHGD0arRbcBmvfT7A~-HzAMhmFZLjpYUQltBt-nJcpuEfq2D83tl-aUziR98XBkPfXdXxK5EJWPf7G-t1SmIlqAkW6EMnW8p-STwxiC6c7wGsLg3itbcwN8vitiTt8~0mNge1FTZtshGe~p-blPopZv-zexdPVurS2d0m4tuStOn2SqNqOJ4LcAdVgJA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
               alt="Simpsons Teste">
             <p>Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
           </li>
-          <li class="quizz">
+          <li class="quizz" onclick="funcoesQuizzes.responderQuizz(this)">
+            <div class="quizz-gradiente"></div>
             <img
               src="https://s3-alpha-sig.figma.com/img/64d4/7d80/ee972fbf4fbabdbfebb6bcf202204d48?Expires=1646006400&Signature=SMHRT~657Sjk6db1DReB4YEq6MdJIvbDqgdNUTRo6pyLkQC2q45YJ5Mz9~t5h~fg6ALOq7Lble72xKO0supqD3i0oMtg4cPu8lY6XZRSAwx2py5OmiuP-gdIDAP47BcMHJfsAmB5zdEgBSw5WzR68ZSJkJZUsahtTerVMUiiefQzedBtezCTPzKdML8l-JOsFQHU7YqMqUKR39EbJsjBjlPC3~a5L2b6KxuuB2quneHEJkL~K3UlPhRaflJ1VEiAt8f4HYeCahexrpoSPlqgqi94j3g4hAtbqdcBmaE5C6VIB~LvWhV8~6YqM6XTT~eZg0GalVkD8hxfJ223zanRyQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
               alt="Preguicinha Teste">
@@ -53,7 +55,7 @@
 
 
     <!--Parte do Gleison-->
-    <section>
+    <section class="responde-quizz --escondido">
       <div class="cabecalho-do-quizz">
         <h1>Título do quizz</h1>
       </div>
@@ -147,8 +149,6 @@
         <ion-icon name="create-outline"></ion-icon>
       </div>
     </section>
-
-
 
 
     <!--Victor-->

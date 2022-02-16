@@ -14,6 +14,7 @@
 html {
   font-family: 'Roboto', sans-serif;
   font-size: 20px;
+  line-height: 23.44px;
 }
 
 .--cinza {
@@ -46,6 +47,7 @@ header {
   top: 0;
   right: 0;
   left: 0;
+  z-index: 1;
 
   display: flex;
   align-items: center;
@@ -66,6 +68,8 @@ header img {
 
 main {
   background-color: var(--bg-color);
+
+  width: 100%;
 
   margin-top: 69px;
   padding: 0 17.5px;
@@ -98,22 +102,38 @@ main {
 }
 
 .sem-quizzes button {
-  outline: none;
   border: 1px dashed var(--buzz-red);
   border-radius: 50px;
+  outline: none;
 
   padding: 10px 12px;
 
   font-size: 21px;
   color: var(--buzz-red);
+
+  transition: .7s;
+
+  background-color: transparent;
+}
+
+.sem-quizzes button:hover {
+  filter: brightness(1.5);
 }
 
 .quizzes {
   width: 100%;
 }
 
+.quizzes ul {
+  height: 100%;
+}
+
 .quizzes li {
+  position: relative;
+
   margin-bottom: 14px;
+
+  height: 100%;
 }
 
 .quizzes-titulo {
@@ -128,17 +148,37 @@ main {
   border-radius: 5px;
 }
 
+.quizz-gradiente {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+
+  width: 100%;
+
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%);
+}
+
 .quizz img {
   width: inherit;
   position: relative;
+
   border-radius: 5px;
 }
 
 .quizz p {
   position: absolute;
-  bottom: 8px;
+  z-index: 2;
+  top: 87%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 70%;
 
   text-align: center;
+  line-height: 23.44px;
+  font-size: 19px;
+  color: #fff;
 }
 
 /* Estilos da página de um quizz */
