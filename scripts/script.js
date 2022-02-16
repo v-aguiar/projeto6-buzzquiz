@@ -25,5 +25,30 @@ const funcoesApi = {
   }
 }
 
+const funcoesDeControle = {
+  // Esconder e mostrar a tela 1
+  toogleTela1() {
+    const quizzesContainer = document.querySelector(".quizzes-container")
+
+    quizzesContainer.classList.toggle("--escondido")
+  },
+
+  // Esconder e mostrar a tela 2
+  toogleTela2() {
+    const respondeQuizz = document.querySelector(".responde-quizz")
+
+    respondeQuizz.classList.toggle("--escondido")
+  }
+}
+
+const funcoesQuizzes = {
+  responderQuizz(quizz) {
+    funcoesDeControle.toogleTela1()
+    funcoesDeControle.toogleTela2()
+  }
+}
+
 // exemplo de como receber os quizzes da API
 // const quizzes = funcoesApi.obterQuizzes()
+
+funcoesQuizzes.listarTodosOsQuizzes()
