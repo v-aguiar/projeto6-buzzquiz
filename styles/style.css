@@ -121,24 +121,38 @@ main {
   filter: brightness(1.5);
 }
 
-.quizzes {
+.lista-seus-quizzes .quizzes-titulo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.quizzes,
+.seus-quizzes {
   width: 100%;
 }
 
-.quizzes ul {
+.quizzes ul,
+.seus-quizzes ul {
   height: 100%;
 }
 
-.quizzes li {
+.quizzes li,
+.seus-quizzes li {
   position: relative;
 
   margin-bottom: 14px;
 
-  height: 100%;
+  overflow: hidden;
 }
 
 .quizzes-titulo {
   font-weight: 700;
+}
+
+.quizzes-titulo ion-icon {
+  font-size: 31px;
+  color: var(--buzz-red);
 }
 
 .quizz {
