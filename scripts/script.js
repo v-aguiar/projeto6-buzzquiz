@@ -67,19 +67,7 @@ const funcoesDeControle = {
 
 const funcoesQuizzes = {
   quizzes: [],
-  seus_quizzes: [
-    {
-      title: "meu quizz",
-      image: "https://source.unsplash.com/random"
-    },
-    {
-      title: "meu quizz2",
-      image: "https://source.unsplash.com/random"
-    },
-    {
-      title: "meu quizz3",
-      image: "https://source.unsplash.com/random"
-    }],
+  seus_quizzes: [],
 
   criarQuizz() {
     funcoesDeControle.toogleTela1();
@@ -216,4 +204,4 @@ const funcoesQuizzes = {
 }
 
 funcoesApi.obterQuizzes()
-funcoesQuizzes.listaSeusQuizzes();
+// funcoesQuizzes.listaSeusQuizzes();
