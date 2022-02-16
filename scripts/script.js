@@ -1,78 +1,5 @@
 const API_URL = 'https://mock-api.driven.com.br/api/v4/buzzquizz';
 
-// usando como exemplo o primeiro quizz
-let identificacao_do_quizz1 = this.quizzes[0].id; 
-let imagem_do_quizz1 = this.quizzes[0].image;
-let levels = this.quizzes[0].levels;
-let titulo1 = this.quizzes[0].title;
-
-//aqui só precisaria mudar 
-let imagem_do_nivel_um = levels[0].image;
-let minimo_valor_um = levels[0].minValue;
-let nivel_texto_um = levels[0].text;
-let nivel_titulo_um = levels[0].title
-
-let imagem_do_nivel_dois = levels[1].image;
-let minimo_valor_dois = levels[1].minValue;
-let nivel_texto_dois = levels[1].text;
-let nivel_titulo_dois = levels[1].title;
-
-let perguntas = this.quizzes[0].questions; //Array com as perguntas
-
-//tudo da primeira pergunta
-let respostas_da_pergunta_um = perguntas[0].answers; 
-
-let texto_resposta_um_p1 = respostas_da_pergunta_um[0].text;
-let booleano_resposta_um_p1 = respostas_da_pergunta_um[0].isCorrectAnswer;
-let imagem_resposta_um_p1 = respostas_da_pergunta_um[0].image;
-
-let texto_resposta_dois_p1 = respostas_da_pergunta_um[1].text;
-let booleano_resposta_dois_p1 = respostas_da_pergunta_um[1].isCorrectAnswer;
-let imagem_resposta_dois = respostas_da_pergunta_um[1].image;
-
-let texto_resposta_tres_p1 = respostas_da_pergunta_um[2].text;
-let booleano_resposta_tres_p1 = respostas_da_pergunta_um[2].isCorrectAnswer;
-let imagem_resposta_tres_P1 = respostas_da_pergunta_um[2].image;
-
-let cor_da_pergunta_um = perguntas[0].color;
-let titulo_da_pergunta_um = perguntas[0].title;
-
-//tudo da pergunta dois
-let respostas_da_pergunta_dois = perguntas[1].answers; 
-
-let texto_resposta_um_p2 = respostas_da_pergunta_dois[0].text;
-let booleano_resposta_um_p2 = respostas_da_pergunta_dois[0].isCorrectAnswer;
-let imagem_resposta_um_p2 = respostas_da_pergunta_dois[0].image;
-
-let texto_resposta_dois_p2 = respostas_da_pergunta_dois[1].text;
-let booleano_resposta_dois_p2 = respostas_da_pergunta_dois[1].isCorrectAnswer;
-let imagem_resposta_dois_p2 = respostas_da_pergunta_dois[1].image;
-
-let texto_resposta_tres_p2 = respostas_da_pergunta_dois[2].text;
-let booleano_resposta_tres_p2 = respostas_da_pergunta_dois[2].isCorrectAnswer;
-let imagem_resposta_tres_p2 = respostas_da_pergunta_dois[2].image;
-
-let cor_da_pergunta_dois = perguntas[1].color;
-let titulo_da_pergunta_dois = perguntas[1].title;
-
-//tudo da pergunta tres
-let respostas_da_pergunta_tres = perguntas[2].answers; 
-
-let texto_resposta_um_p3 = respostas_da_pergunta_tres[0].text;
-let booleano_resposta_um_p3 = respostas_da_pergunta_tres[0].isCorrectAnswer;
-let imagem_resposta_um_p3 = respostas_da_pergunta_tres[0].image;
-
-let texto_resposta_dois_p3 = respostas_da_pergunta_tres[1].text;
-let booleano_resposta_dois_p3 = respostas_da_pergunta_tres[1].isCorrectAnswer;
-let imagem_resposta_dois_p3 = respostas_da_pergunta_tres[1].image;
-
-let texto_resposta_tres_p3 = respostas_da_pergunta_tres[2].text;
-let booleano_resposta_tres_p3 = respostas_da_pergunta_tres[2].isCorrectAnswer;
-let imagem_resposta_tres_p3 = respostas_da_pergunta_tres[2].image;
-
-let cor_da_pergunta_tres = perguntas[1].color;
-let titulo_da_pergunta_tres = perguntas[1].title;
-
 const funcoesApi = {
   obterQuizzes() {
     const promise = axios.get(`${API_URL}/quizzes`);
@@ -111,47 +38,138 @@ const funcoesDeControle = {
     quizzesContainer.classList.toggle("--escondido")
   },
 
+  toogleTela1SemQuizzes() {
+    const semQuizzes = document.querySelector(".sem-quizzes")
+
+    semQuizzes.classList.toggle("--escondido")
+  },
+
+  toogleTela1SeusQuizzes() {
+    const seusQuizzes = document.querySelector(".seus-quizzes")
+
+    seusQuizzes.classList.toggle("--escondido")
+  },
+
   // Esconder e mostrar a tela 2
   toogleTela2() {
     const respondeQuizz = document.querySelector(".responde-quizz")
 
     respondeQuizz.classList.toggle("--escondido")
+  },
+
+  // Esconder e mostrar a tela 2
+  toogleTela3Parte1() {
+    const criaQuizzParte1 = document.querySelector(".cria-quizz.passo-um")
+
+    criaQuizzParte1.classList.toggle("--escondido")
   }
 }
 
 const funcoesQuizzes = {
   quizzes: [],
+  seus_quizzes: [
+    {
+      title: "meu quizz",
+      image: "https://source.unsplash.com/random"
+    },
+    {
+      title: "meu quizz2",
+      image: "https://source.unsplash.com/random"
+    },
+    {
+      title: "meu quizz3",
+      image: "https://source.unsplash.com/random"
+    }],
+
+  criarQuizz() {
+    funcoesDeControle.toogleTela1();
+    funcoesDeControle.toogleTela3Parte1();
+  },
 
   responderQuizz(quizz) {
-    funcoesDeControle.toogleTela1()
-    funcoesDeControle.toogleTela2()
+    funcoesDeControle.toogleTela1();
+    funcoesDeControle.toogleTela2();
   },
 
   listarTodosOsQuizzes() {
-    console.log('listando todos os Quizzes', this.quizzes)
+    const listaDeTodosOsQuizzes = document.querySelector(".quizzes-todos");
 
+    listaDeTodosOsQuizzes.innerHTML = funcoesQuizzes.montaEstruturaQuizzPrimeiraTela();
     this.montaEstruturaQuizzPrimeiraTela();
     this.montaEstruturaQuizzSegundaTela();
-    
   },
 
   montaEstruturaQuizzPrimeiraTela() {
+    let quizzesEstruturaTela1 = '<li class="quizzes-titulo"><h2>Todos os Quizzes</h2></li>';
 
+    funcoesQuizzes.quizzes.forEach((quizzData) => {
+      const titulo = quizzData.title;
+      const imagem = quizzData.image;
+
+      const quizzEstrutura = `
+        <li class="quizz" onclick="funcoesQuizzes.responderQuizz(this)">
+          <div class="quizz-gradiente"></div>
+          <img src="${imagem}" alt="Imagem de capa do Quizz">
+          <p>${titulo}</p>
+        </li>`;
+
+      quizzesEstruturaTela1 += quizzEstrutura;
+    })
+
+    return quizzesEstruturaTela1;
+  },
+
+  listaSeusQuizzes() {
+    const listaDeSeusQuizzes = document.querySelector(".lista-seus-quizzes");
+
+    if(funcoesQuizzes.seus_quizzes !== null) {
+      funcoesDeControle.toogleTela1SemQuizzes();
+      funcoesDeControle.toogleTela1SeusQuizzes();
+
+      listaDeSeusQuizzes.innerHTML = funcoesQuizzes.montaEstruturaSeusQuizzes();
+    }
+  },
+
+  montaEstruturaSeusQuizzes() {
+    let seusQuizzesEstrutura = `
+  <li class="quizzes-titulo">
+    <h2>Seus Quizzes</h2>
+    <ion-icon name="add-circle" onclick="funcoesQuizzes.criarQuizz()"></ion-icon>
+  </li>`;
+
+    funcoesQuizzes.seus_quizzes.forEach((quizzData) => {
+      const titulo = quizzData.title;
+      const imagem = quizzData.image;
+
+      const quizzEstrutura = `
+        <li class="quizz" onclick="funcoesQuizzes.responderQuizz(this)">
+          <div class="quizz-gradiente"></div>
+          <img src="${imagem}" alt="Imagem de capa do seu Quizz">
+          <p>${titulo}</p>
+        </li>`;
+
+      seusQuizzesEstrutura += quizzEstrutura;
+    })
+
+    return seusQuizzesEstrutura;
   },
 
   montaEstruturaQuizzSegundaTela() {
+    this.quizzes.forEach((quizzData) => {
+
     let responde_quizz = document.querySelector(".responde-quizz");
     responde_quizz.innerHTML = responde_quizz.innerHTML + `
           <div class="cabecalho-do-quizz">
-          <div class="cabecalho-gradiente"></div>
-            <h1>${titulo_do_quizz}</h1>
+            <div class="cabecalho-gradiente"></div>
+            <h1>${quizzData.title}</h1>
             <img
-            src = ${imagem_do_quizz}
+            src = ${quizzData.image}
             alt="imagem da opcao">
           </div>
-       <article>
+
+        <article>
               <div class="cabecalho-da-pergunta">
-                <h1>Título da Pergunta 1</h1>
+                <h1>${quizzData.questions[0].title}</h1>
               </div>
 
               <div class="conteudo-das-opcoes">
@@ -192,9 +210,10 @@ const funcoesQuizzes = {
                   </div>
                 </div>
               </div>
-      </article>`
-  }
+        </article>`
+  })
+}
 }
 
 funcoesApi.obterQuizzes()
-
+funcoesQuizzes.listaSeusQuizzes();

@@ -28,78 +28,68 @@
     <section class="quizzes-container">
       <div class="sem-quizzes">
         <p class="--cinza">Você não criou nenhum<br>quizz ainda :(</p>
-        <button>Criar Quizz</button>
-      </div>
+        <button onclick="funcoesQuizzes.criarQuizz()">Criar Quizz</button>
+        </article>
 
-      <div class="quizzes">
-        <ul class="quizzes-todos">
-          <li class="quizzes-titulo">Todos os Quizzes</li>
-          <li class="quizz" onclick="funcoesQuizzes.responderQuizz(this)">
-            <div class="quizz-gradiente"></div>
-            <img
-              src="https://s3-alpha-sig.figma.com/img/0944/77cf/673132f4da1ae224b665fd9dfeffb556?Expires=1646006400&Signature=eyk~~jBQuj~hk825O2RUp6UFLS95D3bVy5En7~-fnPc~QMMXDmo9z0j5-9aGgyHb6FWZRLoVYE5lUgybqs-oNm6URcRnGybM-cqLqexAEMkPCfsY~2OIsNE1B3VTg9W6877FQNyC44rCseHzS1i3JtN3AIAHGD0arRbcBmvfT7A~-HzAMhmFZLjpYUQltBt-nJcpuEfq2D83tl-aUziR98XBkPfXdXxK5EJWPf7G-t1SmIlqAkW6EMnW8p-STwxiC6c7wGsLg3itbcwN8vitiTt8~0mNge1FTZtshGe~p-blPopZv-zexdPVurS2d0m4tuStOn2SqNqOJ4LcAdVgJA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
-              alt="Simpsons Teste">
-            <p>Acerte os personagens corretos dos Simpsons e prove seu amor!</p>
-          </li>
-          <li class="quizz" onclick="funcoesQuizzes.responderQuizz(this)">
-            <div class="quizz-gradiente"></div>
-            <img
-              src="https://s3-alpha-sig.figma.com/img/64d4/7d80/ee972fbf4fbabdbfebb6bcf202204d48?Expires=1646006400&Signature=SMHRT~657Sjk6db1DReB4YEq6MdJIvbDqgdNUTRo6pyLkQC2q45YJ5Mz9~t5h~fg6ALOq7Lble72xKO0supqD3i0oMtg4cPu8lY6XZRSAwx2py5OmiuP-gdIDAP47BcMHJfsAmB5zdEgBSw5WzR68ZSJkJZUsahtTerVMUiiefQzedBtezCTPzKdML8l-JOsFQHU7YqMqUKR39EbJsjBjlPC3~a5L2b6KxuuB2quneHEJkL~K3UlPhRaflJ1VEiAt8f4HYeCahexrpoSPlqgqi94j3g4hAtbqdcBmaE5C6VIB~LvWhV8~6YqM6XTT~eZg0GalVkD8hxfJ223zanRyQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
-              alt="Preguicinha Teste">
-            <p>Preguiça do teste</p>
-          </li>
-        </ul>
-      </div>
+        <article class="seus-quizzes --escondido">
+          <ul class="lista-seus-quizzes">
+          </ul>
+        </article>
+
+        <div class="quizzes">
+          <ul class="quizzes-todos">
+          </ul>
+        </div>
 
     </section>
 
 
      <!--Pergunta dos quizzes-->
      <section class="responde-quizz --escondido">
-  
+        <article></article>
      </section>
 
-     <!--Criar Quizz-->
+    <!--Criar Quizz-->
 
     <!--gleison-->
-    <section class="cria-quizz passo-um">
+    <section class="cria-quizz passo-um --escondido">
       <h1>Comece pelo começo</h1>
       <div class="forms">
-          <input type="text" placeholder="Título do seu quizz" class="titulo-quizz">
+        <input type="text" placeholder="Título do seu quizz" class="titulo-quizz">
 
-          <input type="text" placeholder="URL da imagem do seu quizz" class="url-quizz">
-    
-          <input type="text" placeholder="Quantidade de perguntas do seu quizz" class="qtd-perguntas">
-    
-          <input type="text" placeholder="Quantidade de níveis do quizz" class="qtd-niveis">
+        <input type="text" placeholder="URL da imagem do seu quizz" class="url-quizz">
+
+        <input type="text" placeholder="Quantidade de perguntas do seu quizz" class="qtd-perguntas">
+
+        <input type="text" placeholder="Quantidade de níveis do quizz" class="qtd-niveis">
       </div>
-      
+
       <button class="botao-criacao">
         <p>Prosseguir para criar perguntas</p>
       </button>
     </section>
 
-    <section class="cria-quizz passo-dois">
+    <section class="cria-quizz passo-dois --escondido">
       <h1>Crie suas perguntas</h1>
       <div class="forms">
         <div class="pergunta-um">
           <label for="pergunta-um">Pergunta 1</label>
-            <input type="text" placeholder="Texto da pergunta" class="texto-pergunta-um" id="pergunta-um">
-            <input type="text" placeholder="Cor de fundo da pergunta" class="cor-pergunta-um" id="pergunta-um">
+          <input type="text" placeholder="Texto da pergunta" class="texto-pergunta-um" id="pergunta-um">
+          <input type="text" placeholder="Cor de fundo da pergunta" class="cor-pergunta-um" id="pergunta-um">
 
           <label for="resposta-correta">Resposta correta</label>
-            <input type="text" placeholder="Resposta correta" class="texto-resposta-correta" id="resposta-correta">
-            <input type="text" placeholder="URL da imagem" class="url-imagem" id="resposta-correta">
+          <input type="text" placeholder="Resposta correta" class="texto-resposta-correta" id="resposta-correta">
+          <input type="text" placeholder="URL da imagem" class="url-imagem" id="resposta-correta">
 
           <label for="incorretas">Respostas incorretas</label>
-            <input type="text" placeholder="Resposta incorreta 1" class="texto-incorreto-tres" id="incorreta">
-            <input type="text" placeholder="URL da imagem 1" class="url-incorreto-um" id="incorreta">
+          <input type="text" placeholder="Resposta incorreta 1" class="texto-incorreto-tres" id="incorreta">
+          <input type="text" placeholder="URL da imagem 1" class="url-incorreto-um" id="incorreta">
 
-            <input type="text" placeholder="Resposta incorreta 2" class="texto-incorreto-dois" id="incorreta">
-            <input type="text" placeholder="URL da imagem 2" class="url-incorreto-dois" id="incorreta">
+          <input type="text" placeholder="Resposta incorreta 2" class="texto-incorreto-dois" id="incorreta">
+          <input type="text" placeholder="URL da imagem 2" class="url-incorreto-dois" id="incorreta">
 
-            <input type="text" placeholder="Resposta incorreta 3" class="texto-incorreto-tres" id="incorreta">
-            <input type="text" placeholder="URL da imagem 3" class="url-incorreto-tres" id="incorreta">
+          <input type="text" placeholder="Resposta incorreta 3" class="texto-incorreto-tres" id="incorreta">
+          <input type="text" placeholder="URL da imagem 3" class="url-incorreto-tres" id="incorreta">
         </div>
         <button class="botao-criacao">
           <p>Prosseguir para criar níveis</p>
@@ -119,8 +109,8 @@
 
 
     <!--Victor-->
-    <section class="cria-quizz-passo-um"></section>
-    <section class="cria-quizz-passo-um"></section>
+    <section class="cria-quizz-passo-um --escondido"></section>
+    <section class="cria-quizz-passo-um --escondido"></section>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
