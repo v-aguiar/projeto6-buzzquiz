@@ -64,14 +64,10 @@ const funcoesDeControle = {
     criaQuizzParte1.classList.toggle("--escondido")
   },
 
-  validaCriacaoDeQuizz(algumaCoisa) {
-    const tituloQuizz = document.querySelector(".cria-quizz.passo-um .titulo-quizz")
-    const urlDaImagem = document.querySelector(".cria-quizz.passo-um .url-quizz").value
-    const qtdPerguntas = document.querySelector(".cria-quizz.passo-um .qtd-perguntas")
-    const qtdNiveis = document.querySelector(".cria-quizz.passo-um .qtd-niveis")
+  toogleTela3Parte2() {
+    const criaQuizzParte2 = document.querySelector(".cria-quizz.passo-dois")
 
-    const validaUrl = funcoesDeControle.validaUrl(urlDaImagem)
-    console.log(validaUrl)
+    criaQuizzParte2.classList.toggle("--escondido")
   },
 
   validaUrl(url) {
@@ -98,9 +94,35 @@ const funcoesQuizzes = {
     funcoesDeControle.toogleTela3Parte1();
   },
 
+  criarQuizzPasso2() {
+    funcoesDeControle.toogleTela3Parte1();
+    funcoesDeControle.toogleTela3Parte2();
+  },
+
   responderQuizz(quizz) {
     funcoesDeControle.toogleTela1();
     funcoesDeControle.toogleTela2();
+  },
+
+  validaCriacaoDeQuizz() {
+    const tituloQuizzInput = document.querySelector(".cria-quizz.passo-um .titulo-quizz")
+    const urlDaImagemInput = document.querySelector(".cria-quizz.passo-um .url-quizz")
+    const qtdPerguntasInput = document.querySelector(".cria-quizz.passo-um .qtd-perguntas")
+    const qtdNiveisInput = document.querySelector(".cria-quizz.passo-um .qtd-niveis")
+
+    const tituloQuizz = tituloQuizzInput.value
+    const urlDaImagem = urlDaImagemInput.value
+    const qtdPerguntas = qtdPerguntasInput.value
+    const qtdNiveis = qtdNiveisInput.value
+
+    tituloQuizzInput.value = ''
+    urlDaImagemInput.value = ''
+    qtdPerguntasInput.value = ''
+    qtdNiveisInput.value = ''
+
+    const validaUrl = funcoesDeControle.validaUrl(urlDaImagem)
+
+    funcoesQuizzes.criarQuizzPasso2()
   },
 
   listarTodosOsQuizzes() {
