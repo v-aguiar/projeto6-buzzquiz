@@ -64,21 +64,22 @@ const funcoesDeControle = {
     criaQuizzParte1.classList.toggle("--escondido")
   },
 
-  validaCriacaoDeQuizz() {
+  validaCriacaoDeQuizz(algumaCoisa) {
     const tituloQuizz = document.querySelector(".cria-quizz.passo-um .titulo-quizz")
     const urlDaImagem = document.querySelector(".cria-quizz.passo-um .url-quizz").value
     const qtdPerguntas = document.querySelector(".cria-quizz.passo-um .qtd-perguntas")
     const qtdNiveis = document.querySelector(".cria-quizz.passo-um .qtd-niveis")
 
     const validaUrl = funcoesDeControle.validaUrl(urlDaImagem)
+    console.log(validaUrl)
   },
 
   validaUrl(url) {
     let validaUrl = null
     try {
-      validaUrl = new URL(url).preventDefault()
+      validaUrl = new URL(url)
     } catch(erro) {
-      console.error("URL INVÁLIDA")
+      alert("⚠ URL INVÁLIDA -> Preencha os dados do seu quizz novamente!")
     }
 
     return (validaUrl) ? true : false
