@@ -243,7 +243,6 @@ main {
 
 .cabecalho-da-pergunta {
   height: 90px;
-  background-color: purple;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -253,6 +252,7 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin-Bottom:100px;
 }
 
 .opcao {
