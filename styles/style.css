@@ -253,7 +253,7 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-Bottom:100px;
+  margin-Bottom: 100px;
 }
 
 .opcao {
@@ -301,7 +301,6 @@ main {
 
 .cria-quizz>h1 {
   width: 375px;
-  height: 100px;
   padding-top: 37px;
   text-align: center;
   color: #000;
@@ -337,6 +336,10 @@ input::placeholder {
   width: 100vw;
 }
 
+.cria-quizz.passo-um .forms {
+  background-color: #fff;
+}
+
 .cria-quizz form {
   display: flex;
   align-items: center;
@@ -345,6 +348,27 @@ input::placeholder {
   width: 375px;
 }
 
+.cria-quizz form textarea {
+  width: 341px;
+  margin: 9px 0 20px;
+  padding: 10px;
+  resize: none;
+
+  font-size: 17px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  line-height: 20px;
+
+  border-radius: 5px;
+  border: 1px solid #D1D1D1;
+  fill-opacity: solid #BABABA;
+}
+
+.cria-quizz form textarea::placeholder {
+  font-style: italic;
+}
+
+.cria-quizz .nivel-um,
 .cria-quizz .pergunta-um {
   display: flex;
   flex-direction: column;
@@ -355,6 +379,7 @@ input::placeholder {
 .botao-criacao {
   width: 324px;
   height: 54px;
+  margin-bottom: 61px;
   border: none;
   border-radius: 15px;
   background-color: var(--buzz-red);
@@ -371,6 +396,7 @@ input::placeholder {
 
 label {
   margin-top: 27px;
+  margin-bottom: 10px;
   font-family: 'Roboto';
   font-weight: 700;
 }
@@ -379,23 +405,27 @@ label {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 10px;
+  padding: 0 20px;
   height: 70px;
   background-color: white;
   margin: 20px 0;
   border-radius: 5px;
   border: none;
+  overflow: hidden;
 }
 
 .fechado h1 {
   font-weight: 700;
 }
 
+.nivel-dois,
+.nivel-tres,
 .pergunta-dois,
 .pergunta-tres {
   margin-bottom: 26px;
   width: 100%;
   background-color: #fff;
+  transition: 2s;
 }
 
 ion-icon {
