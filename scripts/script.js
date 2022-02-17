@@ -87,10 +87,8 @@ const funcoesDeControle = {
     return (validaUrl) ? true : false
   },
 
-  validaHex() {
-    const corDeFundoCriacao = document.querySelector(".cor-pergunta-um").value
-
-    let hex = corDeFundoCriacao.split("#")[1]
+  validaHex(cor) {
+    let hex = cor.toString().split("#")[1]
     const regexp = /^[0-9a-fA-F]+$/;
 
     if(regexp.test(hex)) {
@@ -106,10 +104,7 @@ const funcoesDeControle = {
 
 const funcoesQuizzes = {
   quizzes: [],
-  seus_quizzes: [{
-    title: "testete",
-    image: "https://source.unsplash.com/random"
-  }],
+  seus_quizzes: [],
 
   criarQuizz() {
     funcoesDeControle.toogleTela1();
@@ -124,7 +119,6 @@ const funcoesQuizzes = {
   criarQuizzPasso3() {
     funcoesDeControle.toogleTela3Parte2();
     funcoesDeControle.toogleTela3Parte3();
-    funcoesDeControle.validaHex();
   },
 
   responderQuizz(quizz) {
@@ -148,11 +142,90 @@ const funcoesQuizzes = {
     qtdPerguntasInput.value = ''
     qtdNiveisInput.value = ''
 
-    funcoesDeControle.validaUrl(urlDaImagem)
+    const validaUrl = funcoesDeControle.validaUrl(urlDaImagem)
 
     // if(validaUrl) {
     funcoesQuizzes.criarQuizzPasso2()
+    // } else {
+    // alert("⚠ Dados inválidos, preencha o formulário novamente!")
+
+    // tituloQuizzInput.value = ''
+    // urlDaImagemInput.value = ''
+    // qtdPerguntasInput.value = ''
+    // qtdNiveisInput.value = ''
     // }
+  },
+
+  validaCriacaoDeQuizzParte2() {
+    const pergunta1Input = document.querySelector(".cria-quizz.passo-dois .texto-pergunta-um")
+    const corDeFundoInput = document.querySelector(".cria-quizz.passo-dois .cor-pergunta-um")
+    const respostaCorretaInput = document.querySelector(".cria-quizz.passo-dois .texto-resposta-correta")
+    const urlImagemCorretaInput = document.querySelector(".cria-quizz.passo-dois .url-imagem-correta")
+    const respostaIncorretaUmInput = document.querySelector(".cria-quizz.passo-dois .texto-incorreto-um")
+    const urlImagemIncorretaUmInput = document.querySelector(".cria-quizz.passo-dois .url-incorreto-um")
+    const respostaIncorretaDoisInput = document.querySelector(".cria-quizz.passo-dois .texto-incorreto-dois")
+    const urlImagemIncorretaDoisInput = document.querySelector(".cria-quizz.passo-dois .url-incorreto-dois")
+    const respostaIncorretaTresInput = document.querySelector(".cria-quizz.passo-dois .texto-incorreto-tres")
+    const urlImagemIncorretaTresInput = document.querySelector(".cria-quizz.passo-dois .url-incorreto-tres")
+
+    const pergunta1 = pergunta1Input.value
+    const corDeFundo = corDeFundoInput.value
+    const respostaCorreta = respostaCorretaInput.value
+    const urlImagemCorreta = urlImagemCorretaInput.value
+    const respostaIncorretaUm = respostaIncorretaUmInput.value
+    const urlImagemIncorretaUm = urlImagemIncorretaUmInput.value
+    const respostaIncorretaDois = respostaIncorretaDoisInput.value
+    const urlImagemIncorretaDois = urlImagemIncorretaDoisInput.value
+    const respostaIncorretaTres = respostaIncorretaTresInput.value
+    const urlImagemIncorretaTres = urlImagemIncorretaTresInput.value
+
+    pergunta1Input.value = ''
+    corDeFundoInput.value = ''
+    respostaCorretaInput.value = ''
+    urlImagemCorretaInput.value = ''
+    respostaIncorretaUmInput.value = ''
+    urlImagemIncorretaUmInput.value = ''
+    respostaIncorretaDoisInput.value = ''
+    urlImagemIncorretaDoisInput.value = ''
+    respostaIncorretaTresInput.value = ''
+    urlImagemIncorretaTresInput.value = ''
+
+    // Valida todas as urls dessa tela
+    const urls = [urlImagemCorreta, urlImagemIncorretaUm]
+    if(urlImagemIncorretaDois) {
+      urls.push(urlImagemIncorretaDois)
+    }
+    if(urlImagemIncorretaTres) {
+      urls.push(urlImagemIncorretaTres)
+    }
+    let urlsSaoValidas = true
+
+    urls.forEach((url) => {
+      const validaCadaUrl = funcoesDeControle.validaUrl(url)
+
+      urlsSaoValidas = (urlsSaoValidas && validaCadaUrl)
+    })
+
+    // Valida se a cor passada é HEX
+    const corEhValida = funcoesDeControle.validaHex(corDeFundo)
+
+    if(urlsSaoValidas && corEhValida) {
+      funcoesQuizzes.criarQuizzPasso3()
+    } else {
+      alert("⚠ Dados inválidos, preencha o formulário novamente!")
+
+      // reseta os inputs
+      pergunta1Input.value = ''
+      corDeFundoInput.value = ''
+      respostaCorretaInput.value = ''
+      urlImagemCorretaInput.value = ''
+      respostaIncorretaUmInput.value = ''
+      urlImagemIncorretaUmInput.value = ''
+      respostaIncorretaDoisInput.value = ''
+      urlImagemIncorretaDoisInput.value = ''
+      respostaIncorretaTresInput.value = ''
+      urlImagemIncorretaTresInput.value = ''
+    }
   },
 
   validaCriacaoDeQuizzParte3() {

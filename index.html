@@ -82,14 +82,15 @@
               maxlength="7" required>
 
             <label for="resposta-correta">Resposta correta</label>
-            <input type="text" placeholder="Resposta correta" class="texto-resposta-correta" id="resposta-correta">
+            <input type="text" placeholder="Resposta correta" class="texto-resposta-correta" id="resposta-correta"
+              required>
 
-            <label for="resposta-correta-url" class="--sr-only"></label>
-            <input type="text" placeholder="URL da imagem" class="url-imagem" id="resposta-correta-url">
+            <label for="resposta-correta-url" class="--sr-only">Url da imagem correspondente a resposta correta</label>
+            <input type="text" placeholder="URL da imagem" class="url-imagem-correta" id="resposta-correta-url">
 
             <label for="resposta-incorreta-1">Respostas incorretas</label>
-            <input type="text" placeholder="Resposta incorreta 1" class="texto-incorreto-tres"
-              id="resposta-incorreta-1">
+            <input type="text" placeholder="Resposta incorreta 1" class="texto-incorreto-um" id="resposta-incorreta-1"
+              required>
 
             <label for="resposta-incorreta-1-url" class="--sr-only">URL da 1ª resposta errada</label>
             <input type="text" placeholder="URL da imagem 1" class="url-incorreto-um" id="resposta-incorreta-1-url">
@@ -108,21 +109,25 @@
             <label for="resposta-incorreta-3-url" class="--sr-only">URL da 3ª resposta errada</label>
             <input type="text" placeholder="URL da imagem 3" class="url-incorreto-tres" id="resposta-incorreta-3-url">
           </div>
-          <button type="submit" form="form-parte-2" onclick="funcoesQuizzes.criarQuizzPasso3()" class="botao-criacao">
+
+          <div class="pergunta-dois fechado">
+            <h1>Pergunta 2</h1>
+            <ion-icon name="create-outline"></ion-icon>
+          </div>
+
+          <div class="pergunta-tres fechado">
+            <h1>Pergunta 3</h1>
+            <ion-icon name="create-outline"></ion-icon>
+          </div>
+
+          <button type="submit" form="form-parte-2" onclick="funcoesQuizzes.validaCriacaoDeQuizzParte2()"
+            class="botao-criacao">
             <p>Prosseguir para criar níveis</p>
           </button>
         </form>
       </div>
 
-      <div class="pergunta-dois fechado">
-        <h1>Pergunta 2</h1>
-        <ion-icon name="create-outline"></ion-icon>
-      </div>
 
-      <div class="pergunta-treis fechado">
-        <h1>Pergunta 3</h1>
-        <ion-icon name="create-outline"></ion-icon>
-      </div>
     </section>
 
 
