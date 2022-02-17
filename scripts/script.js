@@ -62,16 +62,69 @@ const funcoesDeControle = {
     const criaQuizzParte1 = document.querySelector(".cria-quizz.passo-um")
 
     criaQuizzParte1.classList.toggle("--escondido")
+  },
+
+  toogleTela3Parte2() {
+    const criaQuizzParte2 = document.querySelector(".cria-quizz.passo-dois")
+
+    criaQuizzParte2.classList.toggle("--escondido")
+  },
+
+  toogleTela3Parte3() {
+    const criaQuizzParte3 = document.querySelector(".cria-quizz.passo-tres")
+
+    criaQuizzParte3.classList.toggle("--escondido")
+  },
+
+  validaUrl(url) {
+    let validaUrl = null
+    try {
+      validaUrl = new URL(url)
+    } catch(erro) {
+      alert("⚠ URL INVÁLIDA -> Preencha os dados do seu quizz novamente!")
+    }
+
+    return (validaUrl) ? true : false
+  },
+
+  validaHex() {
+    const corDeFundoCriacao = document.querySelector(".cor-pergunta-um").value
+
+    let hex = corDeFundoCriacao.split("#")[1]
+    const regexp = /^[0-9a-fA-F]+$/;
+
+    if(regexp.test(hex)) {
+      return true;
+    }
+    else {
+      alert("⚠ COR INFORMADA NÃO É HEXADECIMAL")
+
+      return false;
+    }
   }
 }
 
 const funcoesQuizzes = {
   quizzes: [],
-  seus_quizzes: [],
+  seus_quizzes: [{
+    title: "testete",
+    image: "https://source.unsplash.com/random"
+  }],
 
   criarQuizz() {
     funcoesDeControle.toogleTela1();
     funcoesDeControle.toogleTela3Parte1();
+  },
+
+  criarQuizzPasso2() {
+    funcoesDeControle.toogleTela3Parte1();
+    funcoesDeControle.toogleTela3Parte2();
+  },
+
+  criarQuizzPasso3() {
+    funcoesDeControle.toogleTela3Parte2();
+    funcoesDeControle.toogleTela3Parte3();
+    funcoesDeControle.validaHex();
   },
 
   responderQuizz(quizz) {
@@ -79,12 +132,39 @@ const funcoesQuizzes = {
     funcoesDeControle.toogleTela2();
   },
 
+  validaCriacaoDeQuizz() {
+    const tituloQuizzInput = document.querySelector(".cria-quizz.passo-um .titulo-quizz")
+    const urlDaImagemInput = document.querySelector(".cria-quizz.passo-um .url-quizz")
+    const qtdPerguntasInput = document.querySelector(".cria-quizz.passo-um .qtd-perguntas")
+    const qtdNiveisInput = document.querySelector(".cria-quizz.passo-um .qtd-niveis")
+
+    const tituloQuizz = tituloQuizzInput.value
+    const urlDaImagem = urlDaImagemInput.value
+    const qtdPerguntas = qtdPerguntasInput.value
+    const qtdNiveis = qtdNiveisInput.value
+
+    tituloQuizzInput.value = ''
+    urlDaImagemInput.value = ''
+    qtdPerguntasInput.value = ''
+    qtdNiveisInput.value = ''
+
+    funcoesDeControle.validaUrl(urlDaImagem)
+
+    // if(validaUrl) {
+    funcoesQuizzes.criarQuizzPasso2()
+    // }
+  },
+
+  validaCriacaoDeQuizzParte3() {
+
+  },
+
   listarTodosOsQuizzes() {
     const listaDeTodosOsQuizzes = document.querySelector(".quizzes-todos");
 
     listaDeTodosOsQuizzes.innerHTML = funcoesQuizzes.montaEstruturaQuizzPrimeiraTela();
-    this.montaEstruturaQuizzPrimeiraTela();
-    this.montaEstruturaQuizzSegundaTela();
+    funcoesQuizzes.montaEstruturaQuizzPrimeiraTela();
+    funcoesQuizzes.montaEstruturaQuizzSegundaTela();
   },
 
   montaEstruturaQuizzPrimeiraTela() {
@@ -110,7 +190,7 @@ const funcoesQuizzes = {
   listaSeusQuizzes() {
     const listaDeSeusQuizzes = document.querySelector(".lista-seus-quizzes");
 
-    if(funcoesQuizzes.seus_quizzes !== null) {
+    if(funcoesQuizzes.seus_quizzes.length !== 0) {
       funcoesDeControle.toogleTela1SemQuizzes();
       funcoesDeControle.toogleTela1SeusQuizzes();
 
@@ -145,8 +225,13 @@ const funcoesQuizzes = {
   montaEstruturaQuizzSegundaTela() {
     this.quizzes.forEach((quizzData) => {
 
+<<<<<<< HEAD
     let responde_quizz = document.querySelector(".responde-quizz");
     responde_quizz.innerHTML = responde_quizz.innerHTML + `
+=======
+      let responde_quizz = document.querySelector(".responde-quizz");
+      responde_quizz.innerHTML = responde_quizz.innerHTML + `
+>>>>>>> bea55ba677aa9c22e21fd91974adcfcc64f8021d
           <div class="cabecalho-do-quizz">
             <div class="cabecalho-gradiente"></div>
             <h1>${quizzData.title}</h1>
@@ -243,4 +328,4 @@ const funcoesQuizzes = {
 }
 
 funcoesApi.obterQuizzes()
-// funcoesQuizzes.listaSeusQuizzes();
+funcoesQuizzes.listaSeusQuizzes();
