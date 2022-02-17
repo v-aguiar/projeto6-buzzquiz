@@ -62,12 +62,35 @@ const funcoesDeControle = {
     const criaQuizzParte1 = document.querySelector(".cria-quizz.passo-um")
 
     criaQuizzParte1.classList.toggle("--escondido")
+  },
+
+  validaCriacaoDeQuizz() {
+    const tituloQuizz = document.querySelector(".cria-quizz.passo-um .titulo-quizz")
+    const urlDaImagem = document.querySelector(".cria-quizz.passo-um .url-quizz").value
+    const qtdPerguntas = document.querySelector(".cria-quizz.passo-um .qtd-perguntas")
+    const qtdNiveis = document.querySelector(".cria-quizz.passo-um .qtd-niveis")
+
+    const validaUrl = funcoesDeControle.validaUrl(urlDaImagem)
+  },
+
+  validaUrl(url) {
+    let validaUrl = null
+    try {
+      validaUrl = new URL(url).preventDefault()
+    } catch(erro) {
+      console.error("URL INVÁLIDA")
+    }
+
+    return (validaUrl) ? true : false
   }
 }
 
 const funcoesQuizzes = {
   quizzes: [],
-  seus_quizzes: [],
+  seus_quizzes: [{
+    title: "testete",
+    image: "https://source.unsplash.com/random"
+  }],
 
   criarQuizz() {
     funcoesDeControle.toogleTela1();
@@ -83,8 +106,8 @@ const funcoesQuizzes = {
     const listaDeTodosOsQuizzes = document.querySelector(".quizzes-todos");
 
     listaDeTodosOsQuizzes.innerHTML = funcoesQuizzes.montaEstruturaQuizzPrimeiraTela();
-    this.montaEstruturaQuizzPrimeiraTela();
-    this.montaEstruturaQuizzSegundaTela();
+    funcoesQuizzes.montaEstruturaQuizzPrimeiraTela();
+    funcoesQuizzes.montaEstruturaQuizzSegundaTela();
   },
 
   montaEstruturaQuizzPrimeiraTela() {
@@ -110,7 +133,7 @@ const funcoesQuizzes = {
   listaSeusQuizzes() {
     const listaDeSeusQuizzes = document.querySelector(".lista-seus-quizzes");
 
-    if(funcoesQuizzes.seus_quizzes !== null) {
+    if(funcoesQuizzes.seus_quizzes.length !== 0) {
       funcoesDeControle.toogleTela1SemQuizzes();
       funcoesDeControle.toogleTela1SeusQuizzes();
 
@@ -146,7 +169,6 @@ const funcoesQuizzes = {
     for(let i = 0; i < this.quizzes[i]; i++) {
       let pergunta = this.quizzes[i].questions;
 
-      console.log(perguntas)
       let responde_quizz = document.querySelector(".responde-quizz");
       responde_quizz.innerHTML = responde_quizz.innerHTML + `
           <div class="cabecalho-do-quizz">
@@ -206,4 +228,4 @@ const funcoesQuizzes = {
 }
 
 funcoesApi.obterQuizzes()
-// funcoesQuizzes.listaSeusQuizzes();
+funcoesQuizzes.listaSeusQuizzes();

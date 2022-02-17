@@ -53,19 +53,19 @@
     <!--gleison-->
     <section class="cria-quizz passo-um --escondido">
       <h1>Comece pelo começo</h1>
-      <div class="forms">
-        <input type="text" placeholder="Título do seu quizz" class="titulo-quizz">
+      <form class="forms">
+        <input type="text" placeholder="Título do seu quizz" class="titulo-quizz" minlength="20" maxlength="65">
 
         <input type="text" placeholder="URL da imagem do seu quizz" class="url-quizz">
 
         <input type="text" placeholder="Quantidade de perguntas do seu quizz" class="qtd-perguntas">
 
         <input type="text" placeholder="Quantidade de níveis do quizz" class="qtd-niveis">
-      </div>
+        </fo>
 
-      <button class="botao-criacao">
-        <p>Prosseguir para criar perguntas</p>
-      </button>
+        <button onclick="funcoesDeControle.validaCriacaoDeQuizz()" class="botao-criacao">
+          <p>Prosseguir para criar perguntas</p>
+        </button>
     </section>
 
     <section class="cria-quizz passo-dois --escondido">
