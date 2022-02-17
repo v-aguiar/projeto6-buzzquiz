@@ -70,6 +70,12 @@ const funcoesDeControle = {
     criaQuizzParte2.classList.toggle("--escondido")
   },
 
+  toogleTela3Parte3() {
+    const criaQuizzParte3 = document.querySelector(".cria-quizz.passo-tres")
+
+    criaQuizzParte3.classList.toggle("--escondido")
+  },
+
   validaUrl(url) {
     let validaUrl = null
     try {
@@ -79,6 +85,22 @@ const funcoesDeControle = {
     }
 
     return (validaUrl) ? true : false
+  },
+
+  validaHex() {
+    const corDeFundoCriacao = document.querySelector(".cor-pergunta-um").value
+
+    let hex = corDeFundoCriacao.split("#")[1]
+    const regexp = /^[0-9a-fA-F]+$/;
+
+    if(regexp.test(hex)) {
+      return true;
+    }
+    else {
+      alert("⚠ COR INFORMADA NÃO É HEXADECIMAL")
+
+      return false;
+    }
   }
 }
 
@@ -97,6 +119,12 @@ const funcoesQuizzes = {
   criarQuizzPasso2() {
     funcoesDeControle.toogleTela3Parte1();
     funcoesDeControle.toogleTela3Parte2();
+  },
+
+  criarQuizzPasso3() {
+    funcoesDeControle.toogleTela3Parte2();
+    funcoesDeControle.toogleTela3Parte3();
+    funcoesDeControle.validaHex();
   },
 
   responderQuizz(quizz) {
@@ -120,9 +148,15 @@ const funcoesQuizzes = {
     qtdPerguntasInput.value = ''
     qtdNiveisInput.value = ''
 
-    const validaUrl = funcoesDeControle.validaUrl(urlDaImagem)
+    funcoesDeControle.validaUrl(urlDaImagem)
 
+    // if(validaUrl) {
     funcoesQuizzes.criarQuizzPasso2()
+    // }
+  },
+
+  validaCriacaoDeQuizzParte3() {
+
   },
 
   listarTodosOsQuizzes() {

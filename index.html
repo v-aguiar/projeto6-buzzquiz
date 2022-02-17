@@ -71,28 +71,47 @@
     <section class="cria-quizz passo-dois --escondido">
       <h1>Crie suas perguntas</h1>
       <div class="forms">
-        <div class="pergunta-um">
-          <label for="pergunta-um">Pergunta 1</label>
-          <input type="text" placeholder="Texto da pergunta" class="texto-pergunta-um" id="pergunta-um">
-          <input type="text" placeholder="Cor de fundo da pergunta" class="cor-pergunta-um" id="pergunta-um">
+        <form action="#" name="form-parte-2" id="form-parte-2">
+          <div class="pergunta-um">
+            <label for="pergunta-um">Pergunta 1</label>
+            <input type="text" placeholder="Texto da pergunta" class="texto-pergunta-um" id="pergunta-um" minlength="20"
+              required>
 
-          <label for="resposta-correta">Resposta correta</label>
-          <input type="text" placeholder="Resposta correta" class="texto-resposta-correta" id="resposta-correta">
-          <input type="text" placeholder="URL da imagem" class="url-imagem" id="resposta-correta">
+            <label for="pergunta-um-cor" class="--sr-only">Cor de Fundo</label>
+            <input type="text" placeholder="Cor de fundo da pergunta" class="cor-pergunta-um" id="pergunta-um-cor"
+              maxlength="7" required>
 
-          <label for="incorretas">Respostas incorretas</label>
-          <input type="text" placeholder="Resposta incorreta 1" class="texto-incorreto-tres" id="incorreta">
-          <input type="text" placeholder="URL da imagem 1" class="url-incorreto-um" id="incorreta">
+            <label for="resposta-correta">Resposta correta</label>
+            <input type="text" placeholder="Resposta correta" class="texto-resposta-correta" id="resposta-correta">
 
-          <input type="text" placeholder="Resposta incorreta 2" class="texto-incorreto-dois" id="incorreta">
-          <input type="text" placeholder="URL da imagem 2" class="url-incorreto-dois" id="incorreta">
+            <label for="resposta-correta-url" class="--sr-only"></label>
+            <input type="text" placeholder="URL da imagem" class="url-imagem" id="resposta-correta-url">
 
-          <input type="text" placeholder="Resposta incorreta 3" class="texto-incorreto-tres" id="incorreta">
-          <input type="text" placeholder="URL da imagem 3" class="url-incorreto-tres" id="incorreta">
-        </div>
-        <button class="botao-criacao">
-          <p>Prosseguir para criar níveis</p>
-        </button>
+            <label for="resposta-incorreta-1">Respostas incorretas</label>
+            <input type="text" placeholder="Resposta incorreta 1" class="texto-incorreto-tres"
+              id="resposta-incorreta-1">
+
+            <label for="resposta-incorreta-1-url" class="--sr-only">URL da 1ª resposta errada</label>
+            <input type="text" placeholder="URL da imagem 1" class="url-incorreto-um" id="resposta-incorreta-1-url">
+
+            <label for="resposta-incorreta-2" class="--sr-only">2ª resposta errada</label>
+            <input type="text" placeholder="Resposta incorreta 2" class="texto-incorreto-dois"
+              id="resposta-incorreta-2">
+
+            <label for="resposta-incorreta-2-url" class="--sr-only">URL da 2ª resposta errada</label>
+            <input type="text" placeholder="URL da imagem 2" class="url-incorreto-dois" id="resposta-incorreta-2-url">
+
+            <label for="resposta-incorreta-3" class="--sr-only">3ª resposta errada</label>
+            <input type="text" placeholder="Resposta incorreta 3" class="texto-incorreto-tres"
+              id="resposta-incorreta-3">
+
+            <label for="resposta-incorreta-3-url" class="--sr-only">URL da 3ª resposta errada</label>
+            <input type="text" placeholder="URL da imagem 3" class="url-incorreto-tres" id="resposta-incorreta-3-url">
+          </div>
+          <button type="submit" form="form-parte-2" onclick="funcoesQuizzes.criarQuizzPasso3()" class="botao-criacao">
+            <p>Prosseguir para criar níveis</p>
+          </button>
+        </form>
       </div>
 
       <div class="pergunta-dois fechado">
@@ -108,8 +127,8 @@
 
 
     <!--Victor-->
-    <section class="cria-quizz-passo-um --escondido"></section>
-    <section class="cria-quizz-passo-um --escondido"></section>
+    <section class="cria-quizz passo-tres --escondido"></section>
+    <section class="cria-quizz passo-quatro --escondido"></section>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
