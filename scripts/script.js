@@ -114,6 +114,22 @@ const funcoesDeControle = {
 
     perguntaDentro.classList.remove("--escondido")
     icone.classList.add("--escondido")
+  },
+
+  abreNivel(numero) {
+    const nivelDentro = document.querySelector(`.nivel-${numero}.fechado .nivel-${numero}-dentro`)
+    const tituloNivel = document.querySelector(`.nivel-${numero}.fechado > h1`)
+    const nivel = document.querySelector(`.nivel-${numero}.fechado`)
+    const icone = document.querySelector(`.nivel-${numero}.fechado ion-icon`)
+
+    nivel.style.flexDirection = "column"
+    nivel.style.height = "fit-content"
+
+    tituloNivel.style.alignSelf = "flex-start"
+    tituloNivel.style.marginTop = "27px"
+
+    nivelDentro.classList.remove("--escondido")
+    icone.classList.add("--escondido")
   }
 }
 
@@ -137,13 +153,30 @@ const funcoesQuizzes = {
   },
 
   criarQuizzPasso3() {
-    console.log(infoBaseCriaQuizz)
-
     funcoesDeControle.toogleTela3Parte2();
     funcoesDeControle.toogleTela3Parte3();
+
+    for(let index = 2; index <= NUM_NIVEIS; index++) {
+      funcoesQuizzes.montaEstruturaDoNível(index);
+    }
   },
 
   responderQuizz(quizz) {
+    console.log(quizz)
+
+    const titulo = quizz.querySelector("p").innerHTML
+
+    console.log(titulo)
+
+    let quizzDaSegundaTela
+
+    funcoesQuizzes.quizzes.forEach((card) => {
+      if(card.title === titulo)
+        quizzDaSegundaTela = card
+    })
+
+    console.log(quizzDaSegundaTela.id)
+
     funcoesDeControle.toogleTela1();
     funcoesDeControle.toogleTela2();
   },
@@ -187,6 +220,7 @@ const funcoesQuizzes = {
 
   validaCriacaoDeQuizzParte2() {
     infoBaseCriaQuizz.questions = []
+    let validacao = false
 
     // Recebe todos os dados de cada pergunta e já os coloca dentro do objeto a ser enviado pra API
     for(let index = 1; index <= NUM_PERGUNTAS; index++) {
@@ -274,7 +308,7 @@ const funcoesQuizzes = {
       const corEhValida = funcoesDeControle.validaHex(corDeFundo)
 
       if(urlsSaoValidas && corEhValida) {
-        funcoesQuizzes.criarQuizzPasso3()
+        validacao = true
       } else {
         alert("⚠ Dados inválidos, preencha o formulário novamente!")
 
@@ -291,44 +325,51 @@ const funcoesQuizzes = {
         urlImagemIncorretaTresInput.value = ''
       }
     }
+
+    validacao ? funcoesQuizzes.criarQuizzPasso3() : concole.log("Validação falhou")
   },
 
   validaCriacaoDeQuizzParte3() {
-    const tituloNivelUmInput = document.querySelector(".cria-quizz.passo-tres .titulo-nivel-um")
-    const acertoMinimoUmInput = document.querySelector(".cria-quizz.passo-tres .acerto-minimo-um")
-    const nivelUmUrlInput = document.querySelector(".cria-quizz.passo-tres .nivel-um-url")
-    const descricaoNivelTextarea = document.querySelector(".cria-quizz.passo-tres .descricao-nivel-um")
+    infoBaseCriaQuizz.levels = []
+    let validaPorcentagemAcertoMinimo = null
 
-    const tituloNivelUm = tituloNivelUmInput.value
-    const acertoMinimoUm = acertoMinimoUmInput.value
-    const nivelUmUrl = nivelUmUrlInput.value
-    const descricaoNivel = descricaoNivelTextarea.value
+    for(let index = 1; index <= NUM_NIVEIS; index++) {
+      const tituloNivelUmInput = document.querySelector(`.cria-quizz.passo-tres .titulo-nivel-${index}`)
+      const acertoMinimoUmInput = document.querySelector(`.cria-quizz.passo-tres .acerto-minimo-${index}`)
+      const nivelUmUrlInput = document.querySelector(`.cria-quizz.passo-tres .nivel-${index}-url`)
+      const descricaoNivelTextarea = document.querySelector(`.cria-quizz.passo-tres .descricao-nivel-${index}`)
 
-    infoBaseCriaQuizz.levels = [
-      {
-        title: tituloNivelUm,
-        minValue: acertoMinimoUm,
-        image: nivelUmUrl,
-        text: descricaoNivel
+      const tituloNivelUm = tituloNivelUmInput.value
+      const acertoMinimoUm = acertoMinimoUmInput.value
+      const nivelUmUrl = nivelUmUrlInput.value
+      const descricaoNivel = descricaoNivelTextarea.value
+
+      if(acertoMinimoUm === 0) {
+        validaPorcentagemAcertoMinimo = true
       }
-    ]
 
-    tituloNivelUmInput.value = ''
-    acertoMinimoUmInput.value = ''
-    nivelUmUrlInput.value = ''
-    descricaoNivelTextarea.value = ''
+      infoBaseCriaQuizz.levels.push(
+        {
+          title: tituloNivelUm,
+          minValue: acertoMinimoUm,
+          image: nivelUmUrl,
+          text: descricaoNivel
+        })
 
-    const validaUrl = funcoesDeControle.validaUrl(nivelUmUrl)
-    if(validaUrl) {
-      funcoesQuizzes.enviaQuizzParaServidor()
-    } else {
-      alert("⚠ Dados inválidos, preencha o formulário novamente!")
+      tituloNivelUmInput.value = ''
+      acertoMinimoUmInput.value = ''
+      nivelUmUrlInput.value = ''
+      descricaoNivelTextarea.value = ''
 
-      tituloQuizzInput.value = ''
-      urlDaImagemInput.value = ''
-      qtdPerguntasInput.value = ''
-      qtdNiveisInput.value = ''
+      const validaUrl = funcoesDeControle.validaUrl(nivelUmUrl)
+      if(validaUrl) {
+        console.log(infoBaseCriaQuizz)
+      } else {
+        alert("⚠ Dados inválidos, preencha o formulário novamente!")
+      }
     }
+
+    validaPorcentagemAcertoMinimo ? funcoesQuizzes.enviaQuizzParaServidor() : alert("⚠ Pelo menos um dos níveis deve possuir % de acerto igual a 0!")
   },
 
   enviaQuizzParaServidor() {
@@ -525,13 +566,12 @@ const funcoesQuizzes = {
                   </div>
                 </div>
         </article>
-        
         `
     })
   },
 
   montaEstruturaDaPergunta(numero) {
-    const pergunta = document.querySelector(`.pergunta-${numero - 1}`)
+    const perguntaAnterior = document.querySelector(`.pergunta-${numero - 1}`)
     const estruturaPergunta = `
         <h1>Pergunta ${numero}</h1>
         <ion-icon onclick="funcoesDeControle.abrePergunta(${numero})" name="create-outline"></ion-icon>
@@ -578,7 +618,47 @@ const funcoesQuizzes = {
     perguntaAdicional.classList.add(`pergunta-${numero}`, '--adicional', 'fechado')
     perguntaAdicional.innerHTML = estruturaPergunta;
 
-    pergunta.insertAdjacentElement('afterend', perguntaAdicional)
+    perguntaAnterior.insertAdjacentElement('afterend', perguntaAdicional)
+  },
+
+  montaEstruturaDoNível(numero) {
+    const nivelAnterior = document.querySelector(`.nivel-${numero - 1}`)
+    const estruturaNivel = `
+      <h1>Nível ${numero}</h1>
+      <ion-icon onclick="funcoesDeControle.abreNivel(${numero})" name="create-outline"></ion-icon>
+      <div class="nivel-${numero}-dentro --escondido">
+        <input type="text" placeholder="Título do nível" class="titulo-nivel-${numero}" id="nivel-${numero}" minlength="10" required>
+
+        <label for="acerto-minimo-${numero}" class="--sr-only">% de acerto mínima</label>
+        <input type="number" placeholder="% de acerto mínima" class="acerto-minimo-${numero}" id="acerto-minimo-${numero}" min="0" max="100" required>
+
+        <label for="nivel-${numero}-url" class="--sr-only">Url da imagem correspondente ao nível</label>
+        <input type="text" placeholder="URL da imagem do nível" class="nivel-${numero}-url" id="nivel-${numero}-url" required>
+
+        <label for="descricao-nivel-${numero}" class="--sr-only">Descrição do nível</label>
+        <textarea name="descricao-nivel-${numero}" type="text" rows="10" minlength="30" placeholder="Descrição do nível" class="descricao-nivel-${numero}" id="descricao-nivel-${numero}" required></textarea>
+      </div>
+    `
+
+    const nivelAdicional = document.createElement('div')
+    nivelAdicional.classList.add(`nivel-${numero}`, '--adicional', 'fechado')
+    nivelAdicional.innerHTML = estruturaNivel
+
+    nivelAnterior.insertAdjacentElement("afterend", nivelAdicional)
+  },
+
+  montaEstruturaSucessoCriacao() {
+    const passoQuatro = document.querySelector(".cria-quizz.passo-quatro")
+    const estruturaSucesso = `
+      <h1>Seu quizz está pronto</h1>
+      <div class="quizz --criado">
+        <div class="quizz-gradiente"></div>
+        <img src="${infoBaseCriaQuizz.image}" alt="Imagem de capa do quizz">
+        <p>${infoBaseCriaQuizz.title}</p>
+      </div>
+    `
+
+    passoQuatro.innerHTML = estruturaSucesso
   }
 }
 
