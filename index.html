@@ -80,126 +80,44 @@
       <h1>Crie suas perguntas</h1>
       <div class="forms">
         <form action="#" name="form-parte-2" id="form-parte-2">
-          <div class="pergunta-um">
+          <div class="pergunta-1">
             <label for="pergunta-um">Pergunta 1</label>
-            <input type="text" placeholder="Texto da pergunta" class="texto-pergunta-um" id="pergunta-um" minlength="20"
+            <input type="text" placeholder="Texto da pergunta" class="texto-pergunta-1" id="pergunta-um" minlength="20"
               required>
 
             <label for="pergunta-um-cor" class="--sr-only">Cor de Fundo</label>
-            <input type="text" placeholder="Cor de fundo da pergunta" class="cor-pergunta-um" id="pergunta-um-cor"
+            <input type="text" placeholder="Cor de fundo da pergunta" class="cor-pergunta-1" id="pergunta-um-cor"
               maxlength="7" required>
 
             <label for="resposta-correta">Resposta correta</label>
-            <input type="text" placeholder="Resposta correta" class="texto-resposta-correta" id="resposta-correta"
+            <input type="text" placeholder="Resposta correta" class="texto-resposta-correta-p1" id="resposta-correta"
               required>
 
             <label for="resposta-correta-url" class="--sr-only">Url da imagem correspondente a resposta correta</label>
-            <input type="text" placeholder="URL da imagem" class="url-imagem-correta" id="resposta-correta-url">
+            <input type="text" placeholder="URL da imagem" class="url-imagem-correta-p1" id="resposta-correta-url">
 
             <label for="resposta-incorreta-1">Respostas incorretas</label>
-            <input type="text" placeholder="Resposta incorreta 1" class="texto-incorreto-um" id="resposta-incorreta-1"
-              required>
+            <input type="text" placeholder="Resposta incorreta 1" class="texto-incorreto-um-p1"
+              id="resposta-incorreta-1" required>
 
             <label for="resposta-incorreta-1-url" class="--sr-only">URL da 1ª resposta errada</label>
-            <input type="text" placeholder="URL da imagem 1" class="url-incorreto-um" id="resposta-incorreta-1-url">
+            <input type="text" placeholder="URL da imagem 1" class="url-incorreto-um-p1" id="resposta-incorreta-1-url">
 
             <label for="resposta-incorreta-2" class="--sr-only">2ª resposta errada</label>
-            <input type="text" placeholder="Resposta incorreta 2" class="texto-incorreto-dois"
+            <input type="text" placeholder="Resposta incorreta 2" class="texto-incorreto-dois-p1"
               id="resposta-incorreta-2">
 
             <label for="resposta-incorreta-2-url" class="--sr-only">URL da 2ª resposta errada</label>
-            <input type="text" placeholder="URL da imagem 2" class="url-incorreto-dois" id="resposta-incorreta-2-url">
+            <input type="text" placeholder="URL da imagem 2" class="url-incorreto-dois-p1"
+              id="resposta-incorreta-2-url">
 
             <label for="resposta-incorreta-3" class="--sr-only">3ª resposta errada</label>
-            <input type="text" placeholder="Resposta incorreta 3" class="texto-incorreto-tres"
+            <input type="text" placeholder="Resposta incorreta 3" class="texto-incorreto-tres-p1"
               id="resposta-incorreta-3">
 
             <label for="resposta-incorreta-3-url" class="--sr-only">URL da 3ª resposta errada</label>
-            <input type="text" placeholder="URL da imagem 3" class="url-incorreto-tres" id="resposta-incorreta-3-url">
-          </div>
-
-          <div class="pergunta-dois fechado">
-            <h1>Pergunta 2</h1>
-            <ion-icon onclick="funcoesDeControle.abrePergunta2(this)" name="create-outline"></ion-icon>
-            <div class="pergunta-dentro --escondido">
-              <input type="text" placeholder="Texto da pergunta" class="texto-pergunta-um" id="pergunta-um"
-                minlength="20" required>
-
-              <label for="pergunta-um-cor" class="--sr-only">Cor de Fundo</label>
-              <input type="text" placeholder="Cor de fundo da pergunta" class="cor-pergunta-um" id="pergunta-um-cor"
-                maxlength="7" required>
-
-              <label for="resposta-correta">Resposta correta</label>
-              <input type="text" placeholder="Resposta correta" class="texto-resposta-correta" id="resposta-correta"
-                required>
-
-              <label for="resposta-correta-url" class="--sr-only">Url da imagem correspondente a resposta
-                correta</label>
-              <input type="text" placeholder="URL da imagem" class="url-imagem-correta" id="resposta-correta-url">
-
-              <label for="resposta-incorreta-1">Respostas incorretas</label>
-              <input type="text" placeholder="Resposta incorreta 1" class="texto-incorreto-um" id="resposta-incorreta-1"
-                required>
-
-              <label for="resposta-incorreta-1-url" class="--sr-only">URL da 1ª resposta errada</label>
-              <input type="text" placeholder="URL da imagem 1" class="url-incorreto-um" id="resposta-incorreta-1-url">
-
-              <label for="resposta-incorreta-2" class="--sr-only">2ª resposta errada</label>
-              <input type="text" placeholder="Resposta incorreta 2" class="texto-incorreto-dois"
-                id="resposta-incorreta-2">
-
-              <label for="resposta-incorreta-2-url" class="--sr-only">URL da 2ª resposta errada</label>
-              <input type="text" placeholder="URL da imagem 2" class="url-incorreto-dois" id="resposta-incorreta-2-url">
-
-              <label for="resposta-incorreta-3" class="--sr-only">3ª resposta errada</label>
-              <input type="text" placeholder="Resposta incorreta 3" class="texto-incorreto-tres"
-                id="resposta-incorreta-3">
-
-              <label for="resposta-incorreta-3-url" class="--sr-only">URL da 3ª resposta errada</label>
-              <input type="text" placeholder="URL da imagem 3" class="url-incorreto-tres" id="resposta-incorreta-3-url">
-            </div>
-          </div>
-
-          <div class="pergunta-tres fechado">
-            <h1>Pergunta 3</h1>
-            <ion-icon onclick="funcoesDeControle.abrePergunta3(this)" name="create-outline"></ion-icon>
-            <div class="pergunta-dentro --escondido">
-              <input type="text" placeholder="Texto da pergunta" class="texto-pergunta-um" id="pergunta-um"
-                minlength="20" required>
-
-              <label for="pergunta-um-cor" class="--sr-only">Cor de Fundo</label>
-              <input type="text" placeholder="Cor de fundo da pergunta" class="cor-pergunta-um" id="pergunta-um-cor"
-                maxlength="7" required>
-
-              <label for="resposta-correta">Resposta correta</label>
-              <input type="text" placeholder="Resposta correta" class="texto-resposta-correta" id="resposta-correta"
-                required>
-
-              <label for="resposta-correta-url" class="--sr-only">Url da imagem correspondente a resposta
-                correta</label>
-              <input type="text" placeholder="URL da imagem" class="url-imagem-correta" id="resposta-correta-url">
-
-              <label for="resposta-incorreta-1">Respostas incorretas</label>
-              <input type="text" placeholder="Resposta incorreta 1" class="texto-incorreto-um" id="resposta-incorreta-1"
-                required>
-
-              <label for="resposta-incorreta-1-url" class="--sr-only">URL da 1ª resposta errada</label>
-              <input type="text" placeholder="URL da imagem 1" class="url-incorreto-um" id="resposta-incorreta-1-url">
-
-              <label for="resposta-incorreta-2" class="--sr-only">2ª resposta errada</label>
-              <input type="text" placeholder="Resposta incorreta 2" class="texto-incorreto-dois"
-                id="resposta-incorreta-2">
-
-              <label for="resposta-incorreta-2-url" class="--sr-only">URL da 2ª resposta errada</label>
-              <input type="text" placeholder="URL da imagem 2" class="url-incorreto-dois" id="resposta-incorreta-2-url">
-
-              <label for="resposta-incorreta-3" class="--sr-only">3ª resposta errada</label>
-              <input type="text" placeholder="Resposta incorreta 3" class="texto-incorreto-tres"
-                id="resposta-incorreta-3">
-
-              <label for="resposta-incorreta-3-url" class="--sr-only">URL da 3ª resposta errada</label>
-              <input type="text" placeholder="URL da imagem 3" class="url-incorreto-tres" id="resposta-incorreta-3-url">
-            </div>
+            <input type="text" placeholder="URL da imagem 3" class="url-incorreto-tres-p1"
+              id="resposta-incorreta-3-url">
           </div>
 
           <button type="submit" form="form-parte-2" onclick="funcoesQuizzes.validaCriacaoDeQuizzParte2()"
@@ -216,41 +134,34 @@
       <h1>Agora, decida os níveis</h1>
       <div class="forms">
         <form action="#" name="form-parte-3" id="form-parte-3">
-          <div class="nivel-um">
-            <label for="nivel-um">Nível 1</label>
-            <input type="text" placeholder="Título do nível" class="titulo-nivel-um" id="nivel-um" minlength="10"
+          <div class="nivel-1">
+            <label for="nivel-1">Nível 1</label>
+            <input type="text" placeholder="Título do nível" class="titulo-nivel-1" id="nivel-1" minlength="10"
               required>
 
-            <label for="acerto-minimo-um" class="--sr-only">% de acerto mínima</label>
-            <input type="numer" placeholder="% de acerto mínima" class="acerto-minimo-um" id="acerto-minimo-um" min="0"
+            <label for="acerto-minimo-1" class="--sr-only">% de acerto mínima</label>
+            <input type="number" placeholder="% de acerto mínima" class="acerto-minimo-1" id="acerto-minimo-1" min="0"
               max="100" required>
 
-            <label for="nivel-um-url" class="--sr-only">Url da imagem correspondente ao nível</label>
-            <input type="text" placeholder="URL da imagem do nível" class="nivel-um-url" id="nivel-um-url" required>
+            <label for="nivel-1-url" class="--sr-only">Url da imagem correspondente ao nível</label>
+            <input type="text" placeholder="URL da imagem do nível" class="nivel-1-url" id="nivel-um-url" required>
 
-            <label for="descricao-nivel-um" class="--sr-only">Descrição do nível</label>
-            <textarea name="descricao-nivel-um" type="text" rows="10" minlength="30" placeholder="Descrição do nível"
-              class="descricao-nivel-um" id="descricao-nivel-um" required></textarea>
-          </div>
-
-          <div class="nivel-dois fechado">
-            <h1>Nível 2</h1>
-            <ion-icon name="create-outline"></ion-icon>
-          </div>
-
-          <div class="nivel-tres fechado">
-            <h1>Nível 3</h1>
-            <ion-icon name="create-outline"></ion-icon>
+            <label for="descricao-nivel-1" class="--sr-only">Descrição do nível</label>
+            <textarea name="descricao-nivel-1" type="text" rows="10" minlength="30" placeholder="Descrição do nível"
+              class="descricao-nivel-1" id="descricao-nivel-1" required></textarea>
           </div>
 
           <button type="submit" form="form-parte-3" onclick="funcoesQuizzes.validaCriacaoDeQuizzParte3()"
             class="botao-criacao">
-            <p>Prosseguir para criar níveis</p>
+            <p>Finalizar Quizz</p>
           </button>
         </form>
       </div>
     </section>
-    <section class="cria-quizz passo-quatro --escondido"></section>
+
+    <section class="cria-quizz passo-quatro --escondido">
+
+    </section>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
