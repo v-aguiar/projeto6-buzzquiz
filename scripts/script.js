@@ -31,7 +31,6 @@ const funcoesApi = {
 }
 
 const funcoesDeControle = {
-  // Esconder e mostrar a tela 1
   toogleTela1() {
     const quizzesContainer = document.querySelector(".quizzes-container")
 
@@ -50,14 +49,12 @@ const funcoesDeControle = {
     seusQuizzes.classList.toggle("--escondido")
   },
 
-  // Esconder e mostrar a tela 2
   toogleTela2() {
     const respondeQuizz = document.querySelector(".responde-quizz")
 
     respondeQuizz.classList.toggle("--escondido")
   },
 
-  // Esconder e mostrar a tela 2
   toogleTela3Parte1() {
     const criaQuizzParte1 = document.querySelector(".cria-quizz.passo-um")
 
@@ -99,6 +96,36 @@ const funcoesDeControle = {
 
       return false;
     }
+  },
+
+  abrePergunta2(icon) {
+    const perguntaDentro = document.querySelector(".pergunta-dois.fechado .pergunta-dentro")
+    const tituloPergunta2 = document.querySelector(".pergunta-dois.fechado > h1")
+    const pergunta2 = document.querySelector(".pergunta-dois.fechado")
+
+    pergunta2.style.flexDirection = "column"
+    pergunta2.style.height = "fit-content"
+
+    tituloPergunta2.style.alignSelf = "flex-start"
+    tituloPergunta2.style.marginTop = "27px"
+
+    perguntaDentro.classList.remove("--escondido")
+    icon.classList.add("--escondido")
+  },
+
+  abrePergunta3(icon) {
+    const perguntaDentro = document.querySelector(".pergunta-tres.fechado .pergunta-dentro")
+    const tituloPergunta3 = document.querySelector(".pergunta-tres.fechado > h1")
+    const pergunta3 = document.querySelector(".pergunta-tres.fechado")
+
+    pergunta3.style.flexDirection = "column"
+    pergunta3.style.height = "fit-content"
+
+    tituloPergunta3.style.alignSelf = "flex-start"
+    tituloPergunta3.style.marginTop = "27px"
+
+    perguntaDentro.classList.remove("--escondido")
+    icon.classList.add("--escondido")
   }
 }
 
@@ -137,6 +164,14 @@ const funcoesQuizzes = {
     const qtdPerguntas = qtdPerguntasInput.value
     const qtdNiveis = qtdNiveisInput.value
 
+    // Armazena dados recebidos
+
+    infoBaseCriaQuizz.titulo = tituloQuizz
+    infoBaseCriaQuizz.imagem = urlDaImagem
+    infoBaseCriaQuizz.qtdPerguntas = qtdPerguntas
+    infoBaseCriaQuizz.qtdNiveis = qtdNiveis
+
+    // Reseta o valor dos inputs
     tituloQuizzInput.value = ''
     urlDaImagemInput.value = ''
     qtdPerguntasInput.value = ''
@@ -191,45 +226,72 @@ const funcoesQuizzes = {
     urlImagemIncorretaTresInput.value = ''
 
     // Valida todas as urls dessa tela
-    const urls = [urlImagemCorreta, urlImagemIncorretaUm]
-    if(urlImagemIncorretaDois) {
-      urls.push(urlImagemIncorretaDois)
-    }
-    if(urlImagemIncorretaTres) {
-      urls.push(urlImagemIncorretaTres)
-    }
-    let urlsSaoValidas = true
+    // 
+    // const urls = [urlImagemCorreta, urlImagemIncorretaUm]
+    // if(urlImagemIncorretaDois) {
+    //   urls.push(urlImagemIncorretaDois)
+    // }
+    // if(urlImagemIncorretaTres) {
+    //   urls.push(urlImagemIncorretaTres)
+    // }
+    // let urlsSaoValidas = true
 
-    urls.forEach((url) => {
-      const validaCadaUrl = funcoesDeControle.validaUrl(url)
+    // urls.forEach((url) => {
+    // const validaCadaUrl = funcoesDeControle.validaUrl(url)
 
-      urlsSaoValidas = (urlsSaoValidas && validaCadaUrl)
-    })
+    //   urlsSaoValidas = (urlsSaoValidas && validaCadaUrl)
+    // })
 
     // Valida se a cor passada é HEX
-    const corEhValida = funcoesDeControle.validaHex(corDeFundo)
 
-    if(urlsSaoValidas && corEhValida) {
-      funcoesQuizzes.criarQuizzPasso3()
-    } else {
-      alert("⚠ Dados inválidos, preencha o formulário novamente!")
+    // const corEhValida = funcoesDeControle.validaHex(corDeFundo)
 
-      // reseta os inputs
-      pergunta1Input.value = ''
-      corDeFundoInput.value = ''
-      respostaCorretaInput.value = ''
-      urlImagemCorretaInput.value = ''
-      respostaIncorretaUmInput.value = ''
-      urlImagemIncorretaUmInput.value = ''
-      respostaIncorretaDoisInput.value = ''
-      urlImagemIncorretaDoisInput.value = ''
-      respostaIncorretaTresInput.value = ''
-      urlImagemIncorretaTresInput.value = ''
-    }
+    // if(urlsSaoValidas && corEhValida) {
+    funcoesQuizzes.criarQuizzPasso3()
+    // } else {
+    //   alert("⚠ Dados inválidos, preencha o formulário novamente!")
+
+    //   // reseta os inputs
+    //   pergunta1Input.value = ''
+    //   corDeFundoInput.value = ''
+    //   respostaCorretaInput.value = ''
+    //   urlImagemCorretaInput.value = ''
+    //   respostaIncorretaUmInput.value = ''
+    //   urlImagemIncorretaUmInput.value = ''
+    //   respostaIncorretaDoisInput.value = ''
+    //   urlImagemIncorretaDoisInput.value = ''
+    //   respostaIncorretaTresInput.value = ''
+    //   urlImagemIncorretaTresInput.value = ''
+    // }
   },
 
   validaCriacaoDeQuizzParte3() {
+    const tituloNivelUmInput = document.querySelector(".cria-quizz.passo-tres .titulo-nivel-um")
+    const acertoMinimoUmInput = document.querySelector(".cria-quizz.passo-tres .acerto-minimo-um")
+    const nivelUmUrlInput = document.querySelector(".cria-quizz.passo-tres .nivel-um-url")
+    const descricaoNivelTextarea = document.querySelector(".cria-quizz.passo-tres .descricao-nivel-um")
 
+    const tituloNivelUm = tituloNivelUmInput.value
+    const acertoMinimoUm = acertoMinimoUmInput.value
+    const nivelUmUrl = nivelUmUrlInput.value
+    const descricaoNivel = descricaoNivelTextarea.value
+
+    tituloNivelUm.value = ''
+    acertoMinimoUm.value = ''
+    nivelUmUrl.value = ''
+    descricaoNivel.value = ''
+
+    // const validaUrl = funcoesDeControle.validaUrl(nivelUmUrl)
+    // if(validaUrl) {
+    //   funcoesQuizzes.enviaQuizzParaServidor()
+    // } else {
+    //   alert("⚠ Dados inválidos, preencha o formulário novamente!")
+
+    //   tituloQuizzInput.value = ''
+    //   urlDaImagemInput.value = ''
+    //   qtdPerguntasInput.value = ''
+    //   qtdNiveisInput.value = ''
+    // }
   },
 
   listarTodosOsQuizzes() {
@@ -294,8 +356,9 @@ const funcoesQuizzes = {
 
     return seusQuizzesEstrutura;
   },
-  
+
   montaEstruturaQuizzSegundaTela() {
+<<<<<<< HEAD
     
 
     this.quizzes.forEach((quizzData) => {
@@ -335,6 +398,11 @@ const funcoesQuizzes = {
 
     let responde_quizz = document.querySelector(".responde-quizz");
     responde_quizz.innerHTML = responde_quizz.innerHTML + `
+=======
+    this.quizzes.forEach((quizzData) => {
+      let responde_quizz = document.querySelector(".responde-quizz");
+      responde_quizz.innerHTML = responde_quizz.innerHTML + `
+>>>>>>> c7e9ffea491eb5d9d9e0d6ffab66552d38de6ab2
           <div class="cabecalho-do-quizz">
             <div class="cabecalho-gradiente"></div>
             <h1>${quizzData.title}</h1>
@@ -425,10 +493,11 @@ const funcoesQuizzes = {
         </article>
         
         `
-  })
+    })
+  }
 }
 
-}
+const infoBaseCriaQuizz = new Object()
 
 funcoesApi.obterQuizzes()
 funcoesQuizzes.listaSeusQuizzes();

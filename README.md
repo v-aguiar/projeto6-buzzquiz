@@ -4,7 +4,7 @@
 
 - Geral
     - [x]  Não utilize nenhuma biblioteca para implementar este projeto (jquery, lodash, etc), somente JavaScript puro (exceção: biblioteca **axios**) e também não utilize outras linguagens que traduzam para JavaScript (ClojureScript, Elm, etc)
-    - [ ]  Seu projeto deverá ser desenvolvido utilizando **Git** e **GitHub. A cada requisito implementado** faça um commit com uma mensagem descritiva do que você evoluiu.
+    - [x]  Seu projeto deverá ser desenvolvido utilizando **Git** e **GitHub. A cada requisito implementado** faça um commit com uma mensagem descritiva do que você evoluiu.
     - [ ]  Todas as telas devem ser implementadas em um único arquivo HTML. Se preferir, por organização, pode dividir seu JavaScript/CSS em múltiplos arquivos.
 - Layout
     - [ ]  Aplique o layout para mobile e desktop, seguindo o Figma fornecido:
@@ -13,13 +13,13 @@
         
     - [ ]  O layout deve alternar para versão mobile quando a largura da janela for inferior a 1100px
 - Tela 1: Lista de Quizzes
-    - [ ]  Nesta tela, devem ser listados os quizzes fornecidos pelo servidor, seguindo o layout dado
+    - [x]  Nesta tela, devem ser listados os quizzes fornecidos pelo servidor, seguindo o layout dado
     - [ ]  A lista de quizzes do usuário deve mostrar somente seus quizzes, enquanto a lista de baixo deve mostrar todos os quizzes recebidos, sem os do usuário. Para diferenciar os quizzes do usuário dos demais, veja o requisito **Quizzes do Usuário**
-    - [ ]  Os quizzes devem ser exibidos num formato retangular (conforme layout), com a imagem e título do quizz. A imagem deve estar sobreposta com um degradê de preto para transparente conforme layout. Ao clicar sobre o quizz, esta tela deve sumir e dar lugar à **Tela 2: Página de um quizz** do quizz em questão
+    - [x]  Os quizzes devem ser exibidos num formato retangular (conforme layout), com a imagem e título do quizz. A imagem deve estar sobreposta com um degradê de preto para transparente conforme layout. Ao clicar sobre o quizz, esta tela deve sumir e dar lugar à **Tela 2: Página de um quizz** do quizz em questão
         
         **Dica**: pesquise por como fazer degradê (gradiente) com CSS
         
-    - [ ]  Ao clicar em "Criar Quizz" ou no "+" essa tela deve sumir, dando lugar à tela de **Tela 3: Criação de Quiz**
+    - [x]  Ao clicar em "Criar Quizz" ou no "+" essa tela deve sumir, dando lugar à tela de **Tela 3: Criação de Quiz**
 - Tela 2: Página de um quizz (perguntas)
     - [ ]  No topo do quizz, deve ser exibido um banner com a imagem e o título do quizz. A imagem deve estar escurecida com uma camada preta de 60% de opacidade.
     - [ ]  As respostas de cada pergunta devem ser exibidas organizadas aleatoriamente
@@ -38,24 +38,24 @@
     - [ ]  Ao clicar no botão "Reiniciar Quizz", a tela deverá ser scrollada novamente para o topo, as respostas zeradas pro estado inicial e a caixa de resultado escondida novamente
     - [ ]  Ao clicar no botão "Voltar pra home", essa tela deve sumir e dar lugar à **Tela 1: Lista de Quizzes**
 - Tela 3: Criação de Quiz
-    - [ ]  O processo de criar um quizz passará por 4 telas, seguindo o layout:
+    - [x]  O processo de criar um quizz passará por 4 telas, seguindo o layout:
         - Tela 3.1: Informações básicas do quizz
         - Tela 3.2: Perguntas do quizz
         - Tela 3.3: Níveis do quizz
         - Tela 3.4: Sucesso do quizz
     - [ ]  A cada etapa, antes de avançar para a próxima tela, devem ser feitas validações nas informações inseridas, seguindo as regras abaixo:
-        - Informações básicas do quizz
-            - [ ]  Título do quizz: deve ter no mínimo 20 e no máximo 65 caracteres
-            - [ ]  URL da Imagem: deve ter formato de URL
-            - [ ]  Quantidade de perguntas: no mínimo 3 perguntas
-            - [ ]  Quantidade de níveis: no mínimo 2 níveis
-        - Perguntas do quizz
-            - [ ]  Texto da pergunta: no mínimo 20 caracteres
-            - [ ]  Cor de fundo: deve ser uma cor em hexadecimal (começar em "#", seguida de 6 caracteres hexadecimais, ou seja, números ou letras de A a F)
-            - [ ]  Textos das respostas: não pode estar vazio
-            - [ ]  URL das imagens de resposta: deve ter formato de URL
+        - [x]Informações básicas do quizz
+            - [x]  Título do quizz: deve ter no mínimo 20 e no máximo 65 caracteres
+            - [x]  URL da Imagem: deve ter formato de URL
+            - [x]  Quantidade de perguntas: no mínimo 3 perguntas
+            - [x]  Quantidade de níveis: no mínimo 2 níveis
+        - [ ] Perguntas do quizz
+            - [x]  Texto da pergunta: no mínimo 20 caracteres
+            - [x]  Cor de fundo: deve ser uma cor em hexadecimal (começar em "#", seguida de 6 caracteres hexadecimais, ou seja, números ou letras de A a F)
+            - [x]  Textos das respostas: não pode estar vazio
+            - [x]  URL das imagens de resposta: deve ter formato de URL
             - [ ]  É obrigatória a inserção da resposta correta e de pelo menos 1 resposta errada. Portanto, é permitido existirem perguntas com só 2 ou 3 respostas em vez de 4.
-        - Níveis do quizz
+        - [ ] Níveis do quizz
             - [ ]  Título do nível: mínimo de 10 caracteres
             - [ ]  % de acerto mínima: um número entre 0 e 100
             - [ ]  URL da imagem do nível: deve ter formato de URL

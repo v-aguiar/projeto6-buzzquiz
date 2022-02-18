@@ -20,7 +20,7 @@
 
 <body>
   <header>
-    <img src="./assets/logo.svg" alt="Logo do BuzzQuizz">
+    <a href="/"><img src="./assets/logo.svg" alt="Logo do BuzzQuizz"></a>
   </header>
   <main>
     <!--Parte do Victor-->
@@ -43,12 +43,11 @@
     </section>
 
 
-     <!--Pergunta dos quizzes-->
-     <section class="responde-quizz --escondido"></section>
+    <!--Pergunta dos quizzes-->
+    <section class="responde-quizz --escondido"></section>
 
     <!--Criar Quizz-->
 
-  
     <section class="cria-quizz passo-um --escondido">
       <h1>Comece pelo começo</h1>
       <form action="#" name="form-parte-1" id="form-parte-1">
@@ -110,12 +109,86 @@
 
           <div class="pergunta-dois fechado">
             <h1>Pergunta 2</h1>
-            <ion-icon name="create-outline"></ion-icon>
+            <ion-icon onclick="funcoesDeControle.abrePergunta2(this)" name="create-outline"></ion-icon>
+            <div class="pergunta-dentro --escondido">
+              <input type="text" placeholder="Texto da pergunta" class="texto-pergunta-um" id="pergunta-um"
+                minlength="20" required>
+
+              <label for="pergunta-um-cor" class="--sr-only">Cor de Fundo</label>
+              <input type="text" placeholder="Cor de fundo da pergunta" class="cor-pergunta-um" id="pergunta-um-cor"
+                maxlength="7" required>
+
+              <label for="resposta-correta">Resposta correta</label>
+              <input type="text" placeholder="Resposta correta" class="texto-resposta-correta" id="resposta-correta"
+                required>
+
+              <label for="resposta-correta-url" class="--sr-only">Url da imagem correspondente a resposta
+                correta</label>
+              <input type="text" placeholder="URL da imagem" class="url-imagem-correta" id="resposta-correta-url">
+
+              <label for="resposta-incorreta-1">Respostas incorretas</label>
+              <input type="text" placeholder="Resposta incorreta 1" class="texto-incorreto-um" id="resposta-incorreta-1"
+                required>
+
+              <label for="resposta-incorreta-1-url" class="--sr-only">URL da 1ª resposta errada</label>
+              <input type="text" placeholder="URL da imagem 1" class="url-incorreto-um" id="resposta-incorreta-1-url">
+
+              <label for="resposta-incorreta-2" class="--sr-only">2ª resposta errada</label>
+              <input type="text" placeholder="Resposta incorreta 2" class="texto-incorreto-dois"
+                id="resposta-incorreta-2">
+
+              <label for="resposta-incorreta-2-url" class="--sr-only">URL da 2ª resposta errada</label>
+              <input type="text" placeholder="URL da imagem 2" class="url-incorreto-dois" id="resposta-incorreta-2-url">
+
+              <label for="resposta-incorreta-3" class="--sr-only">3ª resposta errada</label>
+              <input type="text" placeholder="Resposta incorreta 3" class="texto-incorreto-tres"
+                id="resposta-incorreta-3">
+
+              <label for="resposta-incorreta-3-url" class="--sr-only">URL da 3ª resposta errada</label>
+              <input type="text" placeholder="URL da imagem 3" class="url-incorreto-tres" id="resposta-incorreta-3-url">
+            </div>
           </div>
 
           <div class="pergunta-tres fechado">
             <h1>Pergunta 3</h1>
-            <ion-icon name="create-outline"></ion-icon>
+            <ion-icon onclick="funcoesDeControle.abrePergunta3(this)" name="create-outline"></ion-icon>
+            <div class="pergunta-dentro --escondido">
+              <input type="text" placeholder="Texto da pergunta" class="texto-pergunta-um" id="pergunta-um"
+                minlength="20" required>
+
+              <label for="pergunta-um-cor" class="--sr-only">Cor de Fundo</label>
+              <input type="text" placeholder="Cor de fundo da pergunta" class="cor-pergunta-um" id="pergunta-um-cor"
+                maxlength="7" required>
+
+              <label for="resposta-correta">Resposta correta</label>
+              <input type="text" placeholder="Resposta correta" class="texto-resposta-correta" id="resposta-correta"
+                required>
+
+              <label for="resposta-correta-url" class="--sr-only">Url da imagem correspondente a resposta
+                correta</label>
+              <input type="text" placeholder="URL da imagem" class="url-imagem-correta" id="resposta-correta-url">
+
+              <label for="resposta-incorreta-1">Respostas incorretas</label>
+              <input type="text" placeholder="Resposta incorreta 1" class="texto-incorreto-um" id="resposta-incorreta-1"
+                required>
+
+              <label for="resposta-incorreta-1-url" class="--sr-only">URL da 1ª resposta errada</label>
+              <input type="text" placeholder="URL da imagem 1" class="url-incorreto-um" id="resposta-incorreta-1-url">
+
+              <label for="resposta-incorreta-2" class="--sr-only">2ª resposta errada</label>
+              <input type="text" placeholder="Resposta incorreta 2" class="texto-incorreto-dois"
+                id="resposta-incorreta-2">
+
+              <label for="resposta-incorreta-2-url" class="--sr-only">URL da 2ª resposta errada</label>
+              <input type="text" placeholder="URL da imagem 2" class="url-incorreto-dois" id="resposta-incorreta-2-url">
+
+              <label for="resposta-incorreta-3" class="--sr-only">3ª resposta errada</label>
+              <input type="text" placeholder="Resposta incorreta 3" class="texto-incorreto-tres"
+                id="resposta-incorreta-3">
+
+              <label for="resposta-incorreta-3-url" class="--sr-only">URL da 3ª resposta errada</label>
+              <input type="text" placeholder="URL da imagem 3" class="url-incorreto-tres" id="resposta-incorreta-3-url">
+            </div>
           </div>
 
           <button type="submit" form="form-parte-2" onclick="funcoesQuizzes.validaCriacaoDeQuizzParte2()"
@@ -124,13 +197,48 @@
           </button>
         </form>
       </div>
-
-
     </section>
 
 
     <!--Victor-->
-    <section class="cria-quizz passo-tres --escondido"></section>
+    <section class="cria-quizz passo-tres --escondido">
+      <h1>Agora, decida os níveis</h1>
+      <div class="forms">
+        <form action="#" name="form-parte-3" id="form-parte-3">
+          <div class="nivel-um">
+            <label for="nivel-um">Nível 1</label>
+            <input type="text" placeholder="Título do nível" class="titulo-nivel-um" id="nivel-um" minlength="10"
+              required>
+
+            <label for="acerto-minimo-um" class="--sr-only">% de acerto mínima</label>
+            <input type="numer" placeholder="% de acerto mínima" class="acerto-minimo-um" id="acerto-minimo-um" min="0"
+              max="100" required>
+
+            <label for="nivel-um-url" class="--sr-only">Url da imagem correspondente ao nível</label>
+            <input type="text" placeholder="URL da imagem do nível" class="nivel-um-url" id="nivel-um-url" required>
+
+            <label for="descricao-nivel-um" class="--sr-only">Descrição do nível</label>
+            <textarea name="descricao-nivel-um" type="text" rows="10" minlength="30" placeholder="Descrição do nível"
+              class="descricao-nivel-um" id="descricao-nivel-um" required></textarea>
+          </div>
+
+          <div class="nivel-dois fechado">
+            <h1>Nível 2</h1>
+            <ion-icon name="create-outline"></ion-icon>
+          </div>
+
+          <div class="nivel-tres fechado">
+            <h1>Nível 3</h1>
+            <ion-icon name="create-outline"></ion-icon>
+          </div>
+
+          <button type="submit" form="form-parte-3" onclick="funcoesQuizzes.validaCriacaoDeQuizzParte3()"
+            class="botao-criacao">
+            <p>Prosseguir para criar níveis</p>
+          </button>
+        </form>
+      </div>
+    </section>
     <section class="cria-quizz passo-quatro --escondido"></section>
   </main>
 
