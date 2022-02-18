@@ -1,4 +1,6 @@
 const API_URL = 'https://mock-api.driven.com.br/api/v4/buzzquizz';
+let NUM_PERGUNTAS = 3
+let NUM_NIVEIS = 2
 
 const funcoesApi = {
   obterQuizzes() {
@@ -98,34 +100,20 @@ const funcoesDeControle = {
     }
   },
 
-  abrePergunta2(icon) {
-    const perguntaDentro = document.querySelector(".pergunta-dois.fechado .pergunta-dentro")
-    const tituloPergunta2 = document.querySelector(".pergunta-dois.fechado > h1")
-    const pergunta2 = document.querySelector(".pergunta-dois.fechado")
+  abrePergunta(numero) {
+    const perguntaDentro = document.querySelector(`.pergunta-${numero}.fechado .pergunta-${numero}-dentro`)
+    const tituloPergunta = document.querySelector(`.pergunta-${numero}.fechado > h1`)
+    const pergunta = document.querySelector(`.pergunta-${numero}.fechado`)
+    const icone = document.querySelector(`.pergunta-${numero}.fechado ion-icon`)
 
-    pergunta2.style.flexDirection = "column"
-    pergunta2.style.height = "fit-content"
+    pergunta.style.flexDirection = "column"
+    pergunta.style.height = "fit-content"
 
-    tituloPergunta2.style.alignSelf = "flex-start"
-    tituloPergunta2.style.marginTop = "27px"
-
-    perguntaDentro.classList.remove("--escondido")
-    icon.classList.add("--escondido")
-  },
-
-  abrePergunta3(icon) {
-    const perguntaDentro = document.querySelector(".pergunta-tres.fechado .pergunta-dentro")
-    const tituloPergunta3 = document.querySelector(".pergunta-tres.fechado > h1")
-    const pergunta3 = document.querySelector(".pergunta-tres.fechado")
-
-    pergunta3.style.flexDirection = "column"
-    pergunta3.style.height = "fit-content"
-
-    tituloPergunta3.style.alignSelf = "flex-start"
-    tituloPergunta3.style.marginTop = "27px"
+    tituloPergunta.style.alignSelf = "flex-start"
+    tituloPergunta.style.marginTop = "27px"
 
     perguntaDentro.classList.remove("--escondido")
-    icon.classList.add("--escondido")
+    icone.classList.add("--escondido")
   }
 }
 
@@ -141,9 +129,16 @@ const funcoesQuizzes = {
   criarQuizzPasso2() {
     funcoesDeControle.toogleTela3Parte1();
     funcoesDeControle.toogleTela3Parte2();
+
+    console.log(NUM_PERGUNTAS)
+    for(let index = 2; index <= NUM_PERGUNTAS; index++) {
+      funcoesQuizzes.montaEstruturaDaPergunta(index);
+    }
   },
 
   criarQuizzPasso3() {
+    console.log(infoBaseCriaQuizz)
+
     funcoesDeControle.toogleTela3Parte2();
     funcoesDeControle.toogleTela3Parte3();
   },
@@ -164,12 +159,11 @@ const funcoesQuizzes = {
     const qtdPerguntas = qtdPerguntasInput.value
     const qtdNiveis = qtdNiveisInput.value
 
-    // Armazena dados recebidos
-
-    infoBaseCriaQuizz.titulo = tituloQuizz
-    infoBaseCriaQuizz.imagem = urlDaImagem
-    infoBaseCriaQuizz.qtdPerguntas = qtdPerguntas
-    infoBaseCriaQuizz.qtdNiveis = qtdNiveis
+    // Armazena dados básicos do quizz a ser criado
+    infoBaseCriaQuizz.title = tituloQuizz
+    infoBaseCriaQuizz.image = urlDaImagem
+    NUM_PERGUNTAS = qtdPerguntas
+    NUM_NIVEIS = qtdNiveis
 
     // Reseta o valor dos inputs
     tituloQuizzInput.value = ''
@@ -179,90 +173,124 @@ const funcoesQuizzes = {
 
     const validaUrl = funcoesDeControle.validaUrl(urlDaImagem)
 
-    // if(validaUrl) {
-    funcoesQuizzes.criarQuizzPasso2()
-    // } else {
-    // alert("⚠ Dados inválidos, preencha o formulário novamente!")
+    if(validaUrl) {
+      funcoesQuizzes.criarQuizzPasso2()
+    } else {
+      alert("⚠ Dados inválidos, preencha o formulário novamente!")
 
-    // tituloQuizzInput.value = ''
-    // urlDaImagemInput.value = ''
-    // qtdPerguntasInput.value = ''
-    // qtdNiveisInput.value = ''
-    // }
+      tituloQuizzInput.value = ''
+      urlDaImagemInput.value = ''
+      qtdPerguntasInput.value = ''
+      qtdNiveisInput.value = ''
+    }
   },
 
   validaCriacaoDeQuizzParte2() {
-    const pergunta1Input = document.querySelector(".cria-quizz.passo-dois .texto-pergunta-um")
-    const corDeFundoInput = document.querySelector(".cria-quizz.passo-dois .cor-pergunta-um")
-    const respostaCorretaInput = document.querySelector(".cria-quizz.passo-dois .texto-resposta-correta")
-    const urlImagemCorretaInput = document.querySelector(".cria-quizz.passo-dois .url-imagem-correta")
-    const respostaIncorretaUmInput = document.querySelector(".cria-quizz.passo-dois .texto-incorreto-um")
-    const urlImagemIncorretaUmInput = document.querySelector(".cria-quizz.passo-dois .url-incorreto-um")
-    const respostaIncorretaDoisInput = document.querySelector(".cria-quizz.passo-dois .texto-incorreto-dois")
-    const urlImagemIncorretaDoisInput = document.querySelector(".cria-quizz.passo-dois .url-incorreto-dois")
-    const respostaIncorretaTresInput = document.querySelector(".cria-quizz.passo-dois .texto-incorreto-tres")
-    const urlImagemIncorretaTresInput = document.querySelector(".cria-quizz.passo-dois .url-incorreto-tres")
+    infoBaseCriaQuizz.questions = []
 
-    const pergunta1 = pergunta1Input.value
-    const corDeFundo = corDeFundoInput.value
-    const respostaCorreta = respostaCorretaInput.value
-    const urlImagemCorreta = urlImagemCorretaInput.value
-    const respostaIncorretaUm = respostaIncorretaUmInput.value
-    const urlImagemIncorretaUm = urlImagemIncorretaUmInput.value
-    const respostaIncorretaDois = respostaIncorretaDoisInput.value
-    const urlImagemIncorretaDois = urlImagemIncorretaDoisInput.value
-    const respostaIncorretaTres = respostaIncorretaTresInput.value
-    const urlImagemIncorretaTres = urlImagemIncorretaTresInput.value
+    // Recebe todos os dados de cada pergunta e já os coloca dentro do objeto a ser enviado pra API
+    for(let index = 1; index <= NUM_PERGUNTAS; index++) {
+      const perguntaInput = document.querySelector(`.cria-quizz.passo-dois .texto-pergunta-${index}`)
+      const corDeFundoInput = document.querySelector(`.cria-quizz.passo-dois .cor-pergunta-${index}`)
+      const respostaCorretaInput = document.querySelector(`.cria-quizz.passo-dois .texto-resposta-correta-p${index}`)
+      const urlImagemCorretaInput = document.querySelector(`.cria-quizz.passo-dois .url-imagem-correta-p${index}`)
+      const respostaIncorretaUmInput = document.querySelector(`.cria-quizz.passo-dois .texto-incorreto-um-p${index}`)
+      const urlImagemIncorretaUmInput = document.querySelector(`.cria-quizz.passo-dois .url-incorreto-um-p${index}`)
+      const respostaIncorretaDoisInput = document.querySelector(`.cria-quizz.passo-dois .texto-incorreto-dois-p${index}`)
+      const urlImagemIncorretaDoisInput = document.querySelector(`.cria-quizz.passo-dois .url-incorreto-dois-p${index}`)
+      const respostaIncorretaTresInput = document.querySelector(`.cria-quizz.passo-dois .texto-incorreto-tres-p${index}`)
+      const urlImagemIncorretaTresInput = document.querySelector(`.cria-quizz.passo-dois .url-incorreto-tres-p${index}`)
 
-    pergunta1Input.value = ''
-    corDeFundoInput.value = ''
-    respostaCorretaInput.value = ''
-    urlImagemCorretaInput.value = ''
-    respostaIncorretaUmInput.value = ''
-    urlImagemIncorretaUmInput.value = ''
-    respostaIncorretaDoisInput.value = ''
-    urlImagemIncorretaDoisInput.value = ''
-    respostaIncorretaTresInput.value = ''
-    urlImagemIncorretaTresInput.value = ''
+      const pergunta = perguntaInput.value
+      const corDeFundo = corDeFundoInput.value
+      const respostaCorreta = respostaCorretaInput.value
+      const urlImagemCorreta = urlImagemCorretaInput.value
+      const respostaIncorretaUm = respostaIncorretaUmInput.value
+      const urlImagemIncorretaUm = urlImagemIncorretaUmInput.value
+      const respostaIncorretaDois = respostaIncorretaDoisInput.value
+      const urlImagemIncorretaDois = urlImagemIncorretaDoisInput.value
+      const respostaIncorretaTres = respostaIncorretaTresInput.value
+      const urlImagemIncorretaTres = urlImagemIncorretaTresInput.value
 
-    // Valida todas as urls dessa tela
-    // 
-    // const urls = [urlImagemCorreta, urlImagemIncorretaUm]
-    // if(urlImagemIncorretaDois) {
-    //   urls.push(urlImagemIncorretaDois)
-    // }
-    // if(urlImagemIncorretaTres) {
-    //   urls.push(urlImagemIncorretaTres)
-    // }
-    // let urlsSaoValidas = true
+      // Armazena os dados das perguntas do quizz a ser criado
 
-    // urls.forEach((url) => {
-    // const validaCadaUrl = funcoesDeControle.validaUrl(url)
+      infoBaseCriaQuizz.questions.push({
+        title: pergunta,
+        color: corDeFundo,
+        answers: [
+          {
+            text: respostaCorreta,
+            image: urlImagemCorreta,
+            isCorrectAnswer: true
+          },
+          {
+            text: respostaIncorretaUm,
+            image: urlImagemIncorretaUm,
+            isCorrectAnswer: false
+          },
+          {
+            text: respostaIncorretaDois,
+            image: urlImagemIncorretaDois,
+            isCorrectAnswer: false
+          },
+          {
+            text: respostaIncorretaTres,
+            image: urlImagemIncorretaTres,
+            isCorrectAnswer: false
+          }
+        ]
+      })
 
-    //   urlsSaoValidas = (urlsSaoValidas && validaCadaUrl)
-    // })
+      perguntaInput.value = ''
+      corDeFundoInput.value = ''
+      respostaCorretaInput.value = ''
+      urlImagemCorretaInput.value = ''
+      respostaIncorretaUmInput.value = ''
+      urlImagemIncorretaUmInput.value = ''
+      respostaIncorretaDoisInput.value = ''
+      urlImagemIncorretaDoisInput.value = ''
+      respostaIncorretaTresInput.value = ''
+      urlImagemIncorretaTresInput.value = ''
 
-    // Valida se a cor passada é HEX
+      // Valida todas as urls dessa tela
 
-    // const corEhValida = funcoesDeControle.validaHex(corDeFundo)
+      const urls = [urlImagemCorreta, urlImagemIncorretaUm]
+      if(urlImagemIncorretaDois) {
+        urls.push(urlImagemIncorretaDois)
+      }
+      if(urlImagemIncorretaTres) {
+        urls.push(urlImagemIncorretaTres)
+      }
+      let urlsSaoValidas = true
 
-    // if(urlsSaoValidas && corEhValida) {
-    funcoesQuizzes.criarQuizzPasso3()
-    // } else {
-    //   alert("⚠ Dados inválidos, preencha o formulário novamente!")
+      urls.forEach((url) => {
+        const validaCadaUrl = funcoesDeControle.validaUrl(url)
 
-    //   // reseta os inputs
-    //   pergunta1Input.value = ''
-    //   corDeFundoInput.value = ''
-    //   respostaCorretaInput.value = ''
-    //   urlImagemCorretaInput.value = ''
-    //   respostaIncorretaUmInput.value = ''
-    //   urlImagemIncorretaUmInput.value = ''
-    //   respostaIncorretaDoisInput.value = ''
-    //   urlImagemIncorretaDoisInput.value = ''
-    //   respostaIncorretaTresInput.value = ''
-    //   urlImagemIncorretaTresInput.value = ''
-    // }
+        urlsSaoValidas = (urlsSaoValidas && validaCadaUrl)
+      })
+
+      // Valida se a cor passada é HEX
+
+      const corEhValida = funcoesDeControle.validaHex(corDeFundo)
+
+      if(urlsSaoValidas && corEhValida) {
+        funcoesQuizzes.criarQuizzPasso3()
+      } else {
+        alert("⚠ Dados inválidos, preencha o formulário novamente!")
+
+        // reseta os inputs
+        perguntaInput.value = ''
+        corDeFundoInput.value = ''
+        respostaCorretaInput.value = ''
+        urlImagemCorretaInput.value = ''
+        respostaIncorretaUmInput.value = ''
+        urlImagemIncorretaUmInput.value = ''
+        respostaIncorretaDoisInput.value = ''
+        urlImagemIncorretaDoisInput.value = ''
+        respostaIncorretaTresInput.value = ''
+        urlImagemIncorretaTresInput.value = ''
+      }
+    }
   },
 
   validaCriacaoDeQuizzParte3() {
@@ -276,22 +304,37 @@ const funcoesQuizzes = {
     const nivelUmUrl = nivelUmUrlInput.value
     const descricaoNivel = descricaoNivelTextarea.value
 
-    tituloNivelUm.value = ''
-    acertoMinimoUm.value = ''
-    nivelUmUrl.value = ''
-    descricaoNivel.value = ''
+    infoBaseCriaQuizz.levels = [
+      {
+        title: tituloNivelUm,
+        minValue: acertoMinimoUm,
+        image: nivelUmUrl,
+        text: descricaoNivel
+      }
+    ]
 
-    // const validaUrl = funcoesDeControle.validaUrl(nivelUmUrl)
-    // if(validaUrl) {
-    //   funcoesQuizzes.enviaQuizzParaServidor()
-    // } else {
-    //   alert("⚠ Dados inválidos, preencha o formulário novamente!")
+    tituloNivelUmInput.value = ''
+    acertoMinimoUmInput.value = ''
+    nivelUmUrlInput.value = ''
+    descricaoNivelTextarea.value = ''
 
-    //   tituloQuizzInput.value = ''
-    //   urlDaImagemInput.value = ''
-    //   qtdPerguntasInput.value = ''
-    //   qtdNiveisInput.value = ''
-    // }
+    const validaUrl = funcoesDeControle.validaUrl(nivelUmUrl)
+    if(validaUrl) {
+      funcoesQuizzes.enviaQuizzParaServidor()
+    } else {
+      alert("⚠ Dados inválidos, preencha o formulário novamente!")
+
+      tituloQuizzInput.value = ''
+      urlDaImagemInput.value = ''
+      qtdPerguntasInput.value = ''
+      qtdNiveisInput.value = ''
+    }
+  },
+
+  enviaQuizzParaServidor() {
+    const promise = axios.post(`${API_URL}/quizzes`, infoBaseCriaQuizz)
+    promise.then((response) => {console.log("Resposta: ", response)})
+    promise.catch((err) => {console.log("Error: ", err)})
   },
 
   listarTodosOsQuizzes() {
@@ -300,6 +343,17 @@ const funcoesQuizzes = {
     listaDeTodosOsQuizzes.innerHTML = funcoesQuizzes.montaEstruturaQuizzPrimeiraTela();
     funcoesQuizzes.montaEstruturaQuizzPrimeiraTela();
     funcoesQuizzes.montaEstruturaQuizzSegundaTela();
+  },
+
+  listaSeusQuizzes() {
+    const listaDeSeusQuizzes = document.querySelector(".lista-seus-quizzes");
+
+    if(funcoesQuizzes.seus_quizzes.length !== 0) {
+      funcoesDeControle.toogleTela1SemQuizzes();
+      funcoesDeControle.toogleTela1SeusQuizzes();
+
+      listaDeSeusQuizzes.innerHTML = funcoesQuizzes.montaEstruturaSeusQuizzes();
+    }
   },
 
   montaEstruturaQuizzPrimeiraTela() {
@@ -320,17 +374,6 @@ const funcoesQuizzes = {
     })
 
     return quizzesEstruturaTela1;
-  },
-
-  listaSeusQuizzes() {
-    const listaDeSeusQuizzes = document.querySelector(".lista-seus-quizzes");
-
-    if(funcoesQuizzes.seus_quizzes.length !== 0) {
-      funcoesDeControle.toogleTela1SemQuizzes();
-      funcoesDeControle.toogleTela1SeusQuizzes();
-
-      listaDeSeusQuizzes.innerHTML = funcoesQuizzes.montaEstruturaSeusQuizzes();
-    }
   },
 
   montaEstruturaSeusQuizzes() {
@@ -358,51 +401,42 @@ const funcoesQuizzes = {
   },
 
   montaEstruturaQuizzSegundaTela() {
-<<<<<<< HEAD
-    
-
     this.quizzes.forEach((quizzData) => {
-    respostas_pergunta_um = [{
-      booleano: quizzData.questions[0].answers[0].isCorrectAnswer,
-      resposta_um_imagem: quizzData.questions[0].answers[0].image,
-      resposta_um_texto: quizzData.questions[0].answers[0].text,
-    },{
-      booleano: quizzData.questions[0].answers[1].isCorrectAnswer,
-      resposta_dois_imagem: quizzData.questions[0].answers[1].image,
-      resposta_dois_texto: quizzData.questions[0].answers[1].text,
-    }]
-    respostas_pergunta_um.sort(comparador);
+      respostas_pergunta_um = [{
+        booleano: quizzData.questions[0].answers[0].isCorrectAnswer,
+        resposta_um_imagem: quizzData.questions[0].answers[0].image,
+        resposta_um_texto: quizzData.questions[0].answers[0].text,
+      }, {
+        booleano: quizzData.questions[0].answers[1].isCorrectAnswer,
+        resposta_dois_imagem: quizzData.questions[0].answers[1].image,
+        resposta_dois_texto: quizzData.questions[0].answers[1].text,
+      }]
+      respostas_pergunta_um.sort(comparador);
 
-    respostas_pergunta_dois = [{
-      booleano: quizzData.questions[1].answers[0].isCorrectAnswer,
-      resposta_um_imagem: quizzData.questions[1].answers[0].image,
-      resposta_um_texto: quizzData.questions[1].answers[0].text,
-    },{
-      booleano: quizzData.questions[1].answers[1].isCorrectAnswer,
-      resposta_dois_imagem: quizzData.questions[1].answers[1].image,
-      resposta_dois_texto: quizzData.questions[1].answers[1].text,
-    }]
-    respostas_pergunta_dois.sort(comparador);
+      respostas_pergunta_dois = [{
+        booleano: quizzData.questions[1].answers[0].isCorrectAnswer,
+        resposta_um_imagem: quizzData.questions[1].answers[0].image,
+        resposta_um_texto: quizzData.questions[1].answers[0].text,
+      }, {
+        booleano: quizzData.questions[1].answers[1].isCorrectAnswer,
+        resposta_dois_imagem: quizzData.questions[1].answers[1].image,
+        resposta_dois_texto: quizzData.questions[1].answers[1].text,
+      }]
+      respostas_pergunta_dois.sort(comparador);
 
-    respostas_pergunta_tres = [{
-      booleano: quizzData.questions[2].answers[0].isCorrectAnswer,
-      resposta_um_imagem: quizzData.questions[2].answers[0].image,
-      resposta_um_texto: quizzData.questions[2].answers[0].text,
-    },{
-      booleano: quizzData.questions[2].answers[1].isCorrectAnswer,
-      resposta_dois_imagem: quizzData.questions[2].answers[1].image,
-      resposta_dois_texto: quizzData.questions[2].answers[1].text,
-    }]
-    respostas_pergunta_tres.sort(comparador);
+      respostas_pergunta_tres = [{
+        booleano: quizzData.questions[2].answers[0].isCorrectAnswer,
+        resposta_um_imagem: quizzData.questions[2].answers[0].image,
+        resposta_um_texto: quizzData.questions[2].answers[0].text,
+      }, {
+        booleano: quizzData.questions[2].answers[1].isCorrectAnswer,
+        resposta_dois_imagem: quizzData.questions[2].answers[1].image,
+        resposta_dois_texto: quizzData.questions[2].answers[1].text,
+      }]
+      respostas_pergunta_tres.sort(comparador);
 
-
-    let responde_quizz = document.querySelector(".responde-quizz");
-    responde_quizz.innerHTML = responde_quizz.innerHTML + `
-=======
-    this.quizzes.forEach((quizzData) => {
       let responde_quizz = document.querySelector(".responde-quizz");
       responde_quizz.innerHTML = responde_quizz.innerHTML + `
->>>>>>> c7e9ffea491eb5d9d9e0d6ffab66552d38de6ab2
           <div class="cabecalho-do-quizz">
             <div class="cabecalho-gradiente"></div>
             <h1>${quizzData.title}</h1>
@@ -494,6 +528,57 @@ const funcoesQuizzes = {
         
         `
     })
+  },
+
+  montaEstruturaDaPergunta(numero) {
+    const pergunta = document.querySelector(`.pergunta-${numero - 1}`)
+    const estruturaPergunta = `
+        <h1>Pergunta ${numero}</h1>
+        <ion-icon onclick="funcoesDeControle.abrePergunta(${numero})" name="create-outline"></ion-icon>
+        <div class="pergunta-${numero}-dentro --escondido">
+          <input type="text" placeholder="Texto da pergunta" class="texto-pergunta-${numero}" id="pergunta-${numero}"
+            minlength="20" required>
+
+          <label for="pergunta-${numero}-cor" class="--sr-only">Cor de Fundo</label>
+          <input type="text" placeholder="Cor de fundo da pergunta" class="cor-pergunta-${numero}" id="pergunta-${numero}-cor"
+            maxlength="7" required>
+
+          <label for="resposta-correta-p${numero}">Resposta correta</label>
+          <input type="text" placeholder="Resposta correta" class="texto-resposta-correta-p${numero}" id="resposta-correta-p${numero}"
+            required>
+
+          <label for="resposta-correta-url-p${numero}" class="--sr-only">Url da imagem correspondente a resposta
+            correta</label>
+          <input type="text" placeholder="URL da imagem" class="url-imagem-correta-p${numero}" id="resposta-correta-url-p${numero}">
+
+          <label for="resposta-incorreta-1-p${numero}">Respostas incorretas</label>
+          <input type="text" placeholder="Resposta incorreta 1" class="texto-incorreto-um-p${numero}" id="resposta-incorreta-1-p${numero}"
+            required>
+
+          <label for="resposta-incorreta-1-url-p${numero}" class="--sr-only">URL da 1ª resposta errada</label>
+          <input type="text" placeholder="URL da imagem 1" class="url-incorreto-um-p${numero}" id="resposta-incorreta-1-url-p${numero}">
+
+          <label for="resposta-incorreta-2-p${numero}" class="--sr-only">2ª resposta errada</label>
+          <input type="text" placeholder="Resposta incorreta 2" class="texto-incorreto-dois-p${numero}"
+            id="resposta-incorreta-2">
+
+          <label for="resposta-incorreta-2-url-p${numero}" class="--sr-only">URL da 2ª resposta errada</label>
+          <input type="text" placeholder="URL da imagem 2" class="url-incorreto-dois-p${numero}" id="resposta-incorreta-2-url-p${numero}">
+
+          <label for="resposta-incorreta-3-p${numero}" class="--sr-only">3ª resposta errada</label>
+          <input type="text" placeholder="Resposta incorreta 3" class="texto-incorreto-tres-p${numero}"
+            id="resposta-incorreta-3">
+
+          <label for="resposta-incorreta-3-url-p${numero}" class="--sr-only">URL da 3ª resposta errada</label>
+          <input type="text" placeholder="URL da imagem 3" class="url-incorreto-tres-p${numero}" id="resposta-incorreta-3-url-p${numero}">
+        </div>
+    `
+
+    const perguntaAdicional = document.createElement('div')
+    perguntaAdicional.classList.add(`pergunta-${numero}`, '--adicional', 'fechado')
+    perguntaAdicional.innerHTML = estruturaPergunta;
+
+    pergunta.insertAdjacentElement('afterend', perguntaAdicional)
   }
 }
 
@@ -502,6 +587,6 @@ const infoBaseCriaQuizz = new Object()
 funcoesApi.obterQuizzes()
 funcoesQuizzes.listaSeusQuizzes();
 
-function comparador() { 
-	return Math.random() - 0.5; 
+function comparador() {
+  return Math.random() - 0.5;
 }
