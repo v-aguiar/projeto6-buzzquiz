@@ -296,15 +296,45 @@ const funcoesQuizzes = {
   },
   
   montaEstruturaQuizzSegundaTela() {
-    this.quizzes.forEach((quizzData) => {
+    
 
-<<<<<<< HEAD
+    this.quizzes.forEach((quizzData) => {
+    respostas_pergunta_um = [{
+      booleano: quizzData.questions[0].answers[0].isCorrectAnswer,
+      resposta_um_imagem: quizzData.questions[0].answers[0].image,
+      resposta_um_texto: quizzData.questions[0].answers[0].text,
+    },{
+      booleano: quizzData.questions[0].answers[1].isCorrectAnswer,
+      resposta_dois_imagem: quizzData.questions[0].answers[1].image,
+      resposta_dois_texto: quizzData.questions[0].answers[1].text,
+    }]
+    respostas_pergunta_um.sort(comparador);
+
+    respostas_pergunta_dois = [{
+      booleano: quizzData.questions[1].answers[0].isCorrectAnswer,
+      resposta_um_imagem: quizzData.questions[1].answers[0].image,
+      resposta_um_texto: quizzData.questions[1].answers[0].text,
+    },{
+      booleano: quizzData.questions[1].answers[1].isCorrectAnswer,
+      resposta_dois_imagem: quizzData.questions[1].answers[1].image,
+      resposta_dois_texto: quizzData.questions[1].answers[1].text,
+    }]
+    respostas_pergunta_dois.sort(comparador);
+
+    respostas_pergunta_tres = [{
+      booleano: quizzData.questions[2].answers[0].isCorrectAnswer,
+      resposta_um_imagem: quizzData.questions[2].answers[0].image,
+      resposta_um_texto: quizzData.questions[2].answers[0].text,
+    },{
+      booleano: quizzData.questions[2].answers[1].isCorrectAnswer,
+      resposta_dois_imagem: quizzData.questions[2].answers[1].image,
+      resposta_dois_texto: quizzData.questions[2].answers[1].text,
+    }]
+    respostas_pergunta_tres.sort(comparador);
+
+
     let responde_quizz = document.querySelector(".responde-quizz");
     responde_quizz.innerHTML = responde_quizz.innerHTML + `
-=======
-      let responde_quizz = document.querySelector(".responde-quizz");
-      responde_quizz.innerHTML = responde_quizz.innerHTML + `
->>>>>>> bea55ba677aa9c22e21fd91974adcfcc64f8021d
           <div class="cabecalho-do-quizz">
             <div class="cabecalho-gradiente"></div>
             <h1>${quizzData.title}</h1>
@@ -319,23 +349,23 @@ const funcoesQuizzes = {
               </div>
 
               <div class="conteudo-das-opcoes">
-                <div class="opcao ${quizzData.questions[0].answers[0].isCorrectAnswer}" >
+                <div class="opcao ${respostas_pergunta_um[0].booleano}" >
                   <div class="imagem">
                     <div class="opcao-gradiente --escondido"></div>
                     <img
-                    src="${quizzData.questions[0].answers[0].image}"
+                    src="${respostas_pergunta_um[0].resposta_um_imagem}"
                     alt="imagem da opcao">
-                    <p><b>${quizzData.questions[0].answers[0].text}</b></p>
+                    <p><b>${respostas_pergunta_um[0].resposta_um_texto}</b></p>
                   </div>
                 </div>
               
-                <div class="opcao ${quizzData.questions[0].answers[1].isCorrectAnswer}" >
+                <div class="opcao ${respostas_pergunta_um[1].booleano}" >
                   <div class="imagem">
                     <div class="opcao-gradiente --escondido"></div>
                     <img
-                    src="${quizzData.questions[0].answers[1].image}"
+                    src="${respostas_pergunta_um[1].resposta_um_imagem}"
                     alt="imagem da opcao">
-                    <p><b>${quizzData.questions[0].answers[1].text}</b></p>
+                    <p><b>${respostas_pergunta_um[1].resposta_um_texto}</b></p>
                   </div>
                 </div>
         </article>
@@ -346,23 +376,23 @@ const funcoesQuizzes = {
               </div>
 
               <div class="conteudo-das-opcoes">
-                <div class="opcao ${quizzData.questions[1].answers[0].isCorrectAnswer}" >
+                <div class="opcao ${respostas_pergunta_dois[0].booleano}" >
                   <div class="imagem">
                     <div class="opcao-gradiente --escondido"></div>
                     <img
-                    src="${quizzData.questions[1].answers[0].image}"
+                    src="${respostas_pergunta_dois[0].resposta_dois_imagem}"
                     alt="imagem da opcao">
-                    <p><b>${quizzData.questions[1].answers[0].text}</b></p>
+                    <p><b>${respostas_pergunta_dois[0].resposta_dois_texto}</b></p>
                   </div>
                 </div>
               
-                <div class="opcao ${quizzData.questions[1].answers[1].isCorrectAnswer}" >
+                <div class="opcao ${respostas_pergunta_dois[1].booleano}" >
                   <div class="imagem">
                     <div class="opcao-gradiente --escondido"></div>
                     <img
-                    src="${quizzData.questions[1].answers[1].image}"
+                    src="${respostas_pergunta_dois[1].resposta_dois_imagem}"
                     alt="imagem da opcao">
-                    <p><b>${quizzData.questions[1].answers[1].text}</b></p>
+                    <p><b>${respostas_pergunta_dois[1].resposta_dois_imagem}</b></p>
                   </div>
                 </div>
         </article>
@@ -373,23 +403,23 @@ const funcoesQuizzes = {
               </div>
 
               <div class="conteudo-das-opcoes">
-                <div class="opcao ${quizzData.questions[2].answers[0].isCorrectAnswer}" >
+                <div class="opcao ${respostas_pergunta_tres[0].booleano}" >
                   <div class="imagem">
                     <div class="opcao-gradiente --escondido"></div>
                     <img
-                    src="${quizzData.questions[2].answers[0].image}"
+                    src="${respostas_pergunta_tres[0].resposta_tres_imagem}"
                     alt="imagem da opcao">
-                    <p><b>${quizzData.questions[2].answers[0].text}</b></p>
+                    <p><b>${respostas_pergunta_tres[0].resposta_tres_texto}</b></p>
                   </div>
                 </div>
               
-                <div class="opcao ${quizzData.questions[2].answers[1].isCorrectAnswer}" >
+                <div class="opcao ${respostas_pergunta_tres[1].booleano}" >
                   <div class="imagem">
                     <div class="opcao-gradiente --escondido"></div>
                     <img
-                    src="${quizzData.questions[2].answers[1].image}"
+                    src="${respostas_pergunta_tres[1].resposta_tres_imagem}"
                     alt="imagem da opcao">
-                    <p><b>${quizzData.questions[2].answers[1].text}</b></p>
+                    <p><b>${respostas_pergunta_tres[1].resposta_tres_texto}</b></p>
                   </div>
                 </div>
         </article>
@@ -402,3 +432,7 @@ const funcoesQuizzes = {
 
 funcoesApi.obterQuizzes()
 funcoesQuizzes.listaSeusQuizzes();
+
+function comparador() { 
+	return Math.random() - 0.5; 
+}
