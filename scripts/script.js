@@ -75,6 +75,12 @@ const funcoesDeControle = {
     criaQuizzParte3.classList.toggle("--escondido")
   },
 
+  toogleTela3Parte4() {
+    const criaQuizzParte4 = document.querySelector(".cria-quizz.passo-quatro")
+
+    criaQuizzParte4.classList.toggle("--escondido")
+  },
+
   validaUrl(url) {
     let validaUrl = null
     try {
@@ -136,6 +142,7 @@ const funcoesDeControle = {
 const funcoesQuizzes = {
   quizzes: [],
   seus_quizzes: [],
+  created_ids: [],
 
   criarQuizz() {
     funcoesDeControle.toogleTela1();
@@ -159,6 +166,13 @@ const funcoesQuizzes = {
     for(let index = 2; index <= NUM_NIVEIS; index++) {
       funcoesQuizzes.montaEstruturaDoNível(index);
     }
+  },
+
+  criarQuizzPasso4() {
+    funcoesDeControle.toogleTela3Parte3();
+    funcoesDeControle.toogleTela3Parte4();
+
+    funcoesQuizzes.montaEstruturaSucessoCriacao()
   },
 
   responderQuizz(quizz) {
@@ -331,7 +345,7 @@ const funcoesQuizzes = {
 
   validaCriacaoDeQuizzParte3() {
     infoBaseCriaQuizz.levels = []
-    let validaPorcentagemAcertoMinimo = null
+    let validaPorcentagemAcertoMinimo = 1
 
     for(let index = 1; index <= NUM_NIVEIS; index++) {
       const tituloNivelUmInput = document.querySelector(`.cria-quizz.passo-tres .titulo-nivel-${index}`)
@@ -344,7 +358,7 @@ const funcoesQuizzes = {
       const nivelUmUrl = nivelUmUrlInput.value
       const descricaoNivel = descricaoNivelTextarea.value
 
-      if(acertoMinimoUm === 0) {
+      if(Number(acertoMinimoUm) === 0) {
         validaPorcentagemAcertoMinimo = true
       }
 
@@ -369,7 +383,7 @@ const funcoesQuizzes = {
       }
     }
 
-    validaPorcentagemAcertoMinimo ? funcoesQuizzes.enviaQuizzParaServidor() : alert("⚠ Pelo menos um dos níveis deve possuir % de acerto igual a 0!")
+    validaPorcentagemAcertoMinimo ? funcoesQuizzes.criarQuizzPasso4() : alert("⚠ Pelo menos um dos níveis deve possuir % de acerto igual a 0!")
   },
 
   enviaQuizzParaServidor() {
@@ -648,6 +662,8 @@ const funcoesQuizzes = {
   },
 
   montaEstruturaSucessoCriacao() {
+    funcoesQuizzes.enviaQuizzParaServidor()
+
     const passoQuatro = document.querySelector(".cria-quizz.passo-quatro")
     const estruturaSucesso = `
       <h1>Seu quizz está pronto</h1>
@@ -656,6 +672,8 @@ const funcoesQuizzes = {
         <img src="${infoBaseCriaQuizz.image}" alt="Imagem de capa do quizz">
         <p>${infoBaseCriaQuizz.title}</p>
       </div>
+      <button class="botao-criacao" type="button" onclick="funcoesQuizzes.responderQuizz(this.previousElementSibling)">Acessar Quizz</button>
+      <a href="/" onclick="window.location.reload()"><p>Voltar pra home</p></a>
     `
 
     passoQuatro.innerHTML = estruturaSucesso
