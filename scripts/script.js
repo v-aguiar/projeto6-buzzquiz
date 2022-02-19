@@ -458,6 +458,8 @@ const funcoesQuizzes = {
   },
 
   montaEstruturaQuizzSegundaTela() {
+    let cabecalho_do_quizz = document.querySelector('.cabecalho-do-quizz')
+
     if(quizzDaSegundaTela.questions[0].answers.length > 2){
     let respostas_pergunta_um = [{
       booleano: quizzDaSegundaTela.questions[0].answers[0].isCorrectAnswer,
@@ -781,10 +783,14 @@ const funcoesQuizzes = {
                     <p class="texto-tres ${respostas_pergunta_tres[1].booleano}"><b>${respostas_pergunta_tres[1].resposta_tres_texto}</b></p>
                   </div>`
   }
+  setTimeout(() => {
+    cabecalho_do_quizz.scrollIntoView({behavior:"smooth"});
+  }, 500);
   },
 
     
   verificaRespostaCorretaPerguntaUm(classe, tipo_de_opcao,tipo_texto) {
+    let cabecalho_dois = document.querySelector(".cabecalho-dois")
     let opcao_gradiente_um = document.querySelectorAll(".opcao-gradiente-um");
     let esta_opcao = document.querySelector("." + tipo_de_opcao);
     let radios_um = document.querySelectorAll(".radio-um");
@@ -799,6 +805,7 @@ const funcoesQuizzes = {
     for(let z = 0; z < radios_um.length; z++){
       radios_um[z].disabled = true;
   }
+
   esta_opcao.classList.add("--escondido");
 
   for(let k = 0; k < texto_um.length; k++){
@@ -808,6 +815,9 @@ const funcoesQuizzes = {
       texto_um[k].classList.add('vermelho')
     }
   }
+  setTimeout(() => {
+    cabecalho_dois.scrollIntoView({behavior:"smooth"})
+  }, 2000);
 },
 
   verificaRespostaCorretaPerguntaDois(classe, tipo_de_opcao) {
@@ -815,6 +825,7 @@ const funcoesQuizzes = {
     let esta_opcao = document.querySelector("." + tipo_de_opcao);
     let radios_dois = document.querySelectorAll(".radio-dois");
     let texto_dois = document.querySelectorAll(".texto-dois");
+    let cabecalho_tres = document.querySelector(".cabecalho-tres")
     for(let x = 0; x < radios_dois.length; x++){
       if(radios_dois[x].checked){
         for(let i = 0; i < opcao_gradiente_dois.length; i++){
@@ -834,6 +845,9 @@ const funcoesQuizzes = {
       texto_dois[k].classList.add('vermelho')
     }
   }
+  setTimeout(() => {
+    cabecalho_tres.scrollIntoView({behavior:"smooth"})
+  }, 2000);
 },
 
   verificaRespostaCorretaPerguntaTres(classe, tipo_de_opcao) {
