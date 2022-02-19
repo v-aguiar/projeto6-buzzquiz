@@ -1,4 +1,6 @@
 const API_URL = 'https://mock-api.driven.com.br/api/v4/buzzquizz';
+let NUM_PERGUNTAS = 3
+let NUM_NIVEIS = 2
 let quizzDaSegundaTela
 
 const funcoesApi = {
@@ -144,11 +146,19 @@ const funcoesQuizzes = {
   criarQuizzPasso2() {
     funcoesDeControle.toogleTela3Parte1();
     funcoesDeControle.toogleTela3Parte2();
+
+    for(let index = 2; index <= NUM_PERGUNTAS; index++) {
+      funcoesQuizzes.montaEstruturaDaPergunta(index);
+    }
   },
 
   criarQuizzPasso3() {
     funcoesDeControle.toogleTela3Parte2();
     funcoesDeControle.toogleTela3Parte3();
+
+    for(let index = 2; index <= NUM_NIVEIS; index++) {
+      funcoesQuizzes.montaEstruturaDoNível(index);
+    }
   },
 
   criarQuizzPasso4() {
@@ -173,6 +183,18 @@ const funcoesQuizzes = {
     console.log(quizzDaSegundaTela)
     funcoesDeControle.toogleTela1();
     funcoesDeControle.toogleTela2();
+
+    funcoesQuizzes.montaEstruturaQuizzSegundaTela();
+  },
+
+  responderQuizzCriado(id_criado) {
+    funcoesQuizzes.quizzes.forEach((quizz) => {
+      if(quizz.id === id_criado)
+        quizzDaSegundaTela = quizz
+    })
+
+    funcoesDeControle.toogleTela3Parte4()
+    funcoesDeControle.toogleTela2()
 
     funcoesQuizzes.montaEstruturaQuizzSegundaTela();
   },
@@ -306,54 +328,40 @@ const funcoesQuizzes = {
   },
 
   validaCriacaoDeQuizzParte3() {
-    const tituloNivelUmInput = document.querySelector(".cria-quizz.passo-tres .titulo-nivel-um")
-    const acertoMinimoUmInput = document.querySelector(".cria-quizz.passo-tres .acerto-minimo-um")
-    const nivelUmUrlInput = document.querySelector(".cria-quizz.passo-tres .nivel-um-url")
-    const descricaoNivelTextarea = document.querySelector(".cria-quizz.passo-tres .descricao-nivel-um")
     infoBaseCriaQuizz.levels = []
     let validaPorcentagemAcertoMinimo = 1
-    const tituloNivelUm = tituloNivelUmInput.value
-    const acertoMinimoUm = acertoMinimoUmInput.value
-    const nivelUmUrl = nivelUmUrlInput.value
-    const descricaoNivel = descricaoNivelTextarea.value
-    tituloNivelUm.value = ''
-    acertoMinimoUm.value = ''
-    nivelUmUrl.value = ''
-    descricaoNivel.value = ''
 
-    // const validaUrl = funcoesDeControle.validaUrl(nivelUmUrl)
-    // if(validaUrl) {
-    //   funcoesQuizzes.enviaQuizzParaServidor()
-    // } else {
-    //   alert("⚠ Dados inválidos, preencha o formulário novamente!")
-    //   tituloQuizzInput.value = ''
-    //   urlDaImagemInput.value = ''
-    //   qtdPerguntasInput.value = ''
-    //   qtdNiveisInput.value = ''
-    // }
+    for(let index = 1; index <= NUM_NIVEIS; index++) {
+      const tituloNivelUmInput = document.querySelector(`.cria-quizz.passo-tres .titulo-nivel-${index}`)
+      const acertoMinimoUmInput = document.querySelector(`.cria-quizz.passo-tres .acerto-minimo-${index}`)
+      const nivelUmUrlInput = document.querySelector(`.cria-quizz.passo-tres .nivel-${index}-url`)
+      const descricaoNivelTextarea = document.querySelector(`.cria-quizz.passo-tres .descricao-nivel-${index}`)
+      const tituloNivelUm = tituloNivelUmInput.value
+      const acertoMinimoUm = acertoMinimoUmInput.value
+      const nivelUmUrl = nivelUmUrlInput.value
+      const descricaoNivel = descricaoNivelTextarea.value
 
-    if(Number(acertoMinimoUm) === 0) {
-      validaPorcentagemAcertoMinimo = true
-    }
+      if(Number(acertoMinimoUm) === 0) {
+        validaPorcentagemAcertoMinimo = true
+      }
 
-    infoBaseCriaQuizz.levels.push(
-      {
-        title: tituloNivelUm,
-        minValue: acertoMinimoUm,
-        image: nivelUmUrl,
-        text: descricaoNivel
-      })
-
-    tituloNivelUmInput.value = ''
-    acertoMinimoUmInput.value = ''
-    nivelUmUrlInput.value = ''
-    descricaoNivelTextarea.value = ''
-
-    const validaUrl = funcoesDeControle.validaUrl(nivelUmUrl)
-    if(validaUrl) {
-      console.log(infoBaseCriaQuizz)
-    } else {
-      alert("⚠ Dados inválidos, preencha o formulário novamente!")
+      infoBaseCriaQuizz.levels.push(
+        {
+          title: tituloNivelUm,
+          minValue: acertoMinimoUm,
+          image: nivelUmUrl,
+          text: descricaoNivel
+        })
+      tituloNivelUmInput.value = ''
+      acertoMinimoUmInput.value = ''
+      nivelUmUrlInput.value = ''
+      descricaoNivelTextarea.value = ''
+      const validaUrl = funcoesDeControle.validaUrl(nivelUmUrl)
+      if(validaUrl) {
+        console.log(infoBaseCriaQuizz)
+      } else {
+        alert("⚠ Dados inválidos, preencha o formulário novamente!")
+      }
     }
 
     validaPorcentagemAcertoMinimo ? funcoesQuizzes.criarQuizzPasso4() : alert("⚠ Pelo menos um dos níveis deve possuir % de acerto igual a 0!")
@@ -361,7 +369,18 @@ const funcoesQuizzes = {
 
   enviaQuizzParaServidor() {
     const promise = axios.post(`${API_URL}/quizzes`, infoBaseCriaQuizz)
-    promise.then((response) => {console.log("Resposta: ", response)})
+    promise.then((response) => {
+      const idsAntigos = localStorage.getItem("ids")
+      const arrayIdsAntigos = JSON.parse(idsAntigos)
+
+      arrayIdsAntigos.push(response.data.id)
+
+      funcoesQuizzes.created_ids.push(response.data.id)
+
+      const ids = JSON.stringify(arrayIdsAntigos)
+
+      localStorage.setItem("ids", ids)
+    })
     promise.catch((err) => {console.log("Error: ", err)})
   },
 
@@ -394,13 +413,38 @@ const funcoesQuizzes = {
 
   listaSeusQuizzes() {
     const listaDeSeusQuizzes = document.querySelector(".lista-seus-quizzes");
+    funcoesQuizzes.checaQuizzesCriadosNoStorage()
 
-    if(funcoesQuizzes.seus_quizzes.length !== 0) {
-      funcoesDeControle.toogleTela1SemQuizzes();
-      funcoesDeControle.toogleTela1SeusQuizzes();
+    setTimeout(() => {
+      if(funcoesQuizzes.seus_quizzes.length !== 0) {
+        funcoesDeControle.toogleTela1SemQuizzes();
+        funcoesDeControle.toogleTela1SeusQuizzes();
 
-      listaDeSeusQuizzes.innerHTML = funcoesQuizzes.montaEstruturaSeusQuizzes();
-    }
+        listaDeSeusQuizzes.innerHTML = funcoesQuizzes.montaEstruturaSeusQuizzes();
+      }
+    }, 1000)
+  },
+
+  checaQuizzesCriadosNoStorage() {
+    const idsNoStorage = localStorage.getItem('ids')
+    const ids = JSON.parse(idsNoStorage)
+
+    console.log("Ids: ", ids)
+
+
+    const arrayQuizzes = funcoesQuizzes.quizzes
+    setTimeout(() => {
+      ids.forEach((id) => {
+        const quizzFinder = arrayQuizzes.find(quizz => quizz.id === id)
+
+        if(quizzFinder !== undefined) {
+          funcoesQuizzes.seus_quizzes.push(quizzFinder)
+        }
+
+        console.log("retorno do find: ", quizzFinder)
+        console.log("seus quizzes: ", funcoesQuizzes.seus_quizzes)
+      })
+    }, 1000)
   },
 
   montaEstruturaSeusQuizzes() {
@@ -722,7 +766,7 @@ const funcoesQuizzes = {
         <img src="${infoBaseCriaQuizz.image}" alt="Imagem de capa do quizz">
         <p>${infoBaseCriaQuizz.title}</p>
       </div>
-      <button class="botao-criacao" type="button" onclick="funcoesQuizzes.responderQuizz(this.previousElementSibling)">Acessar Quizz</button>
+      <button class="botao-criacao --sucesso" type="button" onclick="funcoesQuizzes.responderQuizzCriado(funcoesQuizzes.created_ids[funcoesQuizzes.created_ids.length - 1])">Acessar Quizz</button>
       <a href="/" onclick="window.location.reload()"><p>Voltar pra home</p></a>
     `
 
@@ -732,11 +776,11 @@ const funcoesQuizzes = {
 
 const infoBaseCriaQuizz = new Object()
 
-funcoesApi.obterQuizzes()
-funcoesQuizzes.listaSeusQuizzes();
-
 function comparador() {
   return Math.random() - 0.5;
 }
 
-console.log(quizzDaSegundaTela)
+// console.log(quizzDaSegundaTela)
+
+funcoesApi.obterQuizzes()
+funcoesQuizzes.listaSeusQuizzes();

@@ -9,6 +9,7 @@
   --bg-color: #FAFAFA;
   --text-red: #FF0B0B;
   --text-green: #009C22;
+  --dark-grey: #818181;
 }
 
 html {
@@ -198,7 +199,7 @@ main {
 }
 
 /* Estilos da página de um quizz */
-.tela-de-perguntas{
+.tela-de-perguntas {
   width: 375px;
 }
 
@@ -222,7 +223,7 @@ main {
 }
 
 .cabecalho-do-quizz h1 {
-  width:300px;
+  width: 300px;
   color: white;
   z-index: 2;
   text-align: center;
@@ -292,7 +293,7 @@ article {
   width: 150px;
 }
 
-.radio{
+.radio {
   width: 8px;
 }
 
@@ -440,4 +441,16 @@ label {
 
 ion-icon {
   font-size: 30px;
+}
+
+.botao-criacao.--sucesso {
+  font-size: 18px;
+  color: #fff;
+
+}
+
+.cria-quizz.passo-quatro a {
+  text-decoration: none;
+  color: var(--dark-grey);
+  font-size: 18px;
 }
