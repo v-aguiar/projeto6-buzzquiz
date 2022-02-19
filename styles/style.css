@@ -202,10 +202,6 @@ main {
   width: 375px;
 }
 
-.responde-quizz {
-  width: 375px;
-}
-
 .cabecalho-do-quizz {
   width: 375px;
   height: 142px;
@@ -259,12 +255,12 @@ article {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin-bottom: 50px;
 }
 
 .opcao {
   width: 163px;
   height: 113px;
-  margin-bottom: 90px;
 }
 
 .opcao .imagem {
