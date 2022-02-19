@@ -324,7 +324,7 @@ const funcoesQuizzes = {
         urlImagemIncorretaTresInput.value = ''
       }
     }
-    validacao ? funcoesQuizzes.criarQuizzPasso3() : concole.log("Validação falhou")
+    validacao ? funcoesQuizzes.criarQuizzPasso3() : console.log("Validação falhou")
   },
 
   validaCriacaoDeQuizzParte3() {
@@ -370,16 +370,20 @@ const funcoesQuizzes = {
   enviaQuizzParaServidor() {
     const promise = axios.post(`${API_URL}/quizzes`, infoBaseCriaQuizz)
     promise.then((response) => {
-      const idsAntigos = localStorage.getItem("ids")
-      const arrayIdsAntigos = JSON.parse(idsAntigos)
+      if(localStorage.length > 0) {
+        const idsAntigos = localStorage.getItem("ids")
+        const arrayIdsAntigos = JSON.parse(idsAntigos)
 
-      arrayIdsAntigos.push(response.data.id)
+        arrayIdsAntigos.push(response.data.id)
 
-      funcoesQuizzes.created_ids.push(response.data.id)
+        funcoesQuizzes.created_ids.push(response.data.id)
 
-      const ids = JSON.stringify(arrayIdsAntigos)
-
-      localStorage.setItem("ids", ids)
+        const ids = JSON.stringify(arrayIdsAntigos)
+        localStorage.setItem("ids", ids)
+      } else {
+        funcoesQuizzes.created_ids.push(response.data.id)
+        localStorage.setItem("ids", JSON.stringify(funcoesQuizzes.created_ids))
+      }
     })
     promise.catch((err) => {console.log("Error: ", err)})
   },
@@ -399,7 +403,7 @@ const funcoesQuizzes = {
       const imagem = quizzData.image;
 
       const quizzEstrutura = `
-        <li class="quizz" onclick="funcoesQuizzes.responderQuizz(this)">
+        <li data-identifier="quizz-card" class="quizz" onclick="funcoesQuizzes.responderQuizz(this)">
           <div class="quizz-gradiente"></div>
           <img src="${imagem}" alt="Imagem de capa do Quizz">
           <p>${titulo}</p>
@@ -426,32 +430,30 @@ const funcoesQuizzes = {
   },
 
   checaQuizzesCriadosNoStorage() {
-    const idsNoStorage = localStorage.getItem('ids')
-    const ids = JSON.parse(idsNoStorage)
-
-    console.log("Ids: ", ids)
-
-
     const arrayQuizzes = funcoesQuizzes.quizzes
-    setTimeout(() => {
-      ids.forEach((id) => {
-        const quizzFinder = arrayQuizzes.find(quizz => quizz.id === id)
+    if(localStorage.length > 0) {
+      const idsNoStorage = localStorage.getItem('ids')
+      const ids = JSON.parse(idsNoStorage)
 
-        if(quizzFinder !== undefined) {
-          funcoesQuizzes.seus_quizzes.push(quizzFinder)
-        }
+      setTimeout(() => {
+        ids.forEach((id) => {
+          const quizzFinder = arrayQuizzes.find(quizz => quizz.id === id)
 
-        console.log("retorno do find: ", quizzFinder)
-        console.log("seus quizzes: ", funcoesQuizzes.seus_quizzes)
-      })
-    }, 1000)
+          if(quizzFinder !== undefined) {
+            funcoesQuizzes.seus_quizzes.push(quizzFinder)
+          }
+        })
+      }, 1000)
+    } else {
+      console.log("Sem itens no local storage")
+    }
   },
 
   montaEstruturaSeusQuizzes() {
     let seusQuizzesEstrutura = `
   <li class="quizzes-titulo">
     <h2>Seus Quizzes</h2>
-    <ion-icon name="add-circle" onclick="funcoesQuizzes.criarQuizz()"></ion-icon>
+    <ion-icon name="add-circle" onclick="funcoesQuizzes.criarQuizz()" data-identifier="create-quizz"></ion-icon>
   </li>`;
 
     funcoesQuizzes.seus_quizzes.forEach((quizzData) => {
@@ -459,7 +461,7 @@ const funcoesQuizzes = {
       const imagem = quizzData.image;
 
       const quizzEstrutura = `
-        <li class="quizz" onclick="funcoesQuizzes.responderQuizz(this)">
+        <li data-identifier="quizz-card" class="quizz" onclick="funcoesQuizzes.responderQuizz(this)">
           <div class="quizz-gradiente"></div>
           <img src="${imagem}" alt="Imagem de capa do seu Quizz">
           <p>${titulo}</p>
@@ -691,8 +693,8 @@ const funcoesQuizzes = {
     const perguntaAnterior = document.querySelector(`.pergunta-${numero - 1}`)
     const estruturaPergunta = `
         <h1>Pergunta ${numero}</h1>
-        <ion-icon onclick="funcoesDeControle.abrePergunta(${numero})" name="create-outline"></ion-icon>
-        <div class="pergunta-${numero}-dentro --escondido">
+        <ion-icon data-identifier="expand" onclick="funcoesDeControle.abrePergunta(${numero})" name="create-outline"></ion-icon>
+        <div data-identifier="question" class="pergunta-${numero}-dentro --escondido">
           <input type="text" placeholder="Texto da pergunta" class="texto-pergunta-${numero}" id="pergunta-${numero}"
             minlength="20" required>
           <label for="pergunta-${numero}-cor" class="--sr-only">Cor de Fundo</label>
@@ -733,8 +735,8 @@ const funcoesQuizzes = {
     const nivelAnterior = document.querySelector(`.nivel-${numero - 1}`)
     const estruturaNivel = `
       <h1>Nível ${numero}</h1>
-      <ion-icon onclick="funcoesDeControle.abreNivel(${numero})" name="create-outline"></ion-icon>
-      <div class="nivel-${numero}-dentro --escondido">
+      <ion-icon data-identifier="expand" onclick="funcoesDeControle.abreNivel(${numero})" name="create-outline"></ion-icon>
+      <div data-identifier="level" class="nivel-${numero}-dentro --escondido">
         <input type="text" placeholder="Título do nível" class="titulo-nivel-${numero}" id="nivel-${numero}" minlength="10" required>
 
         <label for="acerto-minimo-${numero}" class="--sr-only">% de acerto mínima</label>

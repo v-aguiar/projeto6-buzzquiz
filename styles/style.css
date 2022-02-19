@@ -454,3 +454,46 @@ ion-icon {
   color: var(--dark-grey);
   font-size: 18px;
 }
+
+/* Media Queries -> Responsividade */
+
+@media (min-width: 1100px) {
+  body {
+    background-color: var(--bg-color);
+  }
+
+  main {
+    padding: 0 5px;
+    max-width: 1051px;
+
+    margin: 69px auto
+  }
+
+  .quizz {
+    width: 340px;
+    height: 181px;
+  }
+
+  .lista-seus-quizzes {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px
+  }
+
+  .lista-seus-quizzes li.quizzes-titulo {
+    justify-content: flex-start;
+    gap: 12px;
+  }
+
+  .quizzes-todos {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px
+  }
+
+  li.quizzes-titulo {
+    width: 100%;
+  }
+}
