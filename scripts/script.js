@@ -532,42 +532,42 @@ const funcoesQuizzes = {
     
     let resposta_um_pergunta_um = document.querySelector(".resposta-um-pergunta-um")
     resposta_um_pergunta_um.innerHTML = resposta_um_pergunta_um.innerHTML + `
-                    <div class="imagem ${respostas_pergunta_um[0].booleano}">
+                    <div class="imagem">
                       <div class="opcao-um-pergunta-um opcao-gradiente-um --escondido"></div>
                       <img
                       src="${respostas_pergunta_um[0].resposta_um_imagem}"
                       alt="imagem da opcao">
-                      <p><b>${respostas_pergunta_um[0].resposta_um_texto}</b></p>
+                      <p class="texto-um {respostas_pergunta_um[0].booleano}"><b>${respostas_pergunta_um[0].resposta_um_texto}</b></p>
                     </div>`
     
     let resposta_dois_pergunta_um = document.querySelector(".resposta-dois-pergunta-um")
     resposta_dois_pergunta_um.innerHTML = resposta_dois_pergunta_um.innerHTML + `
-                  <div class="imagem ${respostas_pergunta_um[1].booleano}">
+                  <div class="imagem ">
                     <div class="opcao-dois-pergunta-um opcao-gradiente-um --escondido"></div>
                     <img
                     src="${respostas_pergunta_um[1].resposta_um_imagem}"
                     alt="imagem da opcao">
-                    <p><b>${respostas_pergunta_um[1].resposta_um_texto}</b></p>
+                    <p class="texto-um ${respostas_pergunta_um[1].booleano}" ><b>${respostas_pergunta_um[1].resposta_um_texto}</b></p>
                   </div>`
 
     let resposta_tres_pergunta_um = document.querySelector(".resposta-tres-pergunta-um")
     resposta_tres_pergunta_um.innerHTML = resposta_tres_pergunta_um.innerHTML + `
-                  <div class="imagem ${respostas_pergunta_um[2].booleano}">
+                  <div class="imagem ">
                     <div class="opcao-tres-pergunta-um opcao-gradiente-um --escondido"></div>
                     <img
                     src="${respostas_pergunta_um[2].resposta_um_imagem}"
                     alt="imagem da opcao">
-                    <p><b>${respostas_pergunta_um[2].resposta_um_texto}</b></p>
+                    <p class="texto-um  ${respostas_pergunta_um[2].booleano}"><b>${respostas_pergunta_um[2].resposta_um_texto}</b></p>
                   </div>`
 
     let resposta_quatro_pergunta_um = document.querySelector(".resposta-quatro-pergunta-um")
     resposta_quatro_pergunta_um.innerHTML = resposta_quatro_pergunta_um.innerHTML + `
-                  <div class="imagem ${respostas_pergunta_um[3].booleano}">
+                  <div class="imagem ">
                     <div class="opcao-quatro-pergunta-um opcao-gradiente-um --escondido"></div>
                     <img
                     src="${respostas_pergunta_um[3].resposta_um_imagem}"
                     alt="imagem da opcao">
-                    <p><b>${respostas_pergunta_um[3].resposta_um_texto}</b></p>
+                    <p class="texto-um ${respostas_pergunta_um[3].booleano}"><b>${respostas_pergunta_um[3].resposta_um_texto}</b></p>
                   </div>`
 
     let cabecalho_dois = document.querySelector(".cabecalho-dois");
@@ -578,42 +578,42 @@ const funcoesQuizzes = {
 
     let resposta_um_pergunta_dois = document.querySelector(".resposta-um-pergunta-dois")
     resposta_um_pergunta_dois.innerHTML = resposta_um_pergunta_dois.innerHTML + `
-                  <div class="imagem ${respostas_pergunta_dois[0].booleano}">
+                  <div class="imagem ">
                     <div class="opcao-um-pergunta-dois opcao-gradiente-dois --escondido"></div>
                     <img
                     src="${respostas_pergunta_dois[0].resposta_dois_imagem}"
                     alt="imagem da opcao">
-                    <p><b>${respostas_pergunta_dois[0].resposta_dois_texto}</b></p>
+                    <p class="texto-dois ${respostas_pergunta_dois[0].booleano}"><b>${respostas_pergunta_dois[0].resposta_dois_texto}</b></p>
                   </div>`
                 
       let resposta_dois_pergunta_dois = document.querySelector(".resposta-dois-pergunta-dois")
       resposta_dois_pergunta_dois.innerHTML = resposta_dois_pergunta_dois.innerHTML + `
-                  <div class="imagem ${respostas_pergunta_dois[1].booleano}">
+                  <div class="imagem ">
                     <div class="opcao-dois-pergunta-dois opcao-gradiente-dois --escondido"></div>
                     <img
                     src="${respostas_pergunta_dois[1].resposta_dois_imagem}"
                     alt="imagem da opcao">
-                    <p><b>${respostas_pergunta_dois[1].resposta_dois_imagem}</b></p>
+                    <p class="texto-dois ${respostas_pergunta_dois[1].booleano}" ><b>${respostas_pergunta_dois[1].resposta_dois_imagem}</b></p>
                   </div>`
 
     let resposta_tres_pergunta_dois = document.querySelector(".resposta-tres-pergunta-dois")
     resposta_tres_pergunta_dois.innerHTML = resposta_tres_pergunta_dois.innerHTML + `
-                  <div class="imagem ${respostas_pergunta_um[2].booleano}">
+                  <div class="imagem ">
                     <div class="opcao-tres-pergunta-dois opcao-gradiente-dois --escondido"></div>_dois
                     <img
                     src="${respostas_pergunta_um[2].resposta_um_imagem}"
                     alt="imagem da opcao">
-                    <p><b>${respostas_pergunta_um[2].resposta_um_texto}</b></p>
+                    <p class="texto-dois ${respostas_pergunta_um[2].booleano}" ><b>${respostas_pergunta_um[2].resposta_um_texto}</b></p>
                   </div>`
 
     let resposta_quatro_pergunta_dois = document.querySelector(".resposta-quatro-pergunta-dois")
     resposta_quatro_pergunta_dois.innerHTML = resposta_quatro_pergunta_dois.innerHTML + `
-                  <div class="imagem ${respostas_pergunta_um[3].booleano}">
+                  <div class="imagem ">
                     <div class="opcao-quatro-pergunta-dois opcao-gradiente-dois --escondido"></div>_dois
                     <img
                     src="${respostas_pergunta_um[3].resposta_um_imagem}"
                     alt="imagem da opcao">
-                    <p><b>${respostas_pergunta_um[3].resposta_um_texto}</b></p>
+                    <p class="texto-dois ${respostas_pergunta_um[3].booleano}"class="><b>${respostas_pergunta_um[3].resposta_um_texto}</b></p>
                   </div>`
         
     let cabecalho_tres = document.querySelector(".cabecalho-tres");
@@ -624,42 +624,42 @@ const funcoesQuizzes = {
 
     let resposta_um_pergunta_tres = document.querySelector(".resposta-um-pergunta-tres")
     resposta_um_pergunta_tres.innerHTML = resposta_um_pergunta_tres.innerHTML + `
-                  <div class="imagem ${respostas_pergunta_tres[0].booleano}">
+                  <div class="imagem ">
                     <div class="opcao-um-pergunta-tres opcao-gradiente-tres --escondido"></div>
                     <img
                     src="${respostas_pergunta_tres[0].resposta_tres_imagem}"
                     alt="imagem da opcao">
-                    <p><b>${respostas_pergunta_tres[0].resposta_tres_texto}</b></p>
+                    <p class="texto-tres ${respostas_pergunta_tres[0].booleano}"><b>${respostas_pergunta_tres[0].resposta_tres_texto}</b></p>
                   </div>`
               
     let resposta_dois_pergunta_tres = document.querySelector(".resposta-dois-pergunta-tres")
     resposta_dois_pergunta_tres.innerHTML = resposta_dois_pergunta_tres.innerHTML + `
-                  <div class="imagem {respostas_pergunta_tres[1].booleano}">
+                  <div class="imagem ">
                     <div class="opcao-dois-pergunta-tres opcao-gradiente-tres --escondido"></div>
                     <img
                     src="${respostas_pergunta_tres[1].resposta_tres_imagem}"
                     alt="imagem da opcao">
-                    <p><b>${respostas_pergunta_tres[1].resposta_tres_texto}</b></p>
+                    <p class="texto-tres ${respostas_pergunta_tres[1].booleano}"><b>${respostas_pergunta_tres[1].resposta_tres_texto}</b></p>
                   </div>`
 
         let resposta_tres_pergunta_tres = document.querySelector(".resposta-tres-pergunta-tres")
     resposta_tres_pergunta_tres.innerHTML = resposta_tres_pergunta_tres.innerHTML + `
-                  <div class="imagem ${respostas_pergunta_um[2].booleano}">
+                  <div class="imagem ">
                     <div class="opcao-tres-pergunta-tres opcao-gradiente-tres --escondido"></div>_dois
                     <img
                     src="${respostas_pergunta_um[2].resposta_um_imagem}"
                     alt="imagem da opcao">
-                    <p><b>${respostas_pergunta_um[2].resposta_um_texto}</b></p>
+                    <p class="texto-tres ${respostas_pergunta_um[2].booleano}"><b>${respostas_pergunta_um[2].resposta_um_texto}</b></p>
                   </div>`
 
     let resposta_quatro_pergunta_tres = document.querySelector(".resposta-quatro-pergunta-tres")
     resposta_quatro_pergunta_tres.innerHTML = resposta_quatro_pergunta_tres.innerHTML + `
-                  <div class="imagem ${respostas_pergunta_um[3].booleano}">
+                  <div class="imagem ">
                     <div class="opcao-quatro-pergunta-tres opcao-gradiente-tres --escondido"></div>_dois
                     <img
                     src="${respostas_pergunta_um[3].resposta_um_imagem}"
                     alt="imagem da opcao">
-                    <p><b>${respostas_pergunta_um[3].resposta_um_texto}</b></p>
+                    <p class="texto-tres ${respostas_pergunta_um[3].booleano}"><b>${respostas_pergunta_um[3].resposta_um_texto}</b></p>
                   </div>`
   }else{
     let respostas_pergunta_um = [{
@@ -711,22 +711,22 @@ const funcoesQuizzes = {
     
     let resposta_um_pergunta_um = document.querySelector(".resposta-um-pergunta-um")
     resposta_um_pergunta_um.innerHTML = resposta_um_pergunta_um.innerHTML + `
-                    <div class="imagem ${respostas_pergunta_um[0].booleano}">
+                    <div class="imagem">
                       <div class="opcao-um-pergunta-um opcao-gradiente-um --escondido"></div>
                       <img
                       src="${respostas_pergunta_um[0].resposta_um_imagem}"
                       alt="imagem da opcao">
-                      <p><b>${respostas_pergunta_um[0].resposta_um_texto}</b></p>
+                      <p class="texto-um ${respostas_pergunta_um[0].booleano}"  ><b>${respostas_pergunta_um[0].resposta_um_texto}</b></p>
                     </div>`
     
     let resposta_dois_pergunta_um = document.querySelector(".resposta-dois-pergunta-um")
     resposta_dois_pergunta_um.innerHTML = resposta_dois_pergunta_um.innerHTML + `
-                  <div class="imagem ${respostas_pergunta_um[1].booleano}">
+                  <div class="imagem ">
                     <div class="opcao-dois-pergunta-um opcao-gradiente-um --escondido"></div>
                     <img
                     src="${respostas_pergunta_um[1].resposta_um_imagem}"
                     alt="imagem da opcao">
-                    <p><b>${respostas_pergunta_um[1].resposta_um_texto}</b></p>
+                    <p class="texto-um  ${respostas_pergunta_um[1].booleano}"><b>${respostas_pergunta_um[1].resposta_um_texto}</b></p>
                   </div>`
 
     let cabecalho_dois = document.querySelector(".cabecalho-dois");
@@ -737,22 +737,22 @@ const funcoesQuizzes = {
 
     let resposta_um_pergunta_dois = document.querySelector(".resposta-um-pergunta-dois")
     resposta_um_pergunta_dois.innerHTML = resposta_um_pergunta_dois.innerHTML + `
-                  <div class="imagem ${respostas_pergunta_dois[0].booleano}">
+                  <div class="imagem ">
                     <div class="opcao-um-pergunta-dois opcao-gradiente-dois --escondido"></div>
                     <img
                     src="${respostas_pergunta_dois[0].resposta_dois_imagem}"
                     alt="imagem da opcao">
-                    <p><b>${respostas_pergunta_dois[0].resposta_dois_texto}</b></p>
+                    <p class="texto-dois ${respostas_pergunta_dois[0].booleano}"><b>${respostas_pergunta_dois[0].resposta_dois_texto}</b></p>
                   </div>`
                 
       let resposta_dois_pergunta_dois = document.querySelector(".resposta-dois-pergunta-dois")
       resposta_dois_pergunta_dois.innerHTML = resposta_dois_pergunta_dois.innerHTML + `
-                  <div class="imagem ${respostas_pergunta_dois[1].booleano}">
+                  <div class="imagem ">
                     <div class="opcao-dois-pergunta-dois opcao-gradiente-dois --escondido"></div>
                     <img
                     src="${respostas_pergunta_dois[1].resposta_dois_imagem}"
                     alt="imagem da opcao">
-                    <p><b>${respostas_pergunta_dois[1].resposta_dois_imagem}</b></p>
+                    <p class="texto-dois s ${respostas_pergunta_dois[1].booleano}"><b>${respostas_pergunta_dois[1].resposta_dois_imagem}</b></p>
                   </div>`
         
     let cabecalho_tres = document.querySelector(".cabecalho-tres");
@@ -763,31 +763,32 @@ const funcoesQuizzes = {
 
     let resposta_um_pergunta_tres = document.querySelector(".resposta-um-pergunta-tres")
     resposta_um_pergunta_tres.innerHTML = resposta_um_pergunta_tres.innerHTML + `
-                  <div class="imagem ${respostas_pergunta_tres[0].booleano}">
+                  <div class="imagem ">
                     <div class="opcao-um-pergunta-tres opcao-gradiente-tres --escondido"></div>
                     <img
                     src="${respostas_pergunta_tres[0].resposta_tres_imagem}"
                     alt="imagem da opcao">
-                    <p><b>${respostas_pergunta_tres[0].resposta_tres_texto}</b></p>
+                    <p class="texto-tres ${respostas_pergunta_tres[0].booleano}"><b>${respostas_pergunta_tres[0].resposta_tres_texto}</b></p>
                   </div>`
               
     let resposta_dois_pergunta_tres = document.querySelector(".resposta-dois-pergunta-tres")
     resposta_dois_pergunta_tres.innerHTML = resposta_dois_pergunta_tres.innerHTML + `
-                  <div class="imagem {respostas_pergunta_tres[1].booleano}">
+                  <div class="imagem ">
                     <div class="opcao-dois-pergunta-tres opcao-gradiente-tres --escondido"></div>
                     <img
                     src="${respostas_pergunta_tres[1].resposta_tres_imagem}"
                     alt="imagem da opcao">
-                    <p><b>${respostas_pergunta_tres[1].resposta_tres_texto}</b></p>
+                    <p class="texto-tres ${respostas_pergunta_tres[1].booleano}"><b>${respostas_pergunta_tres[1].resposta_tres_texto}</b></p>
                   </div>`
   }
   },
 
     
-  verificaRespostaCorretaPerguntaUm(classe, tipo_de_opcao) {
+  verificaRespostaCorretaPerguntaUm(classe, tipo_de_opcao,tipo_texto) {
     let opcao_gradiente_um = document.querySelectorAll(".opcao-gradiente-um");
     let esta_opcao = document.querySelector("." + tipo_de_opcao);
     let radios_um = document.querySelectorAll(".radio-um");
+    let texto_um = document.querySelectorAll(".texto-um");
     for(let x = 0; x < radios_um.length; x++){
       if(radios_um[x].checked){
         for(let i = 0; i < opcao_gradiente_um.length; i++){
@@ -799,12 +800,21 @@ const funcoesQuizzes = {
       radios_um[z].disabled = true;
   }
   esta_opcao.classList.add("--escondido");
+
+  for(let k = 0; k < texto_um.length; k++){
+    if(texto_um[k].classList.contains('true')){
+      texto_um[k].classList.add('verde');
+    }else{
+      texto_um[k].classList.add('vermelho')
+    }
+  }
 },
 
   verificaRespostaCorretaPerguntaDois(classe, tipo_de_opcao) {
     let opcao_gradiente_dois = document.querySelectorAll(".opcao-gradiente-dois");
     let esta_opcao = document.querySelector("." + tipo_de_opcao);
     let radios_dois = document.querySelectorAll(".radio-dois");
+    let texto_dois = document.querySelectorAll(".texto-dois");
     for(let x = 0; x < radios_dois.length; x++){
       if(radios_dois[x].checked){
         for(let i = 0; i < opcao_gradiente_dois.length; i++){
@@ -816,12 +826,21 @@ const funcoesQuizzes = {
       radios_dois[z].disabled = true;
   }
   esta_opcao.classList.add("--escondido");
+
+  for(let k = 0; k < texto_dois.length; k++){
+    if(texto_dois[k].classList.contains('true')){
+      texto_dois[k].classList.add('verde');
+    }else{
+      texto_dois[k].classList.add('vermelho')
+    }
+  }
 },
 
   verificaRespostaCorretaPerguntaTres(classe, tipo_de_opcao) {
     let opcao_gradiente_tres = document.querySelectorAll(".opcao-gradiente-tres");
     let esta_opcao = document.querySelector("." + tipo_de_opcao);
     let radios_tres = document.querySelectorAll(".radio-tres");
+    let texto_tres = document.querySelectorAll(".texto-tres");
     for(let x = 0; x < radios_tres.length; x++){
       if(radios_tres[x].checked){
         for(let i = 0; i < opcao_gradiente_tres.length; i++){
@@ -833,6 +852,14 @@ const funcoesQuizzes = {
       radios_tres[z].disabled = true;
   }
   esta_opcao.classList.add("--escondido");
+
+  for(let k = 0; k < texto_tres.length; k++){
+    if(texto_tres[k].classList.contains('true')){
+      texto_tres[k].classList.add('verde');
+    }else{
+      texto_tres[k].classList.add('vermelho')
+    }
+  }
 },
 
 

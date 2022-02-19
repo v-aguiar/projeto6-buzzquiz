@@ -285,12 +285,18 @@ article {
   background: linear-gradient(rgba(199, 193, 193, 0.659) 0%, rgba(168, 163, 163, 0.686) 64.58%)
 }
 
-.opcao p {
+.texto-um {
   font-weight: 700;
   font-size: 13px;
   line-height: 15px;
   align-items: left;
   width: 150px;
+}
+.vermelho{
+  color: var(--text-red)
+}
+.verde{
+  color: var(--text-green)
 }
 
 .radio-um, .radio-dois, .radio-tres{
