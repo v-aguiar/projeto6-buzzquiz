@@ -606,6 +606,16 @@ const funcoesQuizzes = {
                   </div>`
   },
 
+  verificaRespostaCorreta(classe) {
+    let opcao_gradiente = document.querySelectorAll(".opcao_gradiente");
+    if(classe.checked){
+      opcao_gradiente.forEach((elemento) => {
+        elemento.classList.remove("--escondido");
+        classe.classList.add("--escondido");
+      })
+    }
+  },
+
   montaEstruturaDaPergunta(numero) {
     const perguntaAnterior = document.querySelector(`.pergunta-${numero - 1}`)
     const estruturaPergunta = `
