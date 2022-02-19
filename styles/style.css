@@ -198,6 +198,10 @@ main {
 }
 
 /* Estilos da página de um quizz */
+.tela-de-perguntas{
+  width: 375px;
+}
+
 .responde-quizz {
   width: 375px;
 }
@@ -222,8 +226,10 @@ main {
 }
 
 .cabecalho-do-quizz h1 {
+  width:300px;
   color: white;
   z-index: 2;
+  text-align: center;
 }
 
 .cabecalho-gradiente {
@@ -237,7 +243,7 @@ main {
   background: linear-gradient(rgba(0, 0, 0, 0.5) 64.58%, #000000 100%);
 }
 
-.responde-quizz article {
+article {
   width: 340px;
   margin: 28px auto;
 }
@@ -253,13 +259,12 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-Bottom: 100px;
 }
 
 .opcao {
   width: 163px;
   height: 113px;
-  margin: 13px 0;
+  margin-bottom: 90px;
 }
 
 .opcao .imagem {
@@ -280,7 +285,7 @@ main {
 
   width: 100%;
 
-  background: linear-gradient(rgba(255, 255, 255, 0.604) 0%, rgba(238, 231, 231, 0.618) 64.58%);
+  background: linear-gradient(#000000 60%);
 }
 
 .opcao p {
@@ -288,6 +293,11 @@ main {
   font-size: 13px;
   line-height: 15px;
   align-items: left;
+  width: 150px;
+}
+
+.radio{
+  width: 8px;
 }
 
 /**Parte de inputs*/

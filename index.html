@@ -44,17 +44,46 @@
 
 
     <!--Pergunta dos quizzes-->
-    <section class="responde-quizz --escondido">
+    <section class="tela-de-perguntas">
+      <div class="responde-quizz cabecalho-do-quizz --escondido"></div>
       <article>
-        <div class="cabecalho-um"></div>
-        <label for="resposta-um">
-          <input type="radio" name="pertunta-um" id="resposta-um"> 
-          <div class="resposta-pergunta-um"></div>
-        </label>
-        <label for="resposta-dois">
-          <input type="radio" name="pertunta-um" id="resposta-dois"> 
-          <div class="resposta-pergunta-um"></div>
-        </label>
+        <!--primeira pergunta-->
+          <div class="cabecalho-um"></div>
+          <div class="conteudo-das-opcoes">
+            <label for="resposta-um-pergunta-um">
+              <input type="radio" name="pertunta-um" id="resposta-um-pergunta-um" class="radio"> 
+              <div class="resposta-um-pergunta-um opcao"></div>
+            </label>
+            <label for="resposta-dois-pergunta-um">
+              <input type="radio" name="pertunta-um" id="resposta-dois-pergunta-um" class="radio"> 
+              <div class="resposta-dois-pergunta-um opcao"></div>
+            </label>
+          </div>
+          <!--segunda pergunta-->
+            <div class="cabecalho-dois"></div>
+            <div class="conteudo-das-opcoes">
+            <label for="resposta-um-pergunta-dois">
+              <input type="radio" name="pertunta-dois" id="resposta-um-pergunta-dois" class="radio"> 
+              <div class="resposta-um-pergunta-dois opcao"></div>
+            </label>
+            <label for="resposta-dois-pergunta-dois">
+              <input type="radio" name="pertunta-dois" id="resposta-dois-pergunta-dois" class="radio"> 
+              <div class="resposta-dois-pergunta-dois opcao"></div>
+            </label>
+          </div>
+          <!--terceira pergunta-->
+          <div class="cabecalho-tres"></div>
+          <div class="conteudo-das-opcoes">
+            <label for="resposta-um-pergunta-tres">
+              <input type="radio" name="pertunta-tres" id="resposta-um-pergunta-tres" class="radio"> 
+              <div class="resposta-um-pergunta-tres opcao"></div>
+            </label>
+            <label for="resposta-dois-pergunta-tres">
+              <input type="radio" name="pertunta-tres" id="resposta-dois-pergunta-tres" class="radio"> 
+              <div class="resposta-dois-pergunta-tres opcao"></div>
+            </label>
+          </div>
+      </article>
     </section>
 
     <!--Criar Quizz-->

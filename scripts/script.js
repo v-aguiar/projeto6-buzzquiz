@@ -1,5 +1,5 @@
 const API_URL = 'https://mock-api.driven.com.br/api/v4/buzzquizz';
-let ident = undefined;
+let quizzDaSegundaTela
 
 const funcoesApi = {
   obterQuizzes() {
@@ -150,8 +150,22 @@ const funcoesQuizzes = {
   },
 
   responderQuizz(quizz) {
+    console.log(quizz)
+
+    const titulo = quizz.querySelector("p").innerHTML
+
+    console.log(titulo)
+
+    funcoesQuizzes.quizzes.forEach((card) => {
+      if(card.title === titulo)
+        quizzDaSegundaTela = card
+    })
+
+    console.log(quizzDaSegundaTela)
     funcoesDeControle.toogleTela1();
     funcoesDeControle.toogleTela2();
+
+    funcoesQuizzes.montaEstruturaQuizzSegundaTela();
   },
 
   validaCriacaoDeQuizz() {
@@ -300,7 +314,6 @@ const funcoesQuizzes = {
 
     listaDeTodosOsQuizzes.innerHTML = funcoesQuizzes.montaEstruturaQuizzPrimeiraTela();
     funcoesQuizzes.montaEstruturaQuizzPrimeiraTela();
-    funcoesQuizzes.montaEstruturaQuizzSegundaTela();
   },
 
   montaEstruturaQuizzPrimeiraTela() {
@@ -311,7 +324,7 @@ const funcoesQuizzes = {
       const imagem = quizzData.image;
 
       const quizzEstrutura = `
-        <li class="quizz" onclick="funcoesQuizzes.responderQuizz(this); funcoesQuizzes.pegaIdDoQuizz(${quizzData.id})">
+        <li class="quizz" onclick="funcoesQuizzes.responderQuizz(this)">
           <div class="quizz-gradiente"></div>
           <img src="${imagem}" alt="Imagem de capa do Quizz">
           <p>${titulo}</p>
@@ -321,11 +334,6 @@ const funcoesQuizzes = {
     })
 
     return quizzesEstruturaTela1;
-  },
-
-  pegaIdDoQuizz(id){
-   ident = id;
-   return ident;
   },
 
   listaSeusQuizzes() {
@@ -364,12 +372,10 @@ const funcoesQuizzes = {
   },
 
   montaEstruturaQuizzSegundaTela() {
-    let quizzDaSegundaTela = funcoesApi.obterUmQuizz();
-    console.log(quizzDaSegundaTela)
     let respostas_pergunta_um = [{
       booleano: quizzDaSegundaTela.questions[0].answers[0].isCorrectAnswer,
       resposta_um_imagem: quizzDaSegundaTela.questions[0].answers[0].image,
-      resposta_um_texto: quizzData.questions[0].answers[0].text,
+      resposta_um_texto: quizzDaSegundaTela.questions[0].answers[0].text,
     },{
       booleano: quizzDaSegundaTela.questions[0].answers[1].isCorrectAnswer,
       resposta_dois_imagem: quizzDaSegundaTela.questions[0].answers[1].image,
@@ -402,96 +408,88 @@ const funcoesQuizzes = {
 
     let responde_quizz = document.querySelector(".responde-quizz");
     responde_quizz.innerHTML = responde_quizz.innerHTML + `
-          <div class="cabecalho-do-quizz">
             <div class="cabecalho-gradiente"></div>
             <h1>${quizzDaSegundaTela.title}</h1>
             <img
             src = ${quizzDaSegundaTela.image}
-            alt="imagem da opcao">
-          </div>`
+            alt="imagem da opcao">`
 
-    let cabecalho = document.querySelector(".cabecalho");
-    cabecalho.innerHTML = cabecalho.innerHTML = `
+    let cabecalho_um = document.querySelector(".cabecalho-um");
+    cabecalho_um.innerHTML = cabecalho_um.innerHTML = `
               <div class="cabecalho-da-pergunta" style = "background-color: ${quizzDaSegundaTela.questions[0].color}">
                 <h1>${quizzDaSegundaTela.questions[0].title}</h1>
               </div>`
     
-    let resposta_pergunta_um = document.querySelector(".resposta-pergunta-um")
-    resposta_pergunta_um.innerHTML = resposta_pergunta_um.innerHTML + `
-              <div class="conteudo-das-opcoes">
-                  <div class="opcao ${respostas_pergunta_um[0].booleano}">
-                    <div class="imagem">
+    let resposta_um_pergunta_um = document.querySelector(".resposta-um-pergunta-um")
+    resposta_um_pergunta_um.innerHTML = resposta_um_pergunta_um.innerHTML + `
+                    <div class="imagem ${respostas_pergunta_um[0].booleano}">
                       <div class="opcao-gradiente --escondido"></div>
                       <img
                       src="${respostas_pergunta_um[0].resposta_um_imagem}"
                       alt="imagem da opcao">
                       <p><b>${respostas_pergunta_um[0].resposta_um_texto}</b></p>
-                    </div>
-                  </div>
-              
-                <div class="opcao ${respostas_pergunta_um[1].booleano}" >
-                  <div class="imagem">
-                    <div class="opcao-gradiente --escondido"></div>
+                    </div>`
+    
+    let resposta_dois_pergunta_um = document.querySelector(".resposta-dois-pergunta-um")
+    resposta_dois_pergunta_um.innerHTML = resposta_dois_pergunta_um.innerHTML + `
+                  <div class="imagem ${respostas_pergunta_um[1].booleano}">
+                    <div class="opcao-gradiente --escondido"></div>_dois
                     <img
                     src="${respostas_pergunta_um[1].resposta_um_imagem}"
                     alt="imagem da opcao">
                     <p><b>${respostas_pergunta_um[1].resposta_um_texto}</b></p>
-                  </div>
-                </div>
-        </article>
+                  </div>`
 
-        <article>
+    let cabecalho_dois = document.querySelector(".cabecalho-dois");
+    cabecalho_dois.innerHTML = cabecalho_dois.innerHTML = `
               <div class="cabecalho-da-pergunta" style = "background-color: ${quizzDaSegundaTela.questions[1].color}">
                 <h1>${quizzDaSegundaTela.questions[1].title}</h1>
-              </div>
+              </div>`
 
-              <div class="conteudo-das-opcoes">
-                <div class="opcao ${respostas_pergunta_dois[0].booleano}" >
-                  <div class="imagem">
+    let resposta_um_pergunta_dois = document.querySelector(".resposta-um-pergunta-dois")
+    resposta_um_pergunta_dois.innerHTML = resposta_um_pergunta_dois.innerHTML + `
+                  <div class="imagem ${respostas_pergunta_dois[0].booleano}">
                     <div class="opcao-gradiente --escondido"></div>
                     <img
                     src="${respostas_pergunta_dois[0].resposta_dois_imagem}"
                     alt="imagem da opcao">
                     <p><b>${respostas_pergunta_dois[0].resposta_dois_texto}</b></p>
-                  </div>
-                </div>
-              
-                <div class="opcao ${respostas_pergunta_dois[1].booleano}" >
-                  <div class="imagem">
+                  </div>`
+                
+      let resposta_dois_pergunta_dois = document.querySelector(".resposta-dois-pergunta-dois")
+      resposta_dois_pergunta_dois.innerHTML = resposta_dois_pergunta_dois.innerHTML + `
+                  <div class="imagem ${respostas_pergunta_dois[1].booleano}">
                     <div class="opcao-gradiente --escondido"></div>
                     <img
                     src="${respostas_pergunta_dois[1].resposta_dois_imagem}"
                     alt="imagem da opcao">
                     <p><b>${respostas_pergunta_dois[1].resposta_dois_imagem}</b></p>
-                  </div>
-                </div>
-        </article>
-
-        <article>
+                  </div>`
+        
+    let cabecalho_tres = document.querySelector(".cabecalho-tres");
+    cabecalho_tres.innerHTML = cabecalho_tres.innerHTML = `
               <div class="cabecalho-da-pergunta" style = "background-color: ${quizzDaSegundaTela.questions[2].color}">
                 <h1>${quizzDaSegundaTela.questions[2].title}</h1>
-              </div>
+              </div>`
 
-              <div class="conteudo-das-opcoes">
-                <div class="opcao ${respostas_pergunta_tres[0].booleano}" >
-                  <div class="imagem">
+    let resposta_um_pergunta_tres = document.querySelector(".resposta-um-pergunta-tres")
+    resposta_um_pergunta_tres.innerHTML = resposta_um_pergunta_tres.innerHTML + `
+                  <div class="imagem ${respostas_pergunta_tres[0].booleano}">
                     <div class="opcao-gradiente --escondido"></div>
                     <img
                     src="${respostas_pergunta_tres[0].resposta_tres_imagem}"
                     alt="imagem da opcao">
                     <p><b>${respostas_pergunta_tres[0].resposta_tres_texto}</b></p>
-                  </div>
-                </div>
+                  </div>`
               
-                <div class="opcao ${respostas_pergunta_tres[1].booleano}" >
-                  <div class="imagem">
+    let resposta_dois_pergunta_tres = document.querySelector(".resposta-dois-pergunta-tres")
+    resposta_dois_pergunta_tres.innerHTML = resposta_dois_pergunta_tres.innerHTML + `
+                  <div class="imagem {respostas_pergunta_tres[1].booleano}">
                     <div class="opcao-gradiente --escondido"></div>
                     <img
                     src="${respostas_pergunta_tres[1].resposta_tres_imagem}"
                     alt="imagem da opcao">
-                    <p><b>${respostas_pergunta_tres[1].resposta_tres_texto}</b></p>
-                  </div>
-                </div>`
+                    <p><b>${respostas_pergunta_tres[1].resposta_tres_texto}</b></p>`
   }
 }
 
@@ -503,3 +501,5 @@ funcoesQuizzes.listaSeusQuizzes();
 function comparador() { 
 	return Math.random() - 0.5; 
 }
+
+console.log(quizzDaSegundaTela)
