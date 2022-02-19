@@ -74,6 +74,12 @@ const funcoesDeControle = {
     criaQuizzParte3.classList.toggle("--escondido")
   },
 
+  toogleTela3Parte4() {
+    const criaQuizzParte4 = document.querySelector(".cria-quizz.passo-quatro")
+
+    criaQuizzParte4.classList.toggle("--escondido")
+  },
+
   validaUrl(url) {
     let validaUrl = null
     try {
@@ -133,6 +139,7 @@ const funcoesDeControle = {
 const funcoesQuizzes = {
   quizzes: [],
   seus_quizzes: [],
+  created_ids: [],
 
   criarQuizz() {
     funcoesDeControle.toogleTela1();
@@ -147,6 +154,13 @@ const funcoesQuizzes = {
   criarQuizzPasso3() {
     funcoesDeControle.toogleTela3Parte2();
     funcoesDeControle.toogleTela3Parte3();
+  },
+
+  criarQuizzPasso4() {
+    funcoesDeControle.toogleTela3Parte3();
+    funcoesDeControle.toogleTela3Parte4();
+
+    funcoesQuizzes.montaEstruturaSucessoCriacao()
   },
 
   responderQuizz(quizz) {
@@ -281,10 +295,15 @@ const funcoesQuizzes = {
   },
 
   validaCriacaoDeQuizzParte3() {
+<<<<<<< HEAD
     const tituloNivelUmInput = document.querySelector(".cria-quizz.passo-tres .titulo-nivel-um")
     const acertoMinimoUmInput = document.querySelector(".cria-quizz.passo-tres .acerto-minimo-um")
     const nivelUmUrlInput = document.querySelector(".cria-quizz.passo-tres .nivel-um-url")
     const descricaoNivelTextarea = document.querySelector(".cria-quizz.passo-tres .descricao-nivel-um")
+=======
+    infoBaseCriaQuizz.levels = []
+    let validaPorcentagemAcertoMinimo = 1
+>>>>>>> 99187d4d57f9b98d96c96d5d3807c364b6a5b3f9
 
     const tituloNivelUm = tituloNivelUmInput.value
     const acertoMinimoUm = acertoMinimoUmInput.value
@@ -296,6 +315,7 @@ const funcoesQuizzes = {
     nivelUmUrl.value = ''
     descricaoNivel.value = ''
 
+<<<<<<< HEAD
     // const validaUrl = funcoesDeControle.validaUrl(nivelUmUrl)
     // if(validaUrl) {
     //   funcoesQuizzes.enviaQuizzParaServidor()
@@ -307,6 +327,40 @@ const funcoesQuizzes = {
     //   qtdPerguntasInput.value = ''
     //   qtdNiveisInput.value = ''
     // }
+=======
+      if(Number(acertoMinimoUm) === 0) {
+        validaPorcentagemAcertoMinimo = true
+      }
+
+      infoBaseCriaQuizz.levels.push(
+        {
+          title: tituloNivelUm,
+          minValue: acertoMinimoUm,
+          image: nivelUmUrl,
+          text: descricaoNivel
+        })
+
+      tituloNivelUmInput.value = ''
+      acertoMinimoUmInput.value = ''
+      nivelUmUrlInput.value = ''
+      descricaoNivelTextarea.value = ''
+
+      const validaUrl = funcoesDeControle.validaUrl(nivelUmUrl)
+      if(validaUrl) {
+        console.log(infoBaseCriaQuizz)
+      } else {
+        alert("⚠ Dados inválidos, preencha o formulário novamente!")
+      }
+    }
+
+    validaPorcentagemAcertoMinimo ? funcoesQuizzes.criarQuizzPasso4() : alert("⚠ Pelo menos um dos níveis deve possuir % de acerto igual a 0!")
+  },
+
+  enviaQuizzParaServidor() {
+    const promise = axios.post(`${API_URL}/quizzes`, infoBaseCriaQuizz)
+    promise.then((response) => {console.log("Resposta: ", response)})
+    promise.catch((err) => {console.log("Error: ", err)})
+>>>>>>> 99187d4d57f9b98d96c96d5d3807c364b6a5b3f9
   },
 
   listarTodosOsQuizzes() {
@@ -489,7 +543,111 @@ const funcoesQuizzes = {
                     <img
                     src="${respostas_pergunta_tres[1].resposta_tres_imagem}"
                     alt="imagem da opcao">
+<<<<<<< HEAD
                     <p><b>${respostas_pergunta_tres[1].resposta_tres_texto}</b></p>`
+=======
+                    <p><b>${respostas_pergunta_tres[1].resposta_tres_texto}</b></p>
+                  </div>
+                </div>
+        </article>
+        `
+    })
+  },
+
+  montaEstruturaDaPergunta(numero) {
+    const perguntaAnterior = document.querySelector(`.pergunta-${numero - 1}`)
+    const estruturaPergunta = `
+        <h1>Pergunta ${numero}</h1>
+        <ion-icon onclick="funcoesDeControle.abrePergunta(${numero})" name="create-outline"></ion-icon>
+        <div class="pergunta-${numero}-dentro --escondido">
+          <input type="text" placeholder="Texto da pergunta" class="texto-pergunta-${numero}" id="pergunta-${numero}"
+            minlength="20" required>
+
+          <label for="pergunta-${numero}-cor" class="--sr-only">Cor de Fundo</label>
+          <input type="text" placeholder="Cor de fundo da pergunta" class="cor-pergunta-${numero}" id="pergunta-${numero}-cor"
+            maxlength="7" required>
+
+          <label for="resposta-correta-p${numero}">Resposta correta</label>
+          <input type="text" placeholder="Resposta correta" class="texto-resposta-correta-p${numero}" id="resposta-correta-p${numero}"
+            required>
+
+          <label for="resposta-correta-url-p${numero}" class="--sr-only">Url da imagem correspondente a resposta
+            correta</label>
+          <input type="text" placeholder="URL da imagem" class="url-imagem-correta-p${numero}" id="resposta-correta-url-p${numero}">
+
+          <label for="resposta-incorreta-1-p${numero}">Respostas incorretas</label>
+          <input type="text" placeholder="Resposta incorreta 1" class="texto-incorreto-um-p${numero}" id="resposta-incorreta-1-p${numero}"
+            required>
+
+          <label for="resposta-incorreta-1-url-p${numero}" class="--sr-only">URL da 1ª resposta errada</label>
+          <input type="text" placeholder="URL da imagem 1" class="url-incorreto-um-p${numero}" id="resposta-incorreta-1-url-p${numero}">
+
+          <label for="resposta-incorreta-2-p${numero}" class="--sr-only">2ª resposta errada</label>
+          <input type="text" placeholder="Resposta incorreta 2" class="texto-incorreto-dois-p${numero}"
+            id="resposta-incorreta-2">
+
+          <label for="resposta-incorreta-2-url-p${numero}" class="--sr-only">URL da 2ª resposta errada</label>
+          <input type="text" placeholder="URL da imagem 2" class="url-incorreto-dois-p${numero}" id="resposta-incorreta-2-url-p${numero}">
+
+          <label for="resposta-incorreta-3-p${numero}" class="--sr-only">3ª resposta errada</label>
+          <input type="text" placeholder="Resposta incorreta 3" class="texto-incorreto-tres-p${numero}"
+            id="resposta-incorreta-3">
+
+          <label for="resposta-incorreta-3-url-p${numero}" class="--sr-only">URL da 3ª resposta errada</label>
+          <input type="text" placeholder="URL da imagem 3" class="url-incorreto-tres-p${numero}" id="resposta-incorreta-3-url-p${numero}">
+        </div>
+    `
+
+    const perguntaAdicional = document.createElement('div')
+    perguntaAdicional.classList.add(`pergunta-${numero}`, '--adicional', 'fechado')
+    perguntaAdicional.innerHTML = estruturaPergunta;
+
+    perguntaAnterior.insertAdjacentElement('afterend', perguntaAdicional)
+  },
+
+  montaEstruturaDoNível(numero) {
+    const nivelAnterior = document.querySelector(`.nivel-${numero - 1}`)
+    const estruturaNivel = `
+      <h1>Nível ${numero}</h1>
+      <ion-icon onclick="funcoesDeControle.abreNivel(${numero})" name="create-outline"></ion-icon>
+      <div class="nivel-${numero}-dentro --escondido">
+        <input type="text" placeholder="Título do nível" class="titulo-nivel-${numero}" id="nivel-${numero}" minlength="10" required>
+
+        <label for="acerto-minimo-${numero}" class="--sr-only">% de acerto mínima</label>
+        <input type="number" placeholder="% de acerto mínima" class="acerto-minimo-${numero}" id="acerto-minimo-${numero}" min="0" max="100" required>
+
+        <label for="nivel-${numero}-url" class="--sr-only">Url da imagem correspondente ao nível</label>
+        <input type="text" placeholder="URL da imagem do nível" class="nivel-${numero}-url" id="nivel-${numero}-url" required>
+
+        <label for="descricao-nivel-${numero}" class="--sr-only">Descrição do nível</label>
+        <textarea name="descricao-nivel-${numero}" type="text" rows="10" minlength="30" placeholder="Descrição do nível" class="descricao-nivel-${numero}" id="descricao-nivel-${numero}" required></textarea>
+      </div>
+    `
+
+    const nivelAdicional = document.createElement('div')
+    nivelAdicional.classList.add(`nivel-${numero}`, '--adicional', 'fechado')
+    nivelAdicional.innerHTML = estruturaNivel
+
+    nivelAnterior.insertAdjacentElement("afterend", nivelAdicional)
+  },
+
+  montaEstruturaSucessoCriacao() {
+    funcoesQuizzes.enviaQuizzParaServidor()
+
+    const passoQuatro = document.querySelector(".cria-quizz.passo-quatro")
+    const estruturaSucesso = `
+      <h1>Seu quizz está pronto</h1>
+      <div class="quizz --criado">
+        <div class="quizz-gradiente"></div>
+        <img src="${infoBaseCriaQuizz.image}" alt="Imagem de capa do quizz">
+        <p>${infoBaseCriaQuizz.title}</p>
+      </div>
+      <button class="botao-criacao" type="button" onclick="funcoesQuizzes.responderQuizz(this.previousElementSibling)">Acessar Quizz</button>
+      <a href="/" onclick="window.location.reload()"><p>Voltar pra home</p></a>
+    `
+
+    passoQuatro.innerHTML = estruturaSucesso
+>>>>>>> 99187d4d57f9b98d96c96d5d3807c364b6a5b3f9
   }
 }
 

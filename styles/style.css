@@ -411,6 +411,13 @@ label {
   font-weight: 700;
 }
 
+.quizz.--criado {
+  position: relative;
+  overflow: hidden;
+
+  margin: 40px 0;
+}
+
 .fechado {
   display: flex;
   justify-content: space-between;
