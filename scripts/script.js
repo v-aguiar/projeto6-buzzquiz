@@ -105,29 +105,34 @@ const funcoesDeControle = {
     }
   },
 
-  abrePergunta(numero) {
-    const perguntaDentro = document.querySelector(`.pergunta-${numero}.fechado .pergunta-${numero}-dentro`)
-    const tituloPergunta = document.querySelector(`.pergunta-${numero}.fechado > h1`)
-    const pergunta = document.querySelector(`.pergunta-${numero}.fechado`)
-    const icone = document.querySelector(`.pergunta-${numero}.fechado ion-icon`)
-    pergunta.style.flexDirection = "column"
-    pergunta.style.height = "fit-content"
-    tituloPergunta.style.alignSelf = "flex-start"
-    tituloPergunta.style.marginTop = "27px"
+  abrePergunta2(icon) {
+    const perguntaDentro = document.querySelector(".pergunta-dois.fechado .pergunta-dentro")
+    const tituloPergunta2 = document.querySelector(".pergunta-dois.fechado > h1")
+    const pergunta2 = document.querySelector(".pergunta-dois.fechado")
+
+    pergunta2.style.flexDirection = "column"
+    pergunta2.style.height = "fit-content"
+
+    tituloPergunta2.style.alignSelf = "flex-start"
+    tituloPergunta2.style.marginTop = "27px"
+
     perguntaDentro.classList.remove("--escondido")
-    icone.classList.add("--escondido")
+    icon.classList.add("--escondido")
   },
-  abreNivel(numero) {
-    const nivelDentro = document.querySelector(`.nivel-${numero}.fechado .nivel-${numero}-dentro`)
-    const tituloNivel = document.querySelector(`.nivel-${numero}.fechado > h1`)
-    const nivel = document.querySelector(`.nivel-${numero}.fechado`)
-    const icone = document.querySelector(`.nivel-${numero}.fechado ion-icon`)
-    nivel.style.flexDirection = "column"
-    nivel.style.height = "fit-content"
-    tituloNivel.style.alignSelf = "flex-start"
-    tituloNivel.style.marginTop = "27px"
-    nivelDentro.classList.remove("--escondido")
-    icone.classList.add("--escondido")
+
+  abrePergunta3(icon) {
+    const perguntaDentro = document.querySelector(".pergunta-tres.fechado .pergunta-dentro")
+    const tituloPergunta3 = document.querySelector(".pergunta-tres.fechado > h1")
+    const pergunta3 = document.querySelector(".pergunta-tres.fechado")
+
+    pergunta3.style.flexDirection = "column"
+    pergunta3.style.height = "fit-content"
+
+    tituloPergunta3.style.alignSelf = "flex-start"
+    tituloPergunta3.style.marginTop = "27px"
+
+    perguntaDentro.classList.remove("--escondido")
+    icon.classList.add("--escondido")
   }
 }
 
@@ -159,7 +164,6 @@ const funcoesQuizzes = {
   },
 
   responderQuizz(quizz) {
-    console.log(quizz)
 
     const titulo = quizz.querySelector("p").innerHTML
 
@@ -170,7 +174,7 @@ const funcoesQuizzes = {
         quizzDaSegundaTela = card
     })
 
-    console.log(quizzDaSegundaTela)
+
     funcoesDeControle.toogleTela1();
     funcoesDeControle.toogleTela2();
 
@@ -182,181 +186,149 @@ const funcoesQuizzes = {
     const urlDaImagemInput = document.querySelector(".cria-quizz.passo-um .url-quizz")
     const qtdPerguntasInput = document.querySelector(".cria-quizz.passo-um .qtd-perguntas")
     const qtdNiveisInput = document.querySelector(".cria-quizz.passo-um .qtd-niveis")
+
     const tituloQuizz = tituloQuizzInput.value
     const urlDaImagem = urlDaImagemInput.value
     const qtdPerguntas = qtdPerguntasInput.value
     const qtdNiveis = qtdNiveisInput.value
-    // Armazena dados básicos do quizz a ser criado
-    infoBaseCriaQuizz.title = tituloQuizz
-    infoBaseCriaQuizz.image = urlDaImagem
-    NUM_PERGUNTAS = qtdPerguntas
-    NUM_NIVEIS = qtdNiveis
+
+    // Armazena dados recebidos
+
+    infoBaseCriaQuizz.titulo = tituloQuizz
+    infoBaseCriaQuizz.imagem = urlDaImagem
+    infoBaseCriaQuizz.qtdPerguntas = qtdPerguntas
+    infoBaseCriaQuizz.qtdNiveis = qtdNiveis
+
     // Reseta o valor dos inputs
     tituloQuizzInput.value = ''
     urlDaImagemInput.value = ''
     qtdPerguntasInput.value = ''
     qtdNiveisInput.value = ''
+
     const validaUrl = funcoesDeControle.validaUrl(urlDaImagem)
-    if(validaUrl) {
-      funcoesQuizzes.criarQuizzPasso2()
-    } else {
-      alert("⚠ Dados inválidos, preencha o formulário novamente!")
-      tituloQuizzInput.value = ''
-      urlDaImagemInput.value = ''
-      qtdPerguntasInput.value = ''
-      qtdNiveisInput.value = ''
-    }
+
+    // if(validaUrl) {
+    funcoesQuizzes.criarQuizzPasso2()
+    // } else {
+    // alert("⚠ Dados inválidos, preencha o formulário novamente!")
+
+    // tituloQuizzInput.value = ''
+    // urlDaImagemInput.value = ''
+    // qtdPerguntasInput.value = ''
+    // qtdNiveisInput.value = ''
+    // }
   },
 
   validaCriacaoDeQuizzParte2() {
-    infoBaseCriaQuizz.questions = []
-    let validacao = false
-    // Recebe todos os dados de cada pergunta e já os coloca dentro do objeto a ser enviado pra API
-    for(let index = 1; index <= NUM_PERGUNTAS; index++) {
-      const perguntaInput = document.querySelector(`.cria-quizz.passo-dois .texto-pergunta-${index}`)
-      const corDeFundoInput = document.querySelector(`.cria-quizz.passo-dois .cor-pergunta-${index}`)
-      const respostaCorretaInput = document.querySelector(`.cria-quizz.passo-dois .texto-resposta-correta-p${index}`)
-      const urlImagemCorretaInput = document.querySelector(`.cria-quizz.passo-dois .url-imagem-correta-p${index}`)
-      const respostaIncorretaUmInput = document.querySelector(`.cria-quizz.passo-dois .texto-incorreto-um-p${index}`)
-      const urlImagemIncorretaUmInput = document.querySelector(`.cria-quizz.passo-dois .url-incorreto-um-p${index}`)
-      const respostaIncorretaDoisInput = document.querySelector(`.cria-quizz.passo-dois .texto-incorreto-dois-p${index}`)
-      const urlImagemIncorretaDoisInput = document.querySelector(`.cria-quizz.passo-dois .url-incorreto-dois-p${index}`)
-      const respostaIncorretaTresInput = document.querySelector(`.cria-quizz.passo-dois .texto-incorreto-tres-p${index}`)
-      const urlImagemIncorretaTresInput = document.querySelector(`.cria-quizz.passo-dois .url-incorreto-tres-p${index}`)
-      const pergunta = perguntaInput.value
-      const corDeFundo = corDeFundoInput.value
-      const respostaCorreta = respostaCorretaInput.value
-      const urlImagemCorreta = urlImagemCorretaInput.value
-      const respostaIncorretaUm = respostaIncorretaUmInput.value
-      const urlImagemIncorretaUm = urlImagemIncorretaUmInput.value
-      const respostaIncorretaDois = respostaIncorretaDoisInput.value
-      const urlImagemIncorretaDois = urlImagemIncorretaDoisInput.value
-      const respostaIncorretaTres = respostaIncorretaTresInput.value
-      const urlImagemIncorretaTres = urlImagemIncorretaTresInput.value
-      // Armazena os dados das perguntas do quizz a ser criado
-      infoBaseCriaQuizz.questions.push({
-        title: pergunta,
-        color: corDeFundo,
-        answers: [
-          {
-            text: respostaCorreta,
-            image: urlImagemCorreta,
-            isCorrectAnswer: true
-          },
-          {
-            text: respostaIncorretaUm,
-            image: urlImagemIncorretaUm,
-            isCorrectAnswer: false
-          },
-          {
-            text: respostaIncorretaDois,
-            image: urlImagemIncorretaDois,
-            isCorrectAnswer: false
-          },
-          {
-            text: respostaIncorretaTres,
-            image: urlImagemIncorretaTres,
-            isCorrectAnswer: false
-          }
-        ]
-      })
-      perguntaInput.value = ''
-      corDeFundoInput.value = ''
-      respostaCorretaInput.value = ''
-      urlImagemCorretaInput.value = ''
-      respostaIncorretaUmInput.value = ''
-      urlImagemIncorretaUmInput.value = ''
-      respostaIncorretaDoisInput.value = ''
-      urlImagemIncorretaDoisInput.value = ''
-      respostaIncorretaTresInput.value = ''
-      urlImagemIncorretaTresInput.value = ''
-      // Valida todas as urls dessa tela
-      const urls = [urlImagemCorreta, urlImagemIncorretaUm]
-      if(urlImagemIncorretaDois) {
-        urls.push(urlImagemIncorretaDois)
-      }
-      if(urlImagemIncorretaTres) {
-        urls.push(urlImagemIncorretaTres)
-      }
-      let urlsSaoValidas = true
-      urls.forEach((url) => {
-        const validaCadaUrl = funcoesDeControle.validaUrl(url)
-        urlsSaoValidas = (urlsSaoValidas && validaCadaUrl)
-      })
-      // Valida se a cor passada é HEX
-      const corEhValida = funcoesDeControle.validaHex(corDeFundo)
-      if(urlsSaoValidas && corEhValida) {
-        validacao = true
-      } else {
-        alert("⚠ Dados inválidos, preencha o formulário novamente!")
-        // reseta os inputs
-        perguntaInput.value = ''
-        corDeFundoInput.value = ''
-        respostaCorretaInput.value = ''
-        urlImagemCorretaInput.value = ''
-        respostaIncorretaUmInput.value = ''
-        urlImagemIncorretaUmInput.value = ''
-        respostaIncorretaDoisInput.value = ''
-        urlImagemIncorretaDoisInput.value = ''
-        respostaIncorretaTresInput.value = ''
-        urlImagemIncorretaTresInput.value = ''
-      }
-    }
-    validacao ? funcoesQuizzes.criarQuizzPasso3() : concole.log("Validação falhou")
-  },
+    const pergunta1Input = document.querySelector(".cria-quizz.passo-dois .texto-pergunta-um")
+    const corDeFundoInput = document.querySelector(".cria-quizz.passo-dois .cor-pergunta-um")
+    const respostaCorretaInput = document.querySelector(".cria-quizz.passo-dois .texto-resposta-correta")
+    const urlImagemCorretaInput = document.querySelector(".cria-quizz.passo-dois .url-imagem-correta")
+    const respostaIncorretaUmInput = document.querySelector(".cria-quizz.passo-dois .texto-incorreto-um")
+    const urlImagemIncorretaUmInput = document.querySelector(".cria-quizz.passo-dois .url-incorreto-um")
+    const respostaIncorretaDoisInput = document.querySelector(".cria-quizz.passo-dois .texto-incorreto-dois")
+    const urlImagemIncorretaDoisInput = document.querySelector(".cria-quizz.passo-dois .url-incorreto-dois")
+    const respostaIncorretaTresInput = document.querySelector(".cria-quizz.passo-dois .texto-incorreto-tres")
+    const urlImagemIncorretaTresInput = document.querySelector(".cria-quizz.passo-dois .url-incorreto-tres")
 
-  validaCriacaoDeQuizzParte3() {
-    const tituloNivelUmInput = document.querySelector(".cria-quizz.passo-tres .titulo-nivel-um")
-    const acertoMinimoUmInput = document.querySelector(".cria-quizz.passo-tres .acerto-minimo-um")
-    const nivelUmUrlInput = document.querySelector(".cria-quizz.passo-tres .nivel-um-url")
-    const descricaoNivelTextarea = document.querySelector(".cria-quizz.passo-tres .descricao-nivel-um")
-    infoBaseCriaQuizz.levels = []
-    let validaPorcentagemAcertoMinimo = 1
-    const tituloNivelUm = tituloNivelUmInput.value
-    const acertoMinimoUm = acertoMinimoUmInput.value
-    const nivelUmUrl = nivelUmUrlInput.value
-    const descricaoNivel = descricaoNivelTextarea.value
-    tituloNivelUm.value = ''
-    acertoMinimoUm.value = ''
-    nivelUmUrl.value = ''
-    descricaoNivel.value = ''
+    const pergunta1 = pergunta1Input.value
+    const corDeFundo = corDeFundoInput.value
+    const respostaCorreta = respostaCorretaInput.value
+    const urlImagemCorreta = urlImagemCorretaInput.value
+    const respostaIncorretaUm = respostaIncorretaUmInput.value
+    const urlImagemIncorretaUm = urlImagemIncorretaUmInput.value
+    const respostaIncorretaDois = respostaIncorretaDoisInput.value
+    const urlImagemIncorretaDois = urlImagemIncorretaDoisInput.value
+    const respostaIncorretaTres = respostaIncorretaTresInput.value
+    const urlImagemIncorretaTres = urlImagemIncorretaTresInput.value
 
-    // const validaUrl = funcoesDeControle.validaUrl(nivelUmUrl)
-    // if(validaUrl) {
-    //   funcoesQuizzes.enviaQuizzParaServidor()
+    pergunta1Input.value = ''
+    corDeFundoInput.value = ''
+    respostaCorretaInput.value = ''
+    urlImagemCorretaInput.value = ''
+    respostaIncorretaUmInput.value = ''
+    urlImagemIncorretaUmInput.value = ''
+    respostaIncorretaDoisInput.value = ''
+    urlImagemIncorretaDoisInput.value = ''
+    respostaIncorretaTresInput.value = ''
+    urlImagemIncorretaTresInput.value = ''
+
+    // Valida todas as urls dessa tela
+    // 
+    // const urls = [urlImagemCorreta, urlImagemIncorretaUm]
+    // if(urlImagemIncorretaDois) {
+    //   urls.push(urlImagemIncorretaDois)
+    // }
+    // if(urlImagemIncorretaTres) {
+    //   urls.push(urlImagemIncorretaTres)
+    // }
+    // let urlsSaoValidas = true
+
+    // urls.forEach((url) => {
+    // const validaCadaUrl = funcoesDeControle.validaUrl(url)
+
+    //   urlsSaoValidas = (urlsSaoValidas && validaCadaUrl)
+    // })
+
+    // Valida se a cor passada é HEX
+
+    // const corEhValida = funcoesDeControle.validaHex(corDeFundo)
+
+    // if(urlsSaoValidas && corEhValida) {
+    funcoesQuizzes.criarQuizzPasso3()
     // } else {
     //   alert("⚠ Dados inválidos, preencha o formulário novamente!")
-    //   tituloQuizzInput.value = ''
-    //   urlDaImagemInput.value = ''
-    //   qtdPerguntasInput.value = ''
-    //   qtdNiveisInput.value = ''
+
+    //   // reseta os inputs
+    //   pergunta1Input.value = ''
+    //   corDeFundoInput.value = ''
+    //   respostaCorretaInput.value = ''
+    //   urlImagemCorretaInput.value = ''
+    //   respostaIncorretaUmInput.value = ''
+    //   urlImagemIncorretaUmInput.value = ''
+    //   respostaIncorretaDoisInput.value = ''
+    //   urlImagemIncorretaDoisInput.value = ''
+    //   respostaIncorretaTresInput.value = ''
+    //   urlImagemIncorretaTresInput.value = ''
     // }
+  },
 
-    if(Number(acertoMinimoUm) === 0) {
-      validaPorcentagemAcertoMinimo = true
-    }
+  validaCriacaoDeQuizz() {
+    const tituloQuizzInput = document.querySelector(".cria-quizz.passo-um .titulo-quizz")
+    const urlDaImagemInput = document.querySelector(".cria-quizz.passo-um .url-quizz")
+    const qtdPerguntasInput = document.querySelector(".cria-quizz.passo-um .qtd-perguntas")
+    const qtdNiveisInput = document.querySelector(".cria-quizz.passo-um .qtd-niveis")
 
-    infoBaseCriaQuizz.levels.push(
-      {
-        title: tituloNivelUm,
-        minValue: acertoMinimoUm,
-        image: nivelUmUrl,
-        text: descricaoNivel
-      })
+    const tituloQuizz = tituloQuizzInput.value
+    const urlDaImagem = urlDaImagemInput.value
+    const qtdPerguntas = qtdPerguntasInput.value
+    const qtdNiveis = qtdNiveisInput.value
 
-    tituloNivelUmInput.value = ''
-    acertoMinimoUmInput.value = ''
-    nivelUmUrlInput.value = ''
-    descricaoNivelTextarea.value = ''
+    // Armazena dados recebidos
 
-    const validaUrl = funcoesDeControle.validaUrl(nivelUmUrl)
-    if(validaUrl) {
-      console.log(infoBaseCriaQuizz)
-    } else {
-      alert("⚠ Dados inválidos, preencha o formulário novamente!")
-    }
+    infoBaseCriaQuizz.titulo = tituloQuizz
+    infoBaseCriaQuizz.imagem = urlDaImagem
+    infoBaseCriaQuizz.qtdPerguntas = qtdPerguntas
+    infoBaseCriaQuizz.qtdNiveis = qtdNiveis
 
-    validaPorcentagemAcertoMinimo ? funcoesQuizzes.criarQuizzPasso4() : alert("⚠ Pelo menos um dos níveis deve possuir % de acerto igual a 0!")
+    // Reseta o valor dos inputs
+    tituloQuizzInput.value = ''
+    urlDaImagemInput.value = ''
+    qtdPerguntasInput.value = ''
+    qtdNiveisInput.value = ''
+
+    const validaUrl = funcoesDeControle.validaUrl(urlDaImagem)
+
+    // if(validaUrl) {
+    funcoesQuizzes.criarQuizzPasso2()
+    // } else {
+    // alert("⚠ Dados inválidos, preencha o formulário novamente!")
+
+    // tituloQuizzInput.value = ''
+    // urlDaImagemInput.value = ''
+    // qtdPerguntasInput.value = ''
+    // qtdNiveisInput.value = ''
+    // }
   },
 
   enviaQuizzParaServidor() {
@@ -428,19 +400,20 @@ const funcoesQuizzes = {
   },
 
   montaEstruturaQuizzSegundaTela() {
+    if(quizzDaSegundaTela.questions[0].answers.length > 2){
     let respostas_pergunta_um = [{
       booleano: quizzDaSegundaTela.questions[0].answers[0].isCorrectAnswer,
       resposta_um_imagem: quizzDaSegundaTela.questions[0].answers[0].image,
       resposta_um_texto: quizzDaSegundaTela.questions[0].answers[0].text,
-    }, {
+    },{
       booleano: quizzDaSegundaTela.questions[0].answers[1].isCorrectAnswer,
       resposta_dois_imagem: quizzDaSegundaTela.questions[0].answers[1].image,
       resposta_dois_texto: quizzDaSegundaTela.questions[0].answers[1].text,
-    }, {
+    },{ 
       booleano: quizzDaSegundaTela.questions[0].answers[2].isCorrectAnswer,
       resposta_tres_imagem: quizzDaSegundaTela.questions[0].answers[2].image,
       resposta_tres_texto: quizzDaSegundaTela.questions[0].answers[2].text,
-    }, {
+    },{
       booleano: quizzDaSegundaTela.questions[0].answers[3].isCorrectAnswer,
       resposta_quatro_imagem: quizzDaSegundaTela.questions[0].answers[3].image,
       resposta_quatro_texto: quizzDaSegundaTela.questions[0].answers[3].text,
@@ -451,15 +424,15 @@ const funcoesQuizzes = {
       booleano: quizzDaSegundaTela.questions[1].answers[0].isCorrectAnswer,
       resposta_um_imagem: quizzDaSegundaTela.questions[1].answers[0].image,
       resposta_um_texto: quizzDaSegundaTela.questions[1].answers[0].text,
-    }, {
+    },{
       booleano: quizzDaSegundaTela.questions[1].answers[1].isCorrectAnswer,
       resposta_dois_imagem: quizzDaSegundaTela.questions[1].answers[1].image,
       resposta_dois_texto: quizzDaSegundaTela.questions[1].answers[1].text,
-    }, {
+    },{
       booleano: quizzDaSegundaTela.questions[1].answers[2].isCorrectAnswer,
       resposta_tres_imagem: quizzDaSegundaTela.questions[1].answers[2].image,
       resposta_tres_texto: quizzDaSegundaTela.questions[1].answers[2].text,
-    }, {
+    },{
       booleano: quizzDaSegundaTela.questions[1].answers[3].isCorrectAnswer,
       resposta_quatro_imagem: quizzDaSegundaTela.questions[1].answers[3].image,
       resposta_quatro_texto: quizzDaSegundaTela.questions[1].answers[3].text,
@@ -470,22 +443,21 @@ const funcoesQuizzes = {
       booleano: quizzDaSegundaTela.questions[2].answers[0].isCorrectAnswer,
       resposta_um_imagem: quizzDaSegundaTela.questions[2].answers[0].image,
       resposta_um_texto: quizzDaSegundaTela.questions[2].answers[0].text,
-    }, {
+    },{
       booleano: quizzDaSegundaTela.questions[2].answers[1].isCorrectAnswer,
       resposta_dois_imagem: quizzDaSegundaTela.questions[2].answers[1].image,
       resposta_dois_texto: quizzDaSegundaTela.questions[2].answers[1].text,
-    }, {
+    },{
       booleano: quizzDaSegundaTela.questions[2].answers[2].isCorrectAnswer,
       resposta_tres_imagem: quizzDaSegundaTela.questions[2].answers[2].image,
       resposta_tres_texto: quizzDaSegundaTela.questions[2].answers[2].text,
-    }, {
+    },{
       booleano: quizzDaSegundaTela.questions[2].answers[3].isCorrectAnswer,
       resposta_quatro_imagem: quizzDaSegundaTela.questions[2].answers[3].image,
       resposta_quatro_texto: quizzDaSegundaTela.questions[2].answers[3].text,
     }]
     respostas_pergunta_tres.sort(comparador);
-
-
+    
     let responde_quizz = document.querySelector(".responde-quizz");
     responde_quizz.innerHTML = responde_quizz.innerHTML + `
             <div class="cabecalho-gradiente"></div>
@@ -499,21 +471,21 @@ const funcoesQuizzes = {
               <div class="cabecalho-da-pergunta" style = "background-color: ${quizzDaSegundaTela.questions[0].color}">
                 <h1>${quizzDaSegundaTela.questions[0].title}</h1>
               </div>`
-
+    
     let resposta_um_pergunta_um = document.querySelector(".resposta-um-pergunta-um")
     resposta_um_pergunta_um.innerHTML = resposta_um_pergunta_um.innerHTML + `
                     <div class="imagem ${respostas_pergunta_um[0].booleano}">
-                      <div class="opcao-gradiente --escondido"></div>
+                      <div class="opcao-um-pergunta-um opcao-gradiente-um --escondido"></div>
                       <img
                       src="${respostas_pergunta_um[0].resposta_um_imagem}"
                       alt="imagem da opcao">
                       <p><b>${respostas_pergunta_um[0].resposta_um_texto}</b></p>
                     </div>`
-
+    
     let resposta_dois_pergunta_um = document.querySelector(".resposta-dois-pergunta-um")
     resposta_dois_pergunta_um.innerHTML = resposta_dois_pergunta_um.innerHTML + `
                   <div class="imagem ${respostas_pergunta_um[1].booleano}">
-                    <div class="opcao-gradiente --escondido"></div>_dois
+                    <div class="opcao-dois-pergunta-um opcao-gradiente-um --escondido"></div>
                     <img
                     src="${respostas_pergunta_um[1].resposta_um_imagem}"
                     alt="imagem da opcao">
@@ -523,7 +495,7 @@ const funcoesQuizzes = {
     let resposta_tres_pergunta_um = document.querySelector(".resposta-tres-pergunta-um")
     resposta_tres_pergunta_um.innerHTML = resposta_tres_pergunta_um.innerHTML + `
                   <div class="imagem ${respostas_pergunta_um[2].booleano}">
-                    <div class="opcao-gradiente --escondido"></div>_dois
+                    <div class="opcao-tres-pergunta-um opcao-gradiente-um --escondido"></div>
                     <img
                     src="${respostas_pergunta_um[2].resposta_um_imagem}"
                     alt="imagem da opcao">
@@ -533,7 +505,7 @@ const funcoesQuizzes = {
     let resposta_quatro_pergunta_um = document.querySelector(".resposta-quatro-pergunta-um")
     resposta_quatro_pergunta_um.innerHTML = resposta_quatro_pergunta_um.innerHTML + `
                   <div class="imagem ${respostas_pergunta_um[3].booleano}">
-                    <div class="opcao-gradiente --escondido"></div>_dois
+                    <div class="opcao-quatro-pergunta-um opcao-gradiente-um --escondido"></div>
                     <img
                     src="${respostas_pergunta_um[3].resposta_um_imagem}"
                     alt="imagem da opcao">
@@ -549,17 +521,17 @@ const funcoesQuizzes = {
     let resposta_um_pergunta_dois = document.querySelector(".resposta-um-pergunta-dois")
     resposta_um_pergunta_dois.innerHTML = resposta_um_pergunta_dois.innerHTML + `
                   <div class="imagem ${respostas_pergunta_dois[0].booleano}">
-                    <div class="opcao-gradiente --escondido"></div>
+                    <div class="opcao-um-pergunta-dois opcao-gradiente-dois --escondido"></div>
                     <img
                     src="${respostas_pergunta_dois[0].resposta_dois_imagem}"
                     alt="imagem da opcao">
                     <p><b>${respostas_pergunta_dois[0].resposta_dois_texto}</b></p>
                   </div>`
-
-    let resposta_dois_pergunta_dois = document.querySelector(".resposta-dois-pergunta-dois")
-    resposta_dois_pergunta_dois.innerHTML = resposta_dois_pergunta_dois.innerHTML + `
+                
+      let resposta_dois_pergunta_dois = document.querySelector(".resposta-dois-pergunta-dois")
+      resposta_dois_pergunta_dois.innerHTML = resposta_dois_pergunta_dois.innerHTML + `
                   <div class="imagem ${respostas_pergunta_dois[1].booleano}">
-                    <div class="opcao-gradiente --escondido"></div>
+                    <div class="opcao-dois-pergunta-dois opcao-gradiente-dois --escondido"></div>
                     <img
                     src="${respostas_pergunta_dois[1].resposta_dois_imagem}"
                     alt="imagem da opcao">
@@ -569,7 +541,7 @@ const funcoesQuizzes = {
     let resposta_tres_pergunta_dois = document.querySelector(".resposta-tres-pergunta-dois")
     resposta_tres_pergunta_dois.innerHTML = resposta_tres_pergunta_dois.innerHTML + `
                   <div class="imagem ${respostas_pergunta_um[2].booleano}">
-                    <div class="opcao-gradiente --escondido"></div>_dois
+                    <div class="opcao-tres-pergunta-dois opcao-gradiente-dois --escondido"></div>_dois
                     <img
                     src="${respostas_pergunta_um[2].resposta_um_imagem}"
                     alt="imagem da opcao">
@@ -579,13 +551,13 @@ const funcoesQuizzes = {
     let resposta_quatro_pergunta_dois = document.querySelector(".resposta-quatro-pergunta-dois")
     resposta_quatro_pergunta_dois.innerHTML = resposta_quatro_pergunta_dois.innerHTML + `
                   <div class="imagem ${respostas_pergunta_um[3].booleano}">
-                    <div class="opcao-gradiente --escondido"></div>_dois
+                    <div class="opcao-quatro-pergunta-dois opcao-gradiente-dois --escondido"></div>_dois
                     <img
                     src="${respostas_pergunta_um[3].resposta_um_imagem}"
                     alt="imagem da opcao">
                     <p><b>${respostas_pergunta_um[3].resposta_um_texto}</b></p>
                   </div>`
-
+        
     let cabecalho_tres = document.querySelector(".cabecalho-tres");
     cabecalho_tres.innerHTML = cabecalho_tres.innerHTML = `
               <div class="cabecalho-da-pergunta" style = "background-color: ${quizzDaSegundaTela.questions[2].color}">
@@ -595,27 +567,27 @@ const funcoesQuizzes = {
     let resposta_um_pergunta_tres = document.querySelector(".resposta-um-pergunta-tres")
     resposta_um_pergunta_tres.innerHTML = resposta_um_pergunta_tres.innerHTML + `
                   <div class="imagem ${respostas_pergunta_tres[0].booleano}">
-                    <div class="opcao-gradiente --escondido"></div>
+                    <div class="opcao-um-pergunta-tres opcao-gradiente-tres --escondido"></div>
                     <img
                     src="${respostas_pergunta_tres[0].resposta_tres_imagem}"
                     alt="imagem da opcao">
                     <p><b>${respostas_pergunta_tres[0].resposta_tres_texto}</b></p>
                   </div>`
-
+              
     let resposta_dois_pergunta_tres = document.querySelector(".resposta-dois-pergunta-tres")
     resposta_dois_pergunta_tres.innerHTML = resposta_dois_pergunta_tres.innerHTML + `
                   <div class="imagem {respostas_pergunta_tres[1].booleano}">
-                    <div class="opcao-gradiente --escondido"></div>
+                    <div class="opcao-dois-pergunta-tres opcao-gradiente-tres --escondido"></div>
                     <img
                     src="${respostas_pergunta_tres[1].resposta_tres_imagem}"
                     alt="imagem da opcao">
                     <p><b>${respostas_pergunta_tres[1].resposta_tres_texto}</b></p>
                   </div>`
 
-    let resposta_tres_pergunta_tres = document.querySelector(".resposta-tres-pergunta-tres")
+        let resposta_tres_pergunta_tres = document.querySelector(".resposta-tres-pergunta-tres")
     resposta_tres_pergunta_tres.innerHTML = resposta_tres_pergunta_tres.innerHTML + `
                   <div class="imagem ${respostas_pergunta_um[2].booleano}">
-                    <div class="opcao-gradiente --escondido"></div>_dois
+                    <div class="opcao-tres-pergunta-tres opcao-gradiente-tres --escondido"></div>_dois
                     <img
                     src="${respostas_pergunta_um[2].resposta_um_imagem}"
                     alt="imagem da opcao">
@@ -625,23 +597,186 @@ const funcoesQuizzes = {
     let resposta_quatro_pergunta_tres = document.querySelector(".resposta-quatro-pergunta-tres")
     resposta_quatro_pergunta_tres.innerHTML = resposta_quatro_pergunta_tres.innerHTML + `
                   <div class="imagem ${respostas_pergunta_um[3].booleano}">
-                    <div class="opcao-gradiente --escondido"></div>_dois
+                    <div class="opcao-quatro-pergunta-tres opcao-gradiente-tres --escondido"></div>_dois
                     <img
                     src="${respostas_pergunta_um[3].resposta_um_imagem}"
                     alt="imagem da opcao">
                     <p><b>${respostas_pergunta_um[3].resposta_um_texto}</b></p>
                   </div>`
+  }else{
+    let respostas_pergunta_um = [{
+      booleano: quizzDaSegundaTela.questions[0].answers[0].isCorrectAnswer,
+      resposta_um_imagem: quizzDaSegundaTela.questions[0].answers[0].image,
+      resposta_um_texto: quizzDaSegundaTela.questions[0].answers[0].text,
+    },{
+      booleano: quizzDaSegundaTela.questions[0].answers[1].isCorrectAnswer,
+      resposta_dois_imagem: quizzDaSegundaTela.questions[0].answers[1].image,
+      resposta_dois_texto: quizzDaSegundaTela.questions[0].answers[1].text,
+    }]
+    respostas_pergunta_um.sort(comparador);
+
+    let respostas_pergunta_dois = [{
+      booleano: quizzDaSegundaTela.questions[1].answers[0].isCorrectAnswer,
+      resposta_um_imagem: quizzDaSegundaTela.questions[1].answers[0].image,
+      resposta_um_texto: quizzDaSegundaTela.questions[1].answers[0].text,
+    },{
+      booleano: quizzDaSegundaTela.questions[1].answers[1].isCorrectAnswer,
+      resposta_dois_imagem: quizzDaSegundaTela.questions[1].answers[1].image,
+      resposta_dois_texto: quizzDaSegundaTela.questions[1].answers[1].text,
+    }]
+    respostas_pergunta_dois.sort(comparador);
+
+    let respostas_pergunta_tres = [{
+      booleano: quizzDaSegundaTela.questions[2].answers[0].isCorrectAnswer,
+      resposta_um_imagem: quizzDaSegundaTela.questions[2].answers[0].image,
+      resposta_um_texto: quizzDaSegundaTela.questions[2].answers[0].text,
+    },{
+      booleano: quizzDaSegundaTela.questions[2].answers[1].isCorrectAnswer,
+      resposta_dois_imagem: quizzDaSegundaTela.questions[2].answers[1].image,
+      resposta_dois_texto: quizzDaSegundaTela.questions[2].answers[1].text,
+    }]
+    respostas_pergunta_tres.sort(comparador);
+    
+    let responde_quizz = document.querySelector(".responde-quizz");
+    responde_quizz.innerHTML = responde_quizz.innerHTML + `
+            <div class="cabecalho-gradiente"></div>
+            <h1>${quizzDaSegundaTela.title}</h1>
+            <img
+            src = ${quizzDaSegundaTela.image}
+            alt="imagem da opcao">`
+
+    let cabecalho_um = document.querySelector(".cabecalho-um");
+    cabecalho_um.innerHTML = cabecalho_um.innerHTML = `
+              <div class="cabecalho-da-pergunta" style = "background-color: ${quizzDaSegundaTela.questions[0].color}">
+                <h1>${quizzDaSegundaTela.questions[0].title}</h1>
+              </div>`
+    
+    let resposta_um_pergunta_um = document.querySelector(".resposta-um-pergunta-um")
+    resposta_um_pergunta_um.innerHTML = resposta_um_pergunta_um.innerHTML + `
+                    <div class="imagem ${respostas_pergunta_um[0].booleano}">
+                      <div class="opcao-um-pergunta-um opcao-gradiente-um --escondido"></div>
+                      <img
+                      src="${respostas_pergunta_um[0].resposta_um_imagem}"
+                      alt="imagem da opcao">
+                      <p><b>${respostas_pergunta_um[0].resposta_um_texto}</b></p>
+                    </div>`
+    
+    let resposta_dois_pergunta_um = document.querySelector(".resposta-dois-pergunta-um")
+    resposta_dois_pergunta_um.innerHTML = resposta_dois_pergunta_um.innerHTML + `
+                  <div class="imagem ${respostas_pergunta_um[1].booleano}">
+                    <div class="opcao-dois-pergunta-um opcao-gradiente-um --escondido"></div>
+                    <img
+                    src="${respostas_pergunta_um[1].resposta_um_imagem}"
+                    alt="imagem da opcao">
+                    <p><b>${respostas_pergunta_um[1].resposta_um_texto}</b></p>
+                  </div>`
+
+    let cabecalho_dois = document.querySelector(".cabecalho-dois");
+    cabecalho_dois.innerHTML = cabecalho_dois.innerHTML = `
+              <div class="cabecalho-da-pergunta" style = "background-color: ${quizzDaSegundaTela.questions[1].color}">
+                <h1>${quizzDaSegundaTela.questions[1].title}</h1>
+              </div>`
+
+    let resposta_um_pergunta_dois = document.querySelector(".resposta-um-pergunta-dois")
+    resposta_um_pergunta_dois.innerHTML = resposta_um_pergunta_dois.innerHTML + `
+                  <div class="imagem ${respostas_pergunta_dois[0].booleano}">
+                    <div class="opcao-um-pergunta-dois opcao-gradiente-dois --escondido"></div>
+                    <img
+                    src="${respostas_pergunta_dois[0].resposta_dois_imagem}"
+                    alt="imagem da opcao">
+                    <p><b>${respostas_pergunta_dois[0].resposta_dois_texto}</b></p>
+                  </div>`
+                
+      let resposta_dois_pergunta_dois = document.querySelector(".resposta-dois-pergunta-dois")
+      resposta_dois_pergunta_dois.innerHTML = resposta_dois_pergunta_dois.innerHTML + `
+                  <div class="imagem ${respostas_pergunta_dois[1].booleano}">
+                    <div class="opcao-dois-pergunta-dois opcao-gradiente-dois --escondido"></div>
+                    <img
+                    src="${respostas_pergunta_dois[1].resposta_dois_imagem}"
+                    alt="imagem da opcao">
+                    <p><b>${respostas_pergunta_dois[1].resposta_dois_imagem}</b></p>
+                  </div>`
+        
+    let cabecalho_tres = document.querySelector(".cabecalho-tres");
+    cabecalho_tres.innerHTML = cabecalho_tres.innerHTML = `
+              <div class="cabecalho-da-pergunta" style = "background-color: ${quizzDaSegundaTela.questions[2].color}">
+                <h1>${quizzDaSegundaTela.questions[2].title}</h1>
+              </div>`
+
+    let resposta_um_pergunta_tres = document.querySelector(".resposta-um-pergunta-tres")
+    resposta_um_pergunta_tres.innerHTML = resposta_um_pergunta_tres.innerHTML + `
+                  <div class="imagem ${respostas_pergunta_tres[0].booleano}">
+                    <div class="opcao-um-pergunta-tres opcao-gradiente-tres --escondido"></div>
+                    <img
+                    src="${respostas_pergunta_tres[0].resposta_tres_imagem}"
+                    alt="imagem da opcao">
+                    <p><b>${respostas_pergunta_tres[0].resposta_tres_texto}</b></p>
+                  </div>`
+              
+    let resposta_dois_pergunta_tres = document.querySelector(".resposta-dois-pergunta-tres")
+    resposta_dois_pergunta_tres.innerHTML = resposta_dois_pergunta_tres.innerHTML + `
+                  <div class="imagem {respostas_pergunta_tres[1].booleano}">
+                    <div class="opcao-dois-pergunta-tres opcao-gradiente-tres --escondido"></div>
+                    <img
+                    src="${respostas_pergunta_tres[1].resposta_tres_imagem}"
+                    alt="imagem da opcao">
+                    <p><b>${respostas_pergunta_tres[1].resposta_tres_texto}</b></p>
+                  </div>`
+  }
   },
 
-  verificaRespostaCorreta(classe) {
-    let opcao_gradiente = document.querySelectorAll(".opcao_gradiente");
-    if(classe.checked) {
-      opcao_gradiente.forEach((elemento) => {
-        elemento.classList.remove("--escondido");
-        classe.classList.add("--escondido");
-      })
+    
+  verificaRespostaCorretaPerguntaUm(classe, tipo_de_opcao) {
+    let opcao_gradiente_um = document.querySelectorAll(".opcao-gradiente-um");
+    let esta_opcao = document.querySelector("." + tipo_de_opcao);
+    let radios_um = document.querySelectorAll(".radio-um");
+    for(let x = 0; x < radios_um.length; x++){
+      if(radios_um[x].checked){
+        for(let i = 0; i < opcao_gradiente_um.length; i++){
+        opcao_gradiente_um[i].classList.remove("--escondido");
+        }
+      }
     }
-  },
+    for(let z = 0; z < radios_um.length; z++){
+      radios_um[z].disabled = true;
+  }
+  esta_opcao.classList.add("--escondido");
+},
+
+  verificaRespostaCorretaPerguntaDois(classe, tipo_de_opcao) {
+    let opcao_gradiente_dois = document.querySelectorAll(".opcao-gradiente-dois");
+    let esta_opcao = document.querySelector("." + tipo_de_opcao);
+    let radios_dois = document.querySelectorAll(".radio-dois");
+    for(let x = 0; x < radios_dois.length; x++){
+      if(radios_dois[x].checked){
+        for(let i = 0; i < opcao_gradiente_dois.length; i++){
+        opcao_gradiente_dois[i].classList.remove("--escondido");
+        }
+      }
+    }
+    for(let z = 0; z < radios_dois.length; z++){
+      radios_dois[z].disabled = true;
+  }
+  esta_opcao.classList.add("--escondido");
+},
+
+  verificaRespostaCorretaPerguntaTres(classe, tipo_de_opcao) {
+    let opcao_gradiente_tres = document.querySelectorAll(".opcao-gradiente-tres");
+    let esta_opcao = document.querySelector("." + tipo_de_opcao);
+    let radios_tres = document.querySelectorAll(".radio-tres");
+    for(let x = 0; x < radios_tres.length; x++){
+      if(radios_tres[x].checked){
+        for(let i = 0; i < opcao_gradiente_tres.length; i++){
+        opcao_gradiente_tres[i].classList.remove("--escondido");
+        }
+      }
+    }
+    for(let z = 0; z < radios_tres.length; z++){
+      radios_tres[z].disabled = true;
+  }
+  esta_opcao.classList.add("--escondido");
+},
+
 
   montaEstruturaDaPergunta(numero) {
     const perguntaAnterior = document.querySelector(`.pergunta-${numero - 1}`)
@@ -735,8 +870,7 @@ const infoBaseCriaQuizz = new Object()
 funcoesApi.obterQuizzes()
 funcoesQuizzes.listaSeusQuizzes();
 
-function comparador() {
-  return Math.random() - 0.5;
+function comparador() { 
+	return Math.random() - 0.5; 
 }
 
-console.log(quizzDaSegundaTela)
