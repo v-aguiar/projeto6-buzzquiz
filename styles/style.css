@@ -274,7 +274,7 @@ article {
   width: 100%;
 }
 
-.opcao-gradiente {
+.opcao-gradiente-um, .opcao-gradiente-dois, .opcao-gradiente-tres {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -282,18 +282,24 @@ article {
 
   width: 100%;
 
-  background: linear-gradient(#000000 60%);
+  background: linear-gradient(rgba(199, 193, 193, 0.659) 0%, rgba(168, 163, 163, 0.686) 64.58%)
 }
 
-.opcao p {
+.texto-um {
   font-weight: 700;
   font-size: 13px;
   line-height: 15px;
   align-items: left;
   width: 150px;
 }
+.vermelho{
+  color: var(--text-red)
+}
+.verde{
+  color: var(--text-green)
+}
 
-.radio {
+.radio-um, .radio-dois, .radio-tres{
   width: 8px;
 }
 
