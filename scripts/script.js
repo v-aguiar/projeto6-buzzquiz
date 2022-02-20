@@ -578,50 +578,23 @@ const funcoesQuizzes = {
   colocaResultadoDoTesteNaTela() {
     let resultado = (QUANTIDADE_DE_ACERTOS / 3) * 100;
 
-    let respostas_levels = [{
-      titulo_levels_um: quizzDaSegundaTela.levels[0].title,
-      imagem_levels_um: quizzDaSegundaTela.levels[0].image,
-      texto_levels_um: quizzDaSegundaTela.levels[0].text,
-      valor_levels_um: quizzDaSegundaTela.levels[0].minValue,
-    }, {
-      titulo_levels_dois: quizzDaSegundaTela.levels[1].title,
-      imagem_levels_dois: quizzDaSegundaTela.levels[1].image,
-      texto_levels_dois: quizzDaSegundaTela.levels[1].text,
-      valor_levels_dois: quizzDaSegundaTela.levels[1].minValue,
-    }]
-
-    if(resultado < 50) {
+    for(let i = 0; i < quizzDaSegundaTela.levels.length; i++){
+      if(resultado >= quizzDaSegundaTela.levels[i].minValue){
       let texto_cabecalho_quatro = document.querySelector(".texto-do-cabecalho-quatro");
       texto_cabecalho_quatro.innerHTML = `
-        <h1>${respostas_levels[0].titulo_levels_um}</h1>
+        <h1>${quizzDaSegundaTela.levels[i].title}</h1>
     `
       let imagem_do_resultado = document.querySelector(".imagem-do-resultado");
       imagem_do_resultado.innerHTML = `
-        <img src="${respostas_levels[0].imagem_levels_um}" alt="imagem do seu resultado">
+        <img src="${ quizzDaSegundaTela.levels[i].image}" alt="imagem do seu resultado">
     `
 
       let texto_do_resultado = document.querySelector(".texto-do-resultado");
       texto_do_resultado.innerHTML = `
-        <h1>${Math.round(resultado)}% de acerto: ${respostas_levels[0].texto_levels_um}</h1>
+        <h1>${Math.round(resultado)}% de acerto: ${quizzDaSegundaTela.levels[i].text}</h1>
     `
+      }
     }
-
-    if(resultado >= 50) {
-      let texto_cabecalho_quatro = document.querySelector(".texto-do-cabecalho-quatro");
-      texto_cabecalho_quatro.innerHTML = `
-        <h1>${respostas_levels[1].titulo_levels_dois}</h1>
-    `
-      let imagem_do_resultado = document.querySelector(".imagem-do-resultado");
-      imagem_do_resultado.innerHTML = `
-        <img src="${respostas_levels[1].imagem_levels_dois}" alt = "essa é a imagem do seu resultado">
-    `
-
-    let texto_do_resultado = document.querySelector(".texto-do-resultado");
-    texto_do_resultado.innerHTML = `
-        <h1>${Math.round(resultado)}% de acerto: ${respostas_levels[1].texto_levels_dois}</h1>
-    `
-  }
- 
 },
 
 
