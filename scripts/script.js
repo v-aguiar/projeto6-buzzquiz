@@ -2,6 +2,7 @@ const API_URL = 'https://mock-api.driven.com.br/api/v4/buzzquizz';
 let NUM_PERGUNTAS = 3
 let NUM_NIVEIS = 2
 let quizzDaSegundaTela
+let QUANTIDADE_DE_ACERTOS = 0
 
 const funcoesApi = {
   obterQuizzes() {
@@ -184,6 +185,7 @@ const funcoesQuizzes = {
         quizzDaSegundaTela = card
     })
 
+    console.log(quizzDaSegundaTela)
 
     funcoesDeControle.toogleTela1();
     funcoesDeControle.toogleTela2();
@@ -459,7 +461,6 @@ const funcoesQuizzes = {
 
   montaEstruturaQuizzSegundaTela() {
     let cabecalho_do_quizz = document.querySelector('.cabecalho-do-quizz')
-
     if(quizzDaSegundaTela.questions[0].answers.length > 2){
     let respostas_pergunta_um = [{
       booleano: quizzDaSegundaTela.questions[0].answers[0].isCorrectAnswer,
@@ -539,7 +540,7 @@ const funcoesQuizzes = {
                       <img
                       src="${respostas_pergunta_um[0].resposta_um_imagem}"
                       alt="imagem da opcao">
-                      <p class="texto-um {respostas_pergunta_um[0].booleano}"><b>${respostas_pergunta_um[0].resposta_um_texto}</b></p>
+                      <p class="texto-um texto-um-pergunta-um ${respostas_pergunta_um[0].booleano}"><b>${respostas_pergunta_um[0].resposta_um_texto}</b></p>
                     </div>`
     
     let resposta_dois_pergunta_um = document.querySelector(".resposta-dois-pergunta-um")
@@ -549,7 +550,7 @@ const funcoesQuizzes = {
                     <img
                     src="${respostas_pergunta_um[1].resposta_um_imagem}"
                     alt="imagem da opcao">
-                    <p class="texto-um ${respostas_pergunta_um[1].booleano}" ><b>${respostas_pergunta_um[1].resposta_um_texto}</b></p>
+                    <p class="texto-um texto-dois-pergunta-um ${respostas_pergunta_um[1].booleano}" ><b>${respostas_pergunta_um[1].resposta_um_texto}</b></p>
                   </div>`
 
     let resposta_tres_pergunta_um = document.querySelector(".resposta-tres-pergunta-um")
@@ -559,7 +560,7 @@ const funcoesQuizzes = {
                     <img
                     src="${respostas_pergunta_um[2].resposta_um_imagem}"
                     alt="imagem da opcao">
-                    <p class="texto-um  ${respostas_pergunta_um[2].booleano}"><b>${respostas_pergunta_um[2].resposta_um_texto}</b></p>
+                    <p class="texto-um texto-tres-pergunta-um ${respostas_pergunta_um[2].booleano}"><b>${respostas_pergunta_um[2].resposta_um_texto}</b></p>
                   </div>`
 
     let resposta_quatro_pergunta_um = document.querySelector(".resposta-quatro-pergunta-um")
@@ -569,7 +570,7 @@ const funcoesQuizzes = {
                     <img
                     src="${respostas_pergunta_um[3].resposta_um_imagem}"
                     alt="imagem da opcao">
-                    <p class="texto-um ${respostas_pergunta_um[3].booleano}"><b>${respostas_pergunta_um[3].resposta_um_texto}</b></p>
+                    <p class="texto-um texto-quatro-pergunta-um ${respostas_pergunta_um[3].booleano}"><b>${respostas_pergunta_um[3].resposta_um_texto}</b></p>
                   </div>`
 
     let cabecalho_dois = document.querySelector(".cabecalho-dois");
@@ -585,7 +586,7 @@ const funcoesQuizzes = {
                     <img
                     src="${respostas_pergunta_dois[0].resposta_dois_imagem}"
                     alt="imagem da opcao">
-                    <p class="texto-dois ${respostas_pergunta_dois[0].booleano}"><b>${respostas_pergunta_dois[0].resposta_dois_texto}</b></p>
+                    <p class="texto-dois texto-um-pergunta-dois ${respostas_pergunta_dois[0].booleano}"><b>${respostas_pergunta_dois[0].resposta_dois_texto}</b></p>
                   </div>`
                 
       let resposta_dois_pergunta_dois = document.querySelector(".resposta-dois-pergunta-dois")
@@ -595,7 +596,7 @@ const funcoesQuizzes = {
                     <img
                     src="${respostas_pergunta_dois[1].resposta_dois_imagem}"
                     alt="imagem da opcao">
-                    <p class="texto-dois ${respostas_pergunta_dois[1].booleano}" ><b>${respostas_pergunta_dois[1].resposta_dois_imagem}</b></p>
+                    <p class="texto-dois texto-dois-pergunta-dois ${respostas_pergunta_dois[1].booleano}" ><b>${respostas_pergunta_dois[1].resposta_dois_imagem}</b></p>
                   </div>`
 
     let resposta_tres_pergunta_dois = document.querySelector(".resposta-tres-pergunta-dois")
@@ -605,7 +606,7 @@ const funcoesQuizzes = {
                     <img
                     src="${respostas_pergunta_um[2].resposta_um_imagem}"
                     alt="imagem da opcao">
-                    <p class="texto-dois ${respostas_pergunta_um[2].booleano}" ><b>${respostas_pergunta_um[2].resposta_um_texto}</b></p>
+                    <p class="texto-dois texto-tres-pergunta-dois ${respostas_pergunta_um[2].booleano}" ><b>${respostas_pergunta_um[2].resposta_um_texto}</b></p>
                   </div>`
 
     let resposta_quatro_pergunta_dois = document.querySelector(".resposta-quatro-pergunta-dois")
@@ -615,7 +616,7 @@ const funcoesQuizzes = {
                     <img
                     src="${respostas_pergunta_um[3].resposta_um_imagem}"
                     alt="imagem da opcao">
-                    <p class="texto-dois ${respostas_pergunta_um[3].booleano}"class="><b>${respostas_pergunta_um[3].resposta_um_texto}</b></p>
+                    <p class="texto-dois texto-quatro-pergunta-dois ${respostas_pergunta_um[3].booleano}"class="><b>${respostas_pergunta_um[3].resposta_um_texto}</b></p>
                   </div>`
         
     let cabecalho_tres = document.querySelector(".cabecalho-tres");
@@ -631,7 +632,7 @@ const funcoesQuizzes = {
                     <img
                     src="${respostas_pergunta_tres[0].resposta_tres_imagem}"
                     alt="imagem da opcao">
-                    <p class="texto-tres ${respostas_pergunta_tres[0].booleano}"><b>${respostas_pergunta_tres[0].resposta_tres_texto}</b></p>
+                    <p class="texto-tres texto-um-pergunta-tres ${respostas_pergunta_tres[0].booleano}"><b>${respostas_pergunta_tres[0].resposta_tres_texto}</b></p>
                   </div>`
               
     let resposta_dois_pergunta_tres = document.querySelector(".resposta-dois-pergunta-tres")
@@ -641,7 +642,7 @@ const funcoesQuizzes = {
                     <img
                     src="${respostas_pergunta_tres[1].resposta_tres_imagem}"
                     alt="imagem da opcao">
-                    <p class="texto-tres ${respostas_pergunta_tres[1].booleano}"><b>${respostas_pergunta_tres[1].resposta_tres_texto}</b></p>
+                    <p class="texto-tres texto-dois-pergunta-tres ${respostas_pergunta_tres[1].booleano}"><b>${respostas_pergunta_tres[1].resposta_tres_texto}</b></p>
                   </div>`
 
         let resposta_tres_pergunta_tres = document.querySelector(".resposta-tres-pergunta-tres")
@@ -651,7 +652,7 @@ const funcoesQuizzes = {
                     <img
                     src="${respostas_pergunta_um[2].resposta_um_imagem}"
                     alt="imagem da opcao">
-                    <p class="texto-tres ${respostas_pergunta_um[2].booleano}"><b>${respostas_pergunta_um[2].resposta_um_texto}</b></p>
+                    <p class="texto-tres texto-tres-pergunta-tres ${respostas_pergunta_um[2].booleano}"><b>${respostas_pergunta_um[2].resposta_um_texto}</b></p>
                   </div>`
 
     let resposta_quatro_pergunta_tres = document.querySelector(".resposta-quatro-pergunta-tres")
@@ -661,7 +662,7 @@ const funcoesQuizzes = {
                     <img
                     src="${respostas_pergunta_um[3].resposta_um_imagem}"
                     alt="imagem da opcao">
-                    <p class="texto-tres ${respostas_pergunta_um[3].booleano}"><b>${respostas_pergunta_um[3].resposta_um_texto}</b></p>
+                    <p class="texto-tres texto-quatro-pergunta-tres ${respostas_pergunta_um[3].booleano}"><b>${respostas_pergunta_um[3].resposta_um_texto}</b></p>
                   </div>`
   }else{
     let respostas_pergunta_um = [{
@@ -718,7 +719,7 @@ const funcoesQuizzes = {
                       <img
                       src="${respostas_pergunta_um[0].resposta_um_imagem}"
                       alt="imagem da opcao">
-                      <p class="texto-um ${respostas_pergunta_um[0].booleano}"  ><b>${respostas_pergunta_um[0].resposta_um_texto}</b></p>
+                      <p class="texto-um texto-um-pergunta-um ${respostas_pergunta_um[0].booleano}"  ><b>${respostas_pergunta_um[0].resposta_um_texto}</b></p>
                     </div>`
     
     let resposta_dois_pergunta_um = document.querySelector(".resposta-dois-pergunta-um")
@@ -728,7 +729,7 @@ const funcoesQuizzes = {
                     <img
                     src="${respostas_pergunta_um[1].resposta_um_imagem}"
                     alt="imagem da opcao">
-                    <p class="texto-um  ${respostas_pergunta_um[1].booleano}"><b>${respostas_pergunta_um[1].resposta_um_texto}</b></p>
+                    <p class="texto-um  texto-dois-pergunta-um ${respostas_pergunta_um[1].booleano}"><b>${respostas_pergunta_um[1].resposta_um_texto}</b></p>
                   </div>`
 
     let cabecalho_dois = document.querySelector(".cabecalho-dois");
@@ -744,7 +745,7 @@ const funcoesQuizzes = {
                     <img
                     src="${respostas_pergunta_dois[0].resposta_dois_imagem}"
                     alt="imagem da opcao">
-                    <p class="texto-dois ${respostas_pergunta_dois[0].booleano}"><b>${respostas_pergunta_dois[0].resposta_dois_texto}</b></p>
+                    <p class="texto-dois texto-um-pergunta-dois ${respostas_pergunta_dois[0].booleano}"><b>${respostas_pergunta_dois[0].resposta_dois_texto}</b></p>
                   </div>`
                 
       let resposta_dois_pergunta_dois = document.querySelector(".resposta-dois-pergunta-dois")
@@ -754,7 +755,7 @@ const funcoesQuizzes = {
                     <img
                     src="${respostas_pergunta_dois[1].resposta_dois_imagem}"
                     alt="imagem da opcao">
-                    <p class="texto-dois s ${respostas_pergunta_dois[1].booleano}"><b>${respostas_pergunta_dois[1].resposta_dois_imagem}</b></p>
+                    <p class="texto-dois texto-dois-pergunta-dois ${respostas_pergunta_dois[1].booleano}"><b>${respostas_pergunta_dois[1].resposta_dois_imagem}</b></p>
                   </div>`
         
     let cabecalho_tres = document.querySelector(".cabecalho-tres");
@@ -770,7 +771,7 @@ const funcoesQuizzes = {
                     <img
                     src="${respostas_pergunta_tres[0].resposta_tres_imagem}"
                     alt="imagem da opcao">
-                    <p class="texto-tres ${respostas_pergunta_tres[0].booleano}"><b>${respostas_pergunta_tres[0].resposta_tres_texto}</b></p>
+                    <p class="texto-tres texto-um-pergunta-tres ${respostas_pergunta_tres[0].booleano}"><b>${respostas_pergunta_tres[0].resposta_tres_texto}</b></p>
                   </div>`
               
     let resposta_dois_pergunta_tres = document.querySelector(".resposta-dois-pergunta-tres")
@@ -780,7 +781,7 @@ const funcoesQuizzes = {
                     <img
                     src="${respostas_pergunta_tres[1].resposta_tres_imagem}"
                     alt="imagem da opcao">
-                    <p class="texto-tres ${respostas_pergunta_tres[1].booleano}"><b>${respostas_pergunta_tres[1].resposta_tres_texto}</b></p>
+                    <p class="texto-tres texto-dois-pergunta-tres ${respostas_pergunta_tres[1].booleano}"><b>${respostas_pergunta_tres[1].resposta_tres_texto}</b></p>
                   </div>`
   }
   setTimeout(() => {
@@ -789,12 +790,14 @@ const funcoesQuizzes = {
   },
 
     
-  verificaRespostaCorretaPerguntaUm(classe, tipo_de_opcao,tipo_texto) {
+  verificaRespostaCorretaPerguntaUm(classe, tipo_de_opcao, tipo_texto) {
     let cabecalho_dois = document.querySelector(".cabecalho-dois")
     let opcao_gradiente_um = document.querySelectorAll(".opcao-gradiente-um");
     let esta_opcao = document.querySelector("." + tipo_de_opcao);
     let radios_um = document.querySelectorAll(".radio-um");
     let texto_um = document.querySelectorAll(".texto-um");
+    let tipo_de_texto = document.querySelector("." + tipo_texto)
+    console.log(tipo_de_texto)
     for(let x = 0; x < radios_um.length; x++){
       if(radios_um[x].checked){
         for(let i = 0; i < opcao_gradiente_um.length; i++){
@@ -818,14 +821,20 @@ const funcoesQuizzes = {
   setTimeout(() => {
     cabecalho_dois.scrollIntoView({behavior:"smooth"})
   }, 2000);
+
+  if(tipo_de_texto.classList.contains('true')){
+    QUANTIDADE_DE_ACERTOS++;
+    console.log(QUANTIDADE_DE_ACERTOS)
+  }
 },
 
-  verificaRespostaCorretaPerguntaDois(classe, tipo_de_opcao) {
+  verificaRespostaCorretaPerguntaDois(classe, tipo_de_opcao, tipo_texto) {
     let opcao_gradiente_dois = document.querySelectorAll(".opcao-gradiente-dois");
     let esta_opcao = document.querySelector("." + tipo_de_opcao);
     let radios_dois = document.querySelectorAll(".radio-dois");
     let texto_dois = document.querySelectorAll(".texto-dois");
     let cabecalho_tres = document.querySelector(".cabecalho-tres")
+    let tipo_de_texto = document.querySelector("." + tipo_texto)
     for(let x = 0; x < radios_dois.length; x++){
       if(radios_dois[x].checked){
         for(let i = 0; i < opcao_gradiente_dois.length; i++){
@@ -848,13 +857,20 @@ const funcoesQuizzes = {
   setTimeout(() => {
     cabecalho_tres.scrollIntoView({behavior:"smooth"})
   }, 2000);
+
+  if(tipo_de_texto.classList.contains('true')){
+    QUANTIDADE_DE_ACERTOS++;
+    console.log(QUANTIDADE_DE_ACERTOS)
+  }
 },
 
-  verificaRespostaCorretaPerguntaTres(classe, tipo_de_opcao) {
+  verificaRespostaCorretaPerguntaTres(classe, tipo_de_opcao, tipo_texto) {
     let opcao_gradiente_tres = document.querySelectorAll(".opcao-gradiente-tres");
     let esta_opcao = document.querySelector("." + tipo_de_opcao);
     let radios_tres = document.querySelectorAll(".radio-tres");
     let texto_tres = document.querySelectorAll(".texto-tres");
+    let tipo_de_texto = document.querySelector("." + tipo_texto)
+
     for(let x = 0; x < radios_tres.length; x++){
       if(radios_tres[x].checked){
         for(let i = 0; i < opcao_gradiente_tres.length; i++){
@@ -874,9 +890,74 @@ const funcoesQuizzes = {
       texto_tres[k].classList.add('vermelho')
     }
   }
+
+  if(tipo_de_texto.classList.contains('true')){
+    QUANTIDADE_DE_ACERTOS++;
+    console.log(QUANTIDADE_DE_ACERTOS)
+  }
+
+
+  funcoesQuizzes.colocaResultadoDoTesteNaTela()
+
+  let tela_de_resposta = document.querySelector(".tela-de-resposta");
+  tela_de_resposta.classList.remove("--escondido")
+
+  setTimeout(() => {
+    tela_de_resposta.scrollIntoView({behavior:"smooth"})
+  }, 1000);
 },
 
+colocaResultadoDoTesteNaTela(){
+  let resultado = (QUANTIDADE_DE_ACERTOS / 3)*100;
+  console.log(resultado)
+  let respostas_levels = [{
+    titulo_levels_um: quizzDaSegundaTela.levels[0].title,
+    imagem_levels_um: quizzDaSegundaTela.levels[0].image,
+    texto_levels_um: quizzDaSegundaTela.levels[0].text,
+    valor_levels_um: quizzDaSegundaTela.levels[0].minValue,
+  },{
+    titulo_levels_dois: quizzDaSegundaTela.levels[1].title,
+    imagem_levels_dois: quizzDaSegundaTela.levels[1].image,
+    texto_levels_dois: quizzDaSegundaTela.levels[1].text,
+    valor_levels_dois: quizzDaSegundaTela.levels[1].minValue,
+  }]
 
+  if(resultado < 50){
+    let texto_cabecalho_quatro = document.querySelector(".texto-do-cabecalho-quatro");
+    texto_cabecalho_quatro.innerHTML =  `
+        <h1>${respostas_levels[0].titulo_levels_um}</h1>
+    `
+    let imagem_do_resultado = document.querySelector(".imagem-do-resultado");
+    imagem_do_resultado.innerHTML = `
+        <img src="${respostas_levels[0].imagem_levels_um}" alt="imagem do seu resultado">
+    `
+
+    console.log(imagem_do_resultado)
+
+    let texto_do_resultado = document.querySelector(".texto-do-resultado");
+    texto_do_resultado.innerHTML = `
+        <h1>${Math.round(resultado)}% de acerto: ${respostas_levels[0].texto_levels_um}</h1>
+    `
+  }
+
+  if(resultado >= 50){
+    let texto_cabecalho_quatro = document.querySelector(".texto-do-cabecalho-quatro");
+    texto_cabecalho_quatro.innerHTML = `
+        <h1>${respostas_levels[1].titulo_levels_dois}</h1>
+    `
+    let imagem_do_resultado = document.querySelector(".imagem-do-resultado");
+    imagem_do_resultado.innerHTML = `
+        <img src="${respostas_levels[1].imagem_levels_dois}" alt = "essa é a imagem do seu resultado">
+    `
+
+    let texto_do_resultado = document.querySelector(".texto-do-resultado");
+    texto_do_resultado.innerHTML = `
+        <h1>${respostas_levels[1].texto_levels_dois}</h1>
+    `
+  }
+  
+  
+},
   montaEstruturaDaPergunta(numero) {
     const perguntaAnterior = document.querySelector(`.pergunta-${numero - 1}`)
     const estruturaPergunta = `
@@ -969,7 +1050,7 @@ const infoBaseCriaQuizz = new Object()
 funcoesApi.obterQuizzes()
 funcoesQuizzes.listaSeusQuizzes();
 
+
 function comparador() { 
 	return Math.random() - 0.5; 
 }
-
