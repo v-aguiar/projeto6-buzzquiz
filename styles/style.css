@@ -292,14 +292,16 @@ article {
   align-items: left;
   width: 150px;
 }
-.vermelho{
+
+.vermelho {
   color: var(--text-red)
 }
-.verde{
+
+.verde {
   color: var(--text-green)
 }
 
-.radio-um, .radio-dois, .radio-tres{
+.radio-um, .radio-dois, .radio-tres {
   width: 8px;
 }
 
@@ -501,5 +503,19 @@ ion-icon {
 
   li.quizzes-titulo {
     width: 100%;
+  }
+
+  /* Tela de responder um quizz */
+  .cabecalho-do-quizz {
+    position: absolute;
+    left: 0;
+
+    height: 227px;
+    width: 100%;
+  }
+
+  .tela-de-perguntas article {
+    margin-top: 257px;
+    width: 759px;
   }
 }
