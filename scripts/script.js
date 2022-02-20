@@ -564,6 +564,8 @@ const funcoesQuizzes = {
     let cabecalho = document.querySelector(".cabecalho");
     cabecalho.innerHTML = "";
     this.montaEstruturaQuizzSegundaTela();
+    let tela_de_resposta = document.querySelector(".tela-de-resposta");
+    tela_de_resposta.classList.add("--escondido")
   },
 
   voltarHome(){
