@@ -305,9 +305,7 @@ article {
 .radio-um, .radio-dois, .radio-tres{
   width: 8px;
 }
-.cabecalho-um{
- 
-}
+
 /**resultado do quizz*/
 .conteudo-final{
   display: flex;
