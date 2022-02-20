@@ -31,7 +31,7 @@
         <button data-identifier="create-quizz" onclick="funcoesQuizzes.criarQuizz()">Criar Quizz</button>
       </article>
 
-      <article class="seus-quizzes --escondido">
+      <article data-identifier="user-quizzes" class="seus-quizzes --escondido">
         <ul class="lista-seus-quizzes ">
         </ul>
       </article>
@@ -47,6 +47,7 @@
     <section class="tela-de-perguntas --escondido">
       <div class="responde-quizz cabecalho-do-quizz"></div>
       <article>
+<<<<<<< HEAD
           <div class="cabecalho"></div>
           <!--caixa de resultado-->
           <div class="tela-de-resposta --escondido">
@@ -60,6 +61,97 @@
               <button class="voltar"><p>voltar para home</p></button>
             </div>
           </div>
+=======
+        <!--primeira pergunta-->
+        <div class="cabecalho-um"></div>
+        <div class="conteudo-das-opcoes">
+          <label for="resposta-um-pergunta-um">
+            <input type="radio" name="pertunta-um" id="resposta-um-pergunta-um" class="radio-um"
+              onclick="funcoesQuizzes.verificaRespostaCorretaPerguntaUm(this, 'opcao-um-pergunta-um','texto-um-pergunta-um')">
+            <div class="resposta-um-pergunta-um opcao"></div>
+          </label>
+          <label for="resposta-dois-pergunta-um">
+            <input type="radio" name="pertunta-um" id="resposta-dois-pergunta-um" class="radio-um"
+              onclick="funcoesQuizzes.verificaRespostaCorretaPerguntaUm(this, 'opcao-dois-pergunta-um','texto-dois-pergunta-um')">
+            <div class="resposta-dois-pergunta-um opcao"></div>
+          </label>
+          <label for="resposta-tres-pergunta-um">
+            <input type="radio" name="pertunta-um" id="resposta-tres-pergunta-um" class="radio-um"
+              onclick="funcoesQuizzes.verificaRespostaCorretaPerguntaUm(this, 'opcao-tres-pergunta-um','texto-tres-pergunta-um')">
+            <div class="resposta-tres-pergunta-um opcao"></div>
+          </label>
+          <label for="resposta-quatro-pergunta-um">
+            <input type="radio" name="pertunta-um" id="resposta-quatro-pergunta-um" class="radio-um"
+              onclick="funcoesQuizzes.verificaRespostaCorretaPerguntaUm(this, 'opcao-quatro-pergunta-um','texto-quatro-pergunta-um')">
+            <div class="resposta-quatro-pergunta-um opcao"></div>
+          </label>
+        </div>
+        <!--segunda pergunta-->
+        <div class="cabecalho-dois"></div>
+        <div class="conteudo-das-opcoes">
+          <label for="resposta-um-pergunta-dois">
+            <input type="radio" name="pertunta-dois" id="resposta-um-pergunta-dois" class="radio-dois"
+              onclick="funcoesQuizzes.verificaRespostaCorretaPerguntaDois(this, 'opcao-um-pergunta-dois','texto-um-pergunta-dois')">
+            <div class="resposta-um-pergunta-dois opcao"></div>
+          </label>
+          <label for="resposta-dois-pergunta-dois">
+            <input type="radio" name="pertunta-dois" id="resposta-dois-pergunta-dois" class="radio-dois"
+              onclick="funcoesQuizzes.verificaRespostaCorretaPerguntaDois(this, 'opcao-dois-pergunta-dois','texto-dois-pergunta-dois')">
+            <div class="resposta-dois-pergunta-dois opcao"></div>
+          </label>
+          <label for="resposta-tres-pergunta-dois">
+            <input type="radio" name="pertunta-dois" id="resposta-tres-pergunta-dois" class="radio-dois"
+              onclick="funcoesQuizzes.verificaRespostaCorretaPerguntaDois(this, 'opcao-tres-pergunta-dois','texto-tres-pergunta-dois')">
+            <div class="resposta-tres-pergunta-dois opcao"></div>
+          </label>
+          <label for="resposta-quatro-pergunta-dois">
+            <input type="radio" name="pertunta-dois" id="resposta-quatro-pergunta-dois" class="radio-dois"
+              onclick="funcoesQuizzes.verificaRespostaCorretaPerguntaDois(this, 'opcao-quatro-pergunta-dois','texto-quatro-pergunta-dois')">
+            <div class="resposta-quatro-pergunta-dois opcao"></div>
+          </label>
+        </div>
+        <!--terceira pergunta-->
+        <div class="cabecalho-tres"></div>
+        <div class="conteudo-das-opcoes">
+          <label for="resposta-um-pergunta-tres">
+            <input type="radio" name="pertunta-tres" id="resposta-um-pergunta-tres" class="radio-tres"
+              onclick="funcoesQuizzes.verificaRespostaCorretaPerguntaTres(this, 'opcao-um-pergunta-tres','texto-um-pergunta-tres')">
+            <div class="resposta-um-pergunta-tres opcao"></div>
+          </label>
+          <label for="resposta-dois-pergunta-tres">
+            <input type="radio" name="pertunta-tres" id="resposta-dois-pergunta-tres" class="radio-tres"
+              onclick="funcoesQuizzes.verificaRespostaCorretaPerguntaTres(this, 'opcao-dois-pergunta-tres','texto-dois-pergunta-tres')">
+            <div class="resposta-dois-pergunta-tres opcao"></div>
+          </label>
+          <label for="resposta-tres-pergunta-tres">
+            <input type="radio" name="pertunta-tres" id="resposta-tres-pergunta-tres" class="radio-tres"
+              onclick="funcoesQuizzes.verificaRespostaCorretaPerguntaTres(this, 'opcao-tres-pergunta-tres','texto-tres-pergunta-tres')">
+            <div class="resposta-tres-pergunta-tres opcao"></div>
+          </label>
+          <label for="resposta-quatro-pergunta-tres">
+            <input type="radio" name="pertunta-tres" id="resposta-quatro-pergunta-tres" class="radio-tres"
+              onclick="funcoesQuizzes.verificaRespostaCorretaPerguntaTres(this, 'opcao-quatro-pergunta-tres','texto-quatro-pergunta-tres')">
+            <div class="resposta-quatro-pergunta-tres opcao"></div>
+          </label>
+        </div>
+        <!--caixa de resultado-->
+        <div class="tela-de-resposta --escondido">
+          <div class="cabecalho-quatro">
+            <div class="texto-do-cabecalho-quatro"></div>
+          </div>
+          <div class="resultado-do-quizz">
+            <div class="imagem-do-resultado"></div>
+            <div class="texto-do-resultado"></div>
+            <button class="botao-criacao">
+              <p>reiniciar quizz</p>
+            </button>
+            <button class="voltar">
+              <p>voltar para home</p>
+            </button>
+          </div>
+        </div>
+
+>>>>>>> 08044c187b9bfdb0b2d058ee78a78001f94392e7
       </article>
 
     </section>

@@ -298,14 +298,20 @@ article {
   align-items: left;
   width: 150px;
 }
-.vermelho{
+
+.vermelho {
   color: var(--text-red)
 }
-.verde{
+
+.verde {
   color: var(--text-green)
 }
 
+<<<<<<< HEAD
 .radio{
+=======
+.radio-um, .radio-dois, .radio-tres {
+>>>>>>> 08044c187b9bfdb0b2d058ee78a78001f94392e7
   width: 8px;
   display: none;
 }
@@ -567,5 +573,19 @@ ion-icon {
 
   li.quizzes-titulo {
     width: 100%;
+  }
+
+  /* Tela de responder um quizz */
+  .cabecalho-do-quizz {
+    position: absolute;
+    left: 0;
+
+    height: 227px;
+    width: 100%;
+  }
+
+  .tela-de-perguntas article {
+    margin-top: 257px;
+    width: 759px;
   }
 }
