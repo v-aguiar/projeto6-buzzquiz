@@ -545,6 +545,8 @@ const funcoesQuizzes = {
 
   JOGADAS++;
 
+  console.log(JOGADAS)
+
   if(JOGADAS === quizzDaSegundaTela.questions.length){
     funcoesQuizzes.colocaResultadoDoTesteNaTela()
 
@@ -566,6 +568,7 @@ const funcoesQuizzes = {
     this.montaEstruturaQuizzSegundaTela();
     let tela_de_resposta = document.querySelector(".tela-de-resposta");
     tela_de_resposta.classList.add("--escondido")
+    JOGADAS = 0;
   },
 
   voltarHome(){
