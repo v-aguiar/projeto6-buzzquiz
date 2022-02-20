@@ -251,7 +251,8 @@ article {
   justify-content: center;
   align-items: center;
 }
-.cabecalho-da-pergunta h1{
+
+.cabecalho-da-pergunta h1 {
   text-align: center;
 }
 
@@ -288,7 +289,7 @@ article {
   background: linear-gradient(rgba(199, 193, 193, 0.659) 0%, rgba(168, 163, 163, 0.686) 64.58%)
 }
 
-.texto-um ,.texto-dois, .texto-tres{
+.texto-um, .texto-dois, .texto-tres {
   font-weight: 700;
   font-size: 13px;
   line-height: 15px;
@@ -309,17 +310,19 @@ article {
 }
 
 /**resultado do quizz*/
-.conteudo-final{
+.conteudo-final {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.resultado-do-quizz{
+
+.resultado-do-quizz {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.cabecalho-quatro{
+
+.cabecalho-quatro {
   width: 100%;
   height: 100px;
   background-color: var(--buzz-red);
@@ -327,46 +330,54 @@ article {
   align-items: center;
   justify-content: center;
   margin-bottom: 9px;
-  border-radius: 5px;;
+  border-radius: 5px;
+  ;
 }
-.texto-do-cabecalho-quatro{
+
+.texto-do-cabecalho-quatro {
   width: 330px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  padding:9px;
+  padding: 9px;
 }
-.texto-do-cabecalho-quatro h1{
-  width:300px;
+
+.texto-do-cabecalho-quatro h1 {
+  width: 300px;
   color: white;
   font-family: 'Roboto';
 }
-.imagem-do-resultado{
+
+.imagem-do-resultado {
   width: 100%;
   height: 255px;
   margin-bottom: 9px;
   display: flex;
   justify-content: center;
 }
-.imagem-do-resultado img{
+
+.imagem-do-resultado img {
   width: 100%;
 }
 
-.texto-do-resultado h1{
+.texto-do-resultado h1 {
   width: 100%;
-  padding:9px;
+  padding: 9px;
   margin-bottom: 48px;
   text-align: center;
 }
-.voltar{
-  border:none;
+
+.voltar {
+  border: none;
   background-color: var(--bg-color);
   cursor: pointer;
 }
-.radio-um,.radio-dois,.radio-tres{
+
+.radio-um, .radio-dois, .radio-tres {
   display: none;
 }
+
 /**Parte de inputs*/
 .cria-quizz {
   display: block;
@@ -460,7 +471,7 @@ input::placeholder {
   border: none;
   border-radius: 15px;
   background-color: var(--buzz-red);
-  cursor:pointer;
+  cursor: pointer;
 }
 
 .botao-criacao p {
@@ -577,8 +588,22 @@ ion-icon {
     width: 100%;
   }
 
+  .tela-de-perguntas {
+    width: 100%;
+  }
+
   .tela-de-perguntas article {
     margin-top: 257px;
     width: 759px;
   }
+
+  /* Tela 3 -> Parte 1 (infos básicas) */
+  .forms {
+    max-width: 600px;
+  }
+
+  .forms input {
+    width: 100%;
+  }
+
 }
