@@ -253,13 +253,15 @@ article {
 }
 .cabecalho-da-pergunta h1{
   text-align: center;
+  white-space: wrap;
+  color:white;
 }
 
 .conteudo-das-opcoes {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-bottom: 50px;
+  margin-bottom: 200px;
 }
 
 .opcao {
@@ -268,7 +270,7 @@ article {
 }
 
 .opcao .imagem {
-  width: 163px;
+  width: 100%;
   height: 113px;
   position: relative;
 }
@@ -277,18 +279,19 @@ article {
   width: 100%;
 }
 
-.opcao-gradiente-um, .opcao-gradiente-dois, .opcao-gradiente-tres {
+.gradiente-da-opcao {
   position: absolute;
   top: 0;
   bottom: 0;
   z-index: 1;
 
   width: 100%;
+  height: 130px;
 
   background: linear-gradient(rgba(199, 193, 193, 0.659) 0%, rgba(168, 163, 163, 0.686) 64.58%)
 }
 
-.texto-um ,.texto-dois, .texto-tres{
+.texto{
   font-weight: 700;
   font-size: 13px;
   line-height: 15px;
@@ -302,8 +305,9 @@ article {
   color: var(--text-green)
 }
 
-.radio-um, .radio-dois, .radio-tres{
+.radio{
   width: 8px;
+  display: none;
 }
 
 /**resultado do quizz*/
@@ -339,6 +343,7 @@ article {
   width:300px;
   color: white;
   font-family: 'Roboto';
+  white-space: wrap;
 }
 .imagem-do-resultado{
   width: 100%;
@@ -356,14 +361,12 @@ article {
   padding:9px;
   margin-bottom: 48px;
   text-align: center;
+  white-space: wrap;
 }
 .voltar{
   border:none;
   background-color: var(--bg-color);
   cursor: pointer;
-}
-.radio-um,.radio-dois,.radio-tres{
-  display: none;
 }
 /**Parte de inputs*/
 .cria-quizz {
