@@ -672,32 +672,13 @@ ion-icon {
     justify-content: space-between;
     margin-bottom: 150px;
   }
-<<<<<<< HEAD
   
   .gradiente-e-imagem{
-=======
-
-  .opcao {
-    width: 350px;
-    height: 175px;
-  }
-
-  .opcao .imagem {
-    width: 100%;
->>>>>>> b54b061fde2a625a4aff73feeb5285167189e5e8
     position: relative;
     width:100%;
     overflow: hidden;
   }
 
-<<<<<<< HEAD
-  .opcao{
-    width: 250px;
-    height: 200px;
-  }
-
-=======
->>>>>>> b54b061fde2a625a4aff73feeb5285167189e5e8
   .imagem img {
     width: 100%;
     max-width: 100%;
@@ -710,12 +691,7 @@ ion-icon {
     z-index: 1;
 
     width: 100%;
-<<<<<<< HEAD
   
-=======
-    height: 197px;
-
->>>>>>> b54b061fde2a625a4aff73feeb5285167189e5e8
     background-color: rgba(255, 255, 255, 0.549);
   }
 
@@ -812,30 +788,11 @@ ion-icon {
   }
 
   /* Tela 3 -> Parte 1 (infos básicas) */
-  .cria-quizz .forms {
+  .forms {
     max-width: 600px;
   }
 
-  .cria-quizz .forms input {
-    width: 100%;
-  }
-
-  /* Tela 3 -> parte 2 (perguntas) */
-  .cria-quizz {
-    width: 100%;
-  }
-
-  .cria-quizz .forms form {
-    width: 100%;
-  }
-
-  /* Tela 3 -> parte 3 (niveis) */
-  .cria-quizz .nivel-1,
-  .cria-quizz .pergunta-1 {
-    width: 100%;
-  }
-
-  .cria-quizz form textarea {
+  .forms input {
     width: 100%;
   }
 
