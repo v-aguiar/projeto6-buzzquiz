@@ -785,11 +785,30 @@ ion-icon {
   }
 
   /* Tela 3 -> Parte 1 (infos básicas) */
-  .forms {
+  .cria-quizz .forms {
     max-width: 600px;
   }
 
-  .forms input {
+  .cria-quizz .forms input {
+    width: 100%;
+  }
+
+  /* Tela 3 -> parte 2 (perguntas) */
+  .cria-quizz {
+    width: 100%;
+  }
+
+  .cria-quizz .forms form {
+    width: 100%;
+  }
+
+  /* Tela 3 -> parte 3 (niveis) */
+  .cria-quizz .nivel-1,
+  .cria-quizz .pergunta-1 {
+    width: 100%;
+  }
+
+  .cria-quizz form textarea {
     width: 100%;
   }
 
