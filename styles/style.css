@@ -256,12 +256,14 @@ article {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 8px;;
+  padding: 8px;
+  ;
 }
-.cabecalho-da-pergunta h1{
+
+.cabecalho-da-pergunta h1 {
   text-align: center;
   white-space: wrap;
-  color:white;
+  color: white;
   white-space: wrap;
 
 }
@@ -294,7 +296,7 @@ article {
   width: 100%;
 }
 
-.gradiente-da-opcao{
+.gradiente-da-opcao {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -305,37 +307,41 @@ article {
   background: linear-gradient(rgba(199, 193, 193, 0.659) 0%, rgba(168, 163, 163, 0.686) 64.58%)
 }
 
-.texto{
+.texto {
   font-weight: 700;
   font-size: 13px;
   line-height: 15px;
   align-items: left;
   width: 150px;
 }
-.vermelho{
+
+.vermelho {
   color: var(--text-red)
 }
-.verde{
+
+.verde {
   color: var(--text-green)
 }
 
-.radio{
+.radio {
   width: 8px;
   display: none;
 }
 
 /**resultado do quizz*/
-.conteudo-final{
+.conteudo-final {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.resultado-do-quizz{
+
+.resultado-do-quizz {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.cabecalho-quatro{
+
+.cabecalho-quatro {
   width: 100%;
   height: 100px;
   background-color: var(--buzz-red);
@@ -343,47 +349,56 @@ article {
   align-items: center;
   justify-content: center;
   margin-bottom: 9px;
-  border-radius: 5px;;
+  border-radius: 5px;
+  ;
 }
-.texto-do-cabecalho-quatro{
+
+.texto-do-cabecalho-quatro {
   width: 330px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  padding:9px;
+  padding: 9px;
 }
-.texto-do-cabecalho-quatro h1{
-  width:300px;
+
+.texto-do-cabecalho-quatro h1 {
+  width: 300px;
   color: white;
   font-family: 'Roboto';
   white-space: wrap;
 }
-.imagem-do-resultado{
+
+.imagem-do-resultado {
   width: 100%;
   height: 255px;
   margin-bottom: 9px;
   display: flex;
   justify-content: center;
 }
-.imagem-do-resultado img{
+
+.imagem-do-resultado img {
   width: 100%;
 }
-.texto-do-resultado{
+
+.texto-do-resultado {
   width: 100%;
 }
-.texto-do-resultado h1{
+
+.texto-do-resultado h1 {
   width: 100%;
-  padding:9px;
+  padding: 9px;
   margin-bottom: 48px;
   text-align: center;
-  white-space:wrap;
+  white-space: wrap;
 }
-.voltar{
-  border:none;
+
+.voltar {
+  border: none;
   background-color: var(--bg-color);
   cursor: pointer;
 }
+
 /**Parte de inputs*/
 .cria-quizz {
   display: block;
@@ -477,7 +492,7 @@ input::placeholder {
   border: none;
   border-radius: 15px;
   background-color: var(--buzz-red);
-  cursor:pointer;
+  cursor: pointer;
 }
 
 .botao-criacao p {
@@ -586,9 +601,10 @@ ion-icon {
   }
 
   /**parte de perguntas*/
-  .tela-de-perguntas{
+  .tela-de-perguntas {
     width: 100vw;
   }
+
   .cabecalho-do-quizz {
     width: 100%;
     height: 227px;
@@ -601,13 +617,13 @@ ion-icon {
     position: relative;
     padding: 10px;
   }
-  
+
   .cabecalho-do-quizz img {
     width: 100%;
     position: absolute;
     z-index: -1;
   }
-  
+
   .cabecalho-do-quizz h1 {
     width: 1000px;
     color: white;
@@ -616,103 +632,128 @@ ion-icon {
     white-space: wrap;
     font-size: 30px;
   }
-  
+
   .cabecalho-gradiente {
     position: absolute;
     top: 0;
     bottom: 0;
     z-index: 1;
-  
+
     width: 100vw;
-    
+
     background-color: rgba(0, 0, 0, 0.604);
   }
-  
+
   article {
     width: 50%;
     margin: 28px auto;
   }
-  
+
   .cabecalho-da-pergunta {
     height: 90px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 8px;;
+    padding: 8px;
+    ;
   }
-  .cabecalho-da-pergunta h1{
+
+  .cabecalho-da-pergunta h1 {
     text-align: center;
     white-space: wrap;
-    color:white;
+    color: white;
     white-space: wrap;
     font-size: 25px;
   }
-  
+
   .conteudo-das-opcoes {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 150px;
   }
+<<<<<<< HEAD
   
   .gradiente-e-imagem{
+=======
+
+  .opcao {
+    width: 350px;
+    height: 175px;
+  }
+
+  .opcao .imagem {
+    width: 100%;
+>>>>>>> b54b061fde2a625a4aff73feeb5285167189e5e8
     position: relative;
     width:100%;
     overflow: hidden;
   }
 
+<<<<<<< HEAD
   .opcao{
     width: 250px;
     height: 200px;
   }
 
+=======
+>>>>>>> b54b061fde2a625a4aff73feeb5285167189e5e8
   .imagem img {
     width: 100%;
     max-width: 100%;
   }
-  
-  .gradiente-da-opcao{
+
+  .gradiente-da-opcao {
     position: absolute;
     top: 0;
     bottom: 0;
     z-index: 1;
-  
+
     width: 100%;
+<<<<<<< HEAD
   
+=======
+    height: 197px;
+
+>>>>>>> b54b061fde2a625a4aff73feeb5285167189e5e8
     background-color: rgba(255, 255, 255, 0.549);
   }
-  
-  .texto{
+
+  .texto {
     font-weight: 700;
     font-size: 13px;
     line-height: 15px;
     align-items: left;
     width: 150px;
   }
-  .vermelho{
+
+  .vermelho {
     color: var(--text-red)
   }
-  .verde{
+
+  .verde {
     color: var(--text-green)
   }
-  
-  .radio{
+
+  .radio {
     width: 8px;
     display: none;
   }
-  
+
   /**resultado do quizz*/
-  .conteudo-final{
+  .conteudo-final {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  .resultado-do-quizz{
+
+  .resultado-do-quizz {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  .cabecalho-quatro{
+
+  .cabecalho-quatro {
     width: 100%;
     height: 100px;
     background-color: var(--buzz-red);
@@ -720,31 +761,40 @@ ion-icon {
     align-items: center;
     justify-content: center;
     margin-bottom: 9px;
-    border-radius: 5px;;
+    border-radius: 5px;
+    ;
   }
-  .texto-do-cabecalho-quatro{
+
+  .texto-do-cabecalho-quatro {
+    width: 330px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding:9px;
+    flex-wrap: wrap;
+    padding: 9px;
   }
-  .texto-do-cabecalho-quatro h1{
+
+  .texto-do-cabecalho-quatro h1 {
+    width: 300px;
     color: white;
     font-family: 'Roboto';
     white-space: wrap;
     text-align: center;
   }
-  .imagem-do-resultado{
+
+  .imagem-do-resultado {
     width: 100%;
     height: 255px;
     margin-bottom: 9px;
     display: flex;
     justify-content: center;
   }
-  .imagem-do-resultado img{
+
+  .imagem-do-resultado img {
     width: 100%;
   }
-  .texto-do-resultado{
+
+  .texto-do-resultado {
     width: 100%;
   }
   .texto-do-resultado h1{
@@ -752,11 +802,22 @@ ion-icon {
     padding:9px;
     margin-bottom: 48px;
     text-align: center;
-    white-space:wrap;
+    white-space: wrap;
   }
-  .voltar{
-    border:none;
+
+  .voltar {
+    border: none;
     background-color: var(--bg-color);
     cursor: pointer;
   }
+
+  /* Tela 3 -> Parte 1 (infos básicas) */
+  .forms {
+    max-width: 600px;
+  }
+
+  .forms input {
+    width: 100%;
+  }
+
 }
