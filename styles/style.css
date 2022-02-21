@@ -203,6 +203,10 @@ main {
   width: 375px;
 }
 
+.cabecalho{
+  padding: 0 5px;
+}
+
 .cabecalho-do-quizz {
   width: 375px;
   height: 142px;
@@ -278,7 +282,12 @@ article {
 .opcao .imagem {
   width: 100%;
   height: 113px;
+}
+
+.gradiente-e-imagem{
   position: relative;
+  width: 100%;
+  overflow: hidden;
 }
 
 .imagem img {
@@ -292,7 +301,6 @@ article {
   z-index: 1;
 
   width: 100%;
-  height: 130px;
 
   background: linear-gradient(rgba(199, 193, 193, 0.659) 0%, rgba(168, 163, 163, 0.686) 64.58%)
 }
@@ -644,22 +652,23 @@ ion-icon {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin-bottom: 200px;
-    background-color: #FFFFFF;
+    margin-bottom: 150px;
   }
   
-  .opcao {
-    width: 350px;
-    height: 175px;
-  }
-  
-  .opcao .imagem {
-    width: 100%;
+  .gradiente-e-imagem{
     position: relative;
+    width:100%;
+    overflow: hidden;
   }
-  
+
+  .opcao{
+    width: 250px;
+    height: 200px;
+  }
+
   .imagem img {
     width: 100%;
+    max-width: 100%;
   }
   
   .gradiente-da-opcao{
@@ -669,7 +678,6 @@ ion-icon {
     z-index: 1;
   
     width: 100%;
-    height: 197px;
   
     background-color: rgba(255, 255, 255, 0.549);
   }
@@ -715,18 +723,16 @@ ion-icon {
     border-radius: 5px;;
   }
   .texto-do-cabecalho-quatro{
-    width: 330px;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
     padding:9px;
   }
   .texto-do-cabecalho-quatro h1{
-    width:300px;
     color: white;
     font-family: 'Roboto';
     white-space: wrap;
+    text-align: center;
   }
   .imagem-do-resultado{
     width: 100%;
@@ -742,7 +748,7 @@ ion-icon {
     width: 100%;
   }
   .texto-do-resultado h1{
-    width: 100%;
+    overflow: hidden;
     padding:9px;
     margin-bottom: 48px;
     text-align: center;

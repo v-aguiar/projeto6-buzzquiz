@@ -491,10 +491,12 @@ const funcoesQuizzes = {
                     <input type="radio" name="pertunta-${q}" id="resposta-${g}-pergunta-${q}" class="radio-${q} radio" onclick="funcoesQuizzes.verificaRespostaCorreta(${q},'opcao-${g}-pergunta-${q}','texto-${g}-pergunta-${q}')"> 
                     <div class="resposta-${g}-pergunta-${q} opcao">
                       <div class="imagem">
-                        <div class="opcao-${g}-pergunta-${q} opcao-gradiente-${q} --escondido gradiente-da-opcao"></div>
-                        <img
-                        src="${quizzDaSegundaTela.questions[q].answers[g].image}"
-                        alt="imagem da opcao">
+                        <div class="gradiente-e-imagem">
+                          <div class="opcao-${g}-pergunta-${q} opcao-gradiente-${q} --escondido gradiente-da-opcao"></div>
+                          <img
+                          src="${quizzDaSegundaTela.questions[q].answers[g].image}"
+                          alt="imagem da opcao">
+                        <div>
                         <p class="texto-${q} texto-${g}-pergunta-${q} ${quizzDaSegundaTela.questions[q].answers[g].isCorrectAnswer} texto"><b>${quizzDaSegundaTela.questions[q].answers[g].text}</b></p>
                       </div>
                     </div>
@@ -569,6 +571,7 @@ const funcoesQuizzes = {
     let tela_de_resposta = document.querySelector(".tela-de-resposta");
     tela_de_resposta.classList.add("--escondido")
     JOGADAS = 0;
+    QUANTIDADE_DE_ACERTOS = 0;
   },
 
   voltarHome(){
