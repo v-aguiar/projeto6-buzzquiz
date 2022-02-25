@@ -73,7 +73,7 @@ main {
   width: 100%;
 
   margin-top: 69px;
-  padding: 0 17.5px;
+  margin: 69px auto;
 
   display: flex;
   flex-direction: column;
@@ -84,6 +84,7 @@ main {
 
 .quizzes-container {
   width: 100%;
+  padding: 0 17.5px;
 }
 
 .sem-quizzes {
@@ -198,26 +199,35 @@ main {
   color: #fff;
 }
 
-/* Estilos da página de um quizz */
+/******************** Estilos da página de um quizz */
+
 .tela-de-perguntas {
+  margin-top: 155px;
   width: 375px;
+
+  align-self: center;
 }
 
-.cabecalho{
+.cabecalho {
   padding: 0 5px;
 }
 
 .cabecalho-do-quizz {
-  width: 375px;
+  position: absolute;
+  top: 69px;
+  left: 0;
+
+  width: 100vw;
   height: 142px;
+  margin-bottom: 42px;
+  padding: 10px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   background-color: var(--buzz-grey);
-  margin-bottom: 42px;
   opacity: 0.6;
-  position: relative;
-  padding: 10px;
 }
 
 .cabecalho-do-quizz img {
@@ -238,6 +248,7 @@ main {
 .cabecalho-gradiente {
   position: absolute;
   top: 0;
+  left: 0;
   bottom: 0;
   z-index: 1;
 
@@ -270,14 +281,15 @@ article {
 
 .conteudo-das-opcoes {
   display: flex;
+  gap: 35px;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-bottom: 200px;
+  margin-bottom: 150px;
   background-color: #FFFFFF;
 }
 
 .opcao {
-  width: 163px;
+  width: 145px;
   height: 113px;
 }
 
@@ -286,7 +298,7 @@ article {
   height: 113px;
 }
 
-.gradiente-e-imagem{
+.gradiente-e-imagem {
   position: relative;
   width: 100%;
   overflow: hidden;
@@ -558,7 +570,7 @@ ion-icon {
   font-size: 18px;
 }
 
-/* Media Queries -> Responsividade */
+/********************* Media Queries -> Responsividade ********************/
 
 @media (min-width: 1100px) {
   body {
@@ -589,7 +601,13 @@ ion-icon {
     gap: 12px;
   }
 
+  .quizzes-container,
+  .quizzes {
+    width: 1059px
+  }
+
   .quizzes-todos {
+    width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -600,9 +618,15 @@ ion-icon {
     width: 100%;
   }
 
-  /**parte de perguntas*/
+  /**** Estilos das perguntas*/
   .tela-de-perguntas {
     width: 100vw;
+
+    word-break: break-word;
+  }
+
+  .cabecalho {
+    width: 759px;
   }
 
   .cabecalho-do-quizz {
@@ -611,10 +635,8 @@ ion-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--buzz-grey);
     margin-bottom: 42px;
     opacity: 0.6;
-    position: relative;
     padding: 10px;
   }
 
@@ -636,26 +658,24 @@ ion-icon {
   .cabecalho-gradiente {
     position: absolute;
     top: 0;
+    left: 0;
     bottom: 0;
     z-index: 1;
 
     width: 100vw;
-
-    background-color: rgba(0, 0, 0, 0.604);
   }
 
-  article {
-    width: 50%;
-    margin: 28px auto;
+  .tela-de-perguntas article {
+    width: 759px;
+    margin: 142px auto;
   }
 
   .cabecalho-da-pergunta {
-    height: 90px;
+    height: 137.99px;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 8px;
-    ;
   }
 
   .cabecalho-da-pergunta h1 {
@@ -666,16 +686,24 @@ ion-icon {
     font-size: 25px;
   }
 
+  .opcao {
+    width: 329.91px;
+    height: 175.2px;
+
+    overflow: hidden;
+  }
+
   .conteudo-das-opcoes {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 150px;
+    width: 759px;
   }
-  
-  .gradiente-e-imagem{
+
+  .gradiente-e-imagem {
     position: relative;
-    width:100%;
+    width: 100%;
     overflow: hidden;
   }
 
@@ -691,7 +719,7 @@ ion-icon {
     z-index: 1;
 
     width: 100%;
-  
+
     background-color: rgba(255, 255, 255, 0.549);
   }
 
@@ -773,9 +801,10 @@ ion-icon {
   .texto-do-resultado {
     width: 100%;
   }
-  .texto-do-resultado h1{
+
+  .texto-do-resultado h1 {
     overflow: hidden;
-    padding:9px;
+    padding: 9px;
     margin-bottom: 48px;
     text-align: center;
     white-space: wrap;

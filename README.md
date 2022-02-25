@@ -74,7 +74,7 @@
         
     - [x]  Na Tela 1: Lista de Quizzes, você pode comparar o id dos quizzes vindo do servidor com esses ids armazenados na criação dos quizzes para verificar se um determinado quizz foi criado pelo usuário em questão
 - Deploy
-    - [ ]  Faça deploy do seu projeto utilizando **GitHub Pages**
+    - [x]  Faça deploy do seu projeto utilizando **GitHub Pages**
 - Para correção automática
     
     Para facilitar a correção do projeto, adicione estes atributos nos elementos HTML:

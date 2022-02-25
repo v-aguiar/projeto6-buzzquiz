@@ -6,6 +6,8 @@ let JOGADAS = 0;
 let quizzDaSegundaTela
 let id_para_reiniciar
 
+const infoBaseCriaQuizz = new Object()
+
 const funcoesApi = {
   obterQuizzes() {
     const promise = axios.get(`${API_URL}/quizzes`);
@@ -85,6 +87,10 @@ const funcoesDeControle = {
     criaQuizzParte4.classList.toggle("--escondido")
   },
 
+  comparador() {
+    return Math.random() - 0.5;
+  },
+
   validaUrl(url) {
     let validaUrl = null
     try {
@@ -142,36 +148,6 @@ const funcoesQuizzes = {
   seus_quizzes: [],
   created_ids: [],
 
-  criarQuizz() {
-    funcoesDeControle.toogleTela1();
-    funcoesDeControle.toogleTela3Parte1();
-  },
-
-  criarQuizzPasso2() {
-    funcoesDeControle.toogleTela3Parte1();
-    funcoesDeControle.toogleTela3Parte2();
-
-    for(let index = 2; index <= NUM_PERGUNTAS; index++) {
-      funcoesQuizzes.montaEstruturaDaPergunta(index);
-    }
-  },
-
-  criarQuizzPasso3() {
-    funcoesDeControle.toogleTela3Parte2();
-    funcoesDeControle.toogleTela3Parte3();
-
-    for(let index = 2; index <= NUM_NIVEIS; index++) {
-      funcoesQuizzes.montaEstruturaDoNível(index);
-    }
-  },
-
-  criarQuizzPasso4() {
-    funcoesDeControle.toogleTela3Parte3();
-    funcoesDeControle.toogleTela3Parte4();
-
-    funcoesQuizzes.montaEstruturaSucessoCriacao()
-  },
-
   responderQuizz(quizz) {
 
     const titulo = quizz.querySelector("p").innerHTML
@@ -184,7 +160,7 @@ const funcoesQuizzes = {
     funcoesDeControle.toogleTela1();
     funcoesDeControle.toogleTela2();
 
-    funcoesQuizzes.montaEstruturaQuizzSegundaTela();
+    montaEstrutura.montaEstruturaQuizzSegundaTela();
 
     id_para_reiniciar = quizz;
   },
@@ -199,7 +175,7 @@ const funcoesQuizzes = {
       funcoesDeControle.toogleTela3Parte4()
       funcoesDeControle.toogleTela2()
 
-      funcoesQuizzes.montaEstruturaQuizzSegundaTela();
+      montaEstrutura.montaEstruturaQuizzSegundaTela();
     }, 1000);
   },
 
@@ -230,7 +206,7 @@ const funcoesQuizzes = {
     const validaUrl = funcoesDeControle.validaUrl(urlDaImagem)
 
     if(validaUrl && validaInputs) {
-      funcoesQuizzes.criarQuizzPasso2()
+      criaQuizz.criarQuizzPasso2()
     } else {
       alert("⚠ Dados inválidos, preencha o formulário novamente!")
       tituloQuizzInput.value = ''
@@ -331,7 +307,7 @@ const funcoesQuizzes = {
       }
     }
 
-    (validacao && validaInputs) ? funcoesQuizzes.criarQuizzPasso3() : console.log("⚠ Dados inválidos, preencha o formulário novamente!")
+    (validacao && validaInputs) ? criaQuizz.criarQuizzPasso3() : console.log("⚠ Dados inválidos, preencha o formulário novamente!")
   },
 
   validaCriacaoDeQuizzParte3() {
@@ -373,7 +349,31 @@ const funcoesQuizzes = {
 
     const validacao = (validaInputs && validaPorcentagemAcertoMinimo && validacaoIteracao)
 
-    validacao ? funcoesQuizzes.criarQuizzPasso4() : alert("⚠ Dados inválidos, preencha o formulário novamente!")
+    validacao ? criaQuizz.criarQuizzPasso4() : alert("⚠ Dados inválidos, preencha o formulário novamente!")
+  },
+
+  checaQuizzesCriadosNoStorage() {
+    const idsNoStorage = localStorage.getItem('ids')
+    const ids = JSON.parse(idsNoStorage)
+
+    const arrayQuizzes = funcoesQuizzes.quizzes
+
+    if(localStorage.length > 0) {
+      const idsNoStorage = localStorage.getItem('ids')
+      const ids = JSON.parse(idsNoStorage)
+
+      setTimeout(() => {
+        ids.forEach((id) => {
+          const quizzFinder = arrayQuizzes.find(quizz => quizz.id === id)
+
+          if(quizzFinder !== undefined) {
+            funcoesQuizzes.seus_quizzes.push(quizzFinder)
+          }
+        })
+      }, 1000)
+    } else {
+      console.log("Sem itens no local storage")
+    }
   },
 
   enviaQuizzParaServidor() {
@@ -400,28 +400,8 @@ const funcoesQuizzes = {
   listarTodosOsQuizzes() {
     const listaDeTodosOsQuizzes = document.querySelector(".quizzes-todos");
 
-    listaDeTodosOsQuizzes.innerHTML = funcoesQuizzes.montaEstruturaQuizzPrimeiraTela();
-    funcoesQuizzes.montaEstruturaQuizzPrimeiraTela();
-  },
-
-  montaEstruturaQuizzPrimeiraTela() {
-    let quizzesEstruturaTela1 = '<li class="quizzes-titulo"><h2>Todos os Quizzes</h2></li>';
-
-    funcoesQuizzes.quizzes.forEach((quizzData) => {
-      const titulo = quizzData.title;
-      const imagem = quizzData.image;
-
-      const quizzEstrutura = `
-        <li class="quizz" onclick="funcoesQuizzes.responderQuizz(this)">
-          <div class="quizz-gradiente"></div>
-          <img src="${imagem}" alt="Imagem de capa do Quizz">
-          <p>${titulo}</p>
-        </li>`;
-
-      quizzesEstruturaTela1 += quizzEstrutura;
-    })
-
-    return quizzesEstruturaTela1;
+    listaDeTodosOsQuizzes.innerHTML = montaEstrutura.montaEstruturaQuizzPrimeiraTela();
+    montaEstrutura.montaEstruturaQuizzPrimeiraTela();
   },
 
   listaSeusQuizzes() {
@@ -433,108 +413,21 @@ const funcoesQuizzes = {
         funcoesDeControle.toogleTela1SemQuizzes();
         funcoesDeControle.toogleTela1SeusQuizzes();
 
-        listaDeSeusQuizzes.innerHTML = funcoesQuizzes.montaEstruturaSeusQuizzes();
+        listaDeSeusQuizzes.innerHTML = montaEstrutura.montaEstruturaSeusQuizzes();
       }
     }, 1000)
   },
 
-  checaQuizzesCriadosNoStorage() {
-    const idsNoStorage = localStorage.getItem('ids')
-    const ids = JSON.parse(idsNoStorage)
+  escutaInputs(numero) {
+    // TESTING CLIENT-SIDE VALIDATION
+    let validacao = true
+    const todosInputs = document.querySelectorAll(`.cria-quizz.passo-${numero} .forms input`)
 
-    console.log("Ids: ", ids)
-
-    const arrayQuizzes = funcoesQuizzes.quizzes
-
-    if(localStorage.length > 0) {
-      const idsNoStorage = localStorage.getItem('ids')
-      const ids = JSON.parse(idsNoStorage)
-
-      setTimeout(() => {
-        ids.forEach((id) => {
-          const quizzFinder = arrayQuizzes.find(quizz => quizz.id === id)
-
-          if(quizzFinder !== undefined) {
-            funcoesQuizzes.seus_quizzes.push(quizzFinder)
-          }
-        })
-      }, 1000)
-    } else {
-      console.log("Sem itens no local storage")
-    }
-  },
-
-  montaEstruturaSeusQuizzes() {
-    let seusQuizzesEstrutura = `
-  <li class="quizzes-titulo">
-    <h2>Seus Quizzes</h2>
-    <ion-icon name="add-circle" onclick="funcoesQuizzes.criarQuizz()" data-identifier="create-quizz"></ion-icon>
-  </li>`;
-
-    funcoesQuizzes.seus_quizzes.forEach((quizzData) => {
-      const titulo = quizzData.title;
-      const imagem = quizzData.image;
-
-      const quizzEstrutura = `
-        <li data-identifier="quizz-card" class="quizz" onclick="funcoesQuizzes.responderQuizz(this)">
-          <div class="quizz-gradiente"></div>
-          <img src="${imagem}" alt="Imagem de capa do seu Quizz">
-          <p>${titulo}</p>
-        </li>`;
-
-      seusQuizzesEstrutura += quizzEstrutura;
+    todosInputs.forEach((input) => {
+      validacao = (input.validity.valid && validacao)
     })
 
-    return seusQuizzesEstrutura;
-  },
-
-  montaEstruturaQuizzSegundaTela() {
-    let cabecalho_do_quizz = document.querySelector(".cabecalho-do-quizz")
-
-    for(let a = 0; a < quizzDaSegundaTela.questions.length; a++) {
-      quizzDaSegundaTela.questions[a].answers.sort(comparador);
-    }
-
-    let responde_quizz = document.querySelector(".responde-quizz");
-    responde_quizz.innerHTML = responde_quizz.innerHTML + `
-            <div class="cabecalho-gradiente"></div>
-            <h1>${quizzDaSegundaTela.title}</h1>
-            <img
-            src = ${quizzDaSegundaTela.image}
-            alt="imagem da opcao">`
-
-    for(let q = 0; q < quizzDaSegundaTela.questions.length; q++) {
-      let cabecalho = document.querySelector(".cabecalho");
-      cabecalho.innerHTML = cabecalho.innerHTML + `
-
-              <div class="cabecalho-da-pergunta cabecalho-${q}" style = "background-color: ${quizzDaSegundaTela.questions[q].color}">
-                <h1>${quizzDaSegundaTela.questions[q].title}</h1>
-              </div>
-              <div class="pergunta-${q} conteudo-das-opcoes"></div>
-              `
-
-      for(let g = 0; g < quizzDaSegundaTela.questions[q].answers.length; g++) {
-        let pergunta = document.querySelector(`.pergunta-${q}`);
-        pergunta.innerHTML = pergunta.innerHTML + `
-                  <label for="resposta-${g}-pergunta-${q}">
-                    <input type="radio" name="pertunta-${q}" id="resposta-${g}-pergunta-${q}" class="radio-${q} radio" onclick="funcoesQuizzes.verificaRespostaCorreta(${q},'opcao-${g}-pergunta-${q}','texto-${g}-pergunta-${q}')"> 
-                    <div class="resposta-${g}-pergunta-${q} opcao">
-                      <div class="imagem">
-                        <div class="gradiente-e-imagem">
-                          <div class="opcao-${g}-pergunta-${q} opcao-gradiente-${q} --escondido gradiente-da-opcao"></div>
-                          <img
-                          src="${quizzDaSegundaTela.questions[q].answers[g].image}"
-                          alt="imagem da opcao">
-                        <div>
-                        <p class="texto-${q} texto-${g}-pergunta-${q} ${quizzDaSegundaTela.questions[q].answers[g].isCorrectAnswer} texto"><b>${quizzDaSegundaTela.questions[q].answers[g].text}</b></p>
-                      </div>
-                    </div>
-                  </label>`
-      }
-    }
-    setTimeout(() => {
-      cabecalho_do_quizz.scrollIntoView({behavior: "smooth"});
-    }, 500);
+    return validacao
   },
 
   verificaRespostaCorreta(num_pergunta, tipo_de_opcao, tipo_texto) {
@@ -575,8 +468,6 @@ const funcoesQuizzes = {
 
     JOGADAS++;
 
-    console.log(JOGADAS)
-
     if(JOGADAS === quizzDaSegundaTela.questions.length) {
       funcoesQuizzes.colocaResultadoDoTesteNaTela()
 
@@ -595,7 +486,7 @@ const funcoesQuizzes = {
     responde_quizz.innerHTML = "";
     let cabecalho = document.querySelector(".cabecalho");
     cabecalho.innerHTML = "";
-    this.montaEstruturaQuizzSegundaTela();
+    montaEstrutura.montaEstruturaQuizzSegundaTela();
     let tela_de_resposta = document.querySelector(".tela-de-resposta");
     tela_de_resposta.classList.add("--escondido")
     JOGADAS = 0;
@@ -626,6 +517,133 @@ const funcoesQuizzes = {
     `
       }
     }
+  }
+}
+
+const criaQuizz = {
+  criarQuizz() {
+    funcoesDeControle.toogleTela1();
+    funcoesDeControle.toogleTela3Parte1();
+  },
+
+  criarQuizzPasso2() {
+    funcoesDeControle.toogleTela3Parte1();
+    funcoesDeControle.toogleTela3Parte2();
+
+    for(let index = 2; index <= NUM_PERGUNTAS; index++) {
+      montaEstrutura.montaEstruturaDaPergunta(index);
+    }
+  },
+
+  criarQuizzPasso3() {
+    funcoesDeControle.toogleTela3Parte2();
+    funcoesDeControle.toogleTela3Parte3();
+
+    for(let index = 2; index <= NUM_NIVEIS; index++) {
+      funcoesQuizzes.montaEstruturaDoNível(index);
+    }
+  },
+
+  criarQuizzPasso4() {
+    funcoesDeControle.toogleTela3Parte3();
+    funcoesDeControle.toogleTela3Parte4();
+
+    montaEstrutura.montaEstruturaSucessoCriacao()
+  }
+}
+
+const montaEstrutura = {
+  montaEstruturaQuizzPrimeiraTela() {
+    let quizzesEstruturaTela1 = '<li class="quizzes-titulo"><h2>Todos os Quizzes</h2></li>';
+
+    funcoesQuizzes.quizzes.forEach((quizzData) => {
+      const titulo = quizzData.title;
+      const imagem = quizzData.image;
+
+      const quizzEstrutura = `
+        <li class="quizz" onclick="funcoesQuizzes.responderQuizz(this)">
+          <div class="quizz-gradiente"></div>
+          <img src="${imagem}" alt="Imagem de capa do Quizz">
+          <p>${titulo}</p>
+        </li>`;
+
+      quizzesEstruturaTela1 += quizzEstrutura;
+    })
+
+    return quizzesEstruturaTela1;
+  },
+
+  montaEstruturaSeusQuizzes() {
+    let seusQuizzesEstrutura = `
+  <li class="quizzes-titulo">
+    <h2>Seus Quizzes</h2>
+    <ion-icon name="add-circle" onclick="criaQuizz.criarQuizz()" data-identifier="create-quizz"></ion-icon>
+  </li>`;
+
+    funcoesQuizzes.seus_quizzes.forEach((quizzData) => {
+      const titulo = quizzData.title;
+      const imagem = quizzData.image;
+
+      const quizzEstrutura = `
+        <li data-identifier="quizz-card" class="quizz" onclick="funcoesQuizzes.responderQuizz(this)">
+          <div class="quizz-gradiente"></div>
+          <img src="${imagem}" alt="Imagem de capa do seu Quizz">
+          <p>${titulo}</p>
+        </li>`;
+
+      seusQuizzesEstrutura += quizzEstrutura;
+    })
+
+    return seusQuizzesEstrutura;
+  },
+
+  montaEstruturaQuizzSegundaTela() {
+    let cabecalho_do_quizz = document.querySelector(".cabecalho-do-quizz")
+
+    for(let a = 0; a < quizzDaSegundaTela.questions.length; a++) {
+      quizzDaSegundaTela.questions[a].answers.sort(funcoesDeControle.comparador);
+    }
+
+    let responde_quizz = document.querySelector(".responde-quizz");
+    responde_quizz.innerHTML = responde_quizz.innerHTML + `
+            <div class="cabecalho-gradiente"></div>
+            <h1>${quizzDaSegundaTela.title}</h1>
+            <img
+            src = ${quizzDaSegundaTela.image}
+            alt="imagem da opcao">`
+
+    for(let q = 0; q < quizzDaSegundaTela.questions.length; q++) {
+      let cabecalho = document.querySelector(".cabecalho");
+      cabecalho.innerHTML = cabecalho.innerHTML + `
+
+              <div class="cabecalho-da-pergunta cabecalho-${q}" style = "background-color: ${quizzDaSegundaTela.questions[q].color}">
+                <h1>${quizzDaSegundaTela.questions[q].title}</h1>
+              </div>
+              <div class="pergunta-${q} conteudo-das-opcoes"></div>
+              `
+
+      for(let g = 0; g < quizzDaSegundaTela.questions[q].answers.length; g++) {
+        let pergunta = document.querySelector(`.pergunta-${q}`);
+        pergunta.innerHTML = pergunta.innerHTML + `
+                  <label for="resposta-${g}-pergunta-${q}">
+                    <input type="radio" name="pertunta-${q}" id="resposta-${g}-pergunta-${q}" class="radio-${q} radio" onclick="funcoesQuizzes.verificaRespostaCorreta(${q},'opcao-${g}-pergunta-${q}','texto-${g}-pergunta-${q}')"> 
+                    <div class="resposta-${g}-pergunta-${q} opcao">
+                      <div class="imagem">
+                        <div class="gradiente-e-imagem">
+                          <div class="opcao-${g}-pergunta-${q} opcao-gradiente-${q} --escondido gradiente-da-opcao"></div>
+                          <img
+                          src="${quizzDaSegundaTela.questions[q].answers[g].image}"
+                          alt="imagem da opcao">
+                        </div>
+                      <p class="texto-${q} texto-${g}-pergunta-${q} ${quizzDaSegundaTela.questions[q].answers[g].isCorrectAnswer} texto"><b>${quizzDaSegundaTela.questions[q].answers[g].text}</b></p>
+                      </div>
+                    </div>
+                  </label>`
+      }
+    }
+    setTimeout(() => {
+      cabecalho_do_quizz.scrollIntoView({behavior: "smooth"});
+    }, 500);
   },
 
   montaEstruturaDaPergunta(numero) {
@@ -714,24 +732,8 @@ const funcoesQuizzes = {
     passoQuatro.innerHTML = estruturaSucesso
   },
 
-  escutaInputs(numero) {
-    // TESTING CLIENT-SIDE VALIDATION
-    let validacao = true
-    const todosInputs = document.querySelectorAll(`.cria-quizz.passo-${numero} .forms input`)
-
-    todosInputs.forEach((input) => {
-      validacao = (input.validity.valid && validacao)
-    })
-
-    return validacao
-  },
 }
-
-const infoBaseCriaQuizz = new Object()
 
 funcoesApi.obterQuizzes()
 funcoesQuizzes.listaSeusQuizzes();
 
-function comparador() {
-  return Math.random() - 0.5;
-}

@@ -28,7 +28,7 @@
     <section class="quizzes-container">
       <article class="sem-quizzes">
         <p class="--cinza">Você não criou nenhum<br>quizz ainda :(</p>
-        <button data-identifier="create-quizz" onclick="funcoesQuizzes.criarQuizz()">Criar Quizz</button>
+        <button data-identifier="create-quizz" onclick="criaQuizz.criarQuizz()">Criar Quizz</button>
       </article>
 
       <article data-identifier="user-quizzes" class="seus-quizzes --escondido">
@@ -42,24 +42,27 @@
       </article>
     </section>
 
-
     <!--Pergunta dos quizzes-->
     <section class="tela-de-perguntas --escondido">
       <div class="responde-quizz cabecalho-do-quizz"></div>
       <article>
-          <div class="cabecalho"></div>
-          <!--caixa de resultado-->
-          <div class="tela-de-resposta --escondido">
-            <div class="cabecalho-quatro">
-              <div class="texto-do-cabecalho-quatro"></div>
-            </div>
-            <div class="resultado-do-quizz">
-              <div class = "imagem-do-resultado"></div>
-              <div class="texto-do-resultado"></div>
-              <button class="botao-criacao" onclick="funcoesQuizzes.reiniciarQuizz()"><p>reiniciar quizz</p></button>
-              <button class="voltar" onclick="funcoesQuizzes.voltarHome()"><p>voltar para home</p></button>
-            </div>
+        <div class="cabecalho"></div>
+        <!--caixa de resultado-->
+        <div class="tela-de-resposta --escondido">
+          <div class="cabecalho-quatro">
+            <div class="texto-do-cabecalho-quatro"></div>
           </div>
+          <div class="resultado-do-quizz">
+            <div class="imagem-do-resultado"></div>
+            <div class="texto-do-resultado"></div>
+            <button class="botao-criacao" onclick="funcoesQuizzes.reiniciarQuizz()">
+              <p>reiniciar quizz</p>
+            </button>
+            <button class="voltar" onclick="funcoesQuizzes.voltarHome()">
+              <p>voltar para home</p>
+            </button>
+          </div>
+        </div>
       </article>
     </section>
 
@@ -134,7 +137,6 @@
         </form>
       </div>
     </section>
-
 
     <!--Victor-->
     <section class="cria-quizz passo-tres --escondido">
